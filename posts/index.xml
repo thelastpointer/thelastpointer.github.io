@@ -6,8 +6,29 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 16 Apr 2019 13:28:53 +0100</lastBuildDate>
+        <lastBuildDate>Tue, 23 Apr 2019 13:33:33 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Awesome Blog: Digital Antiquarian</title>
+            <link>/posts/awesome-blog-digital-antiquarian/</link>
+            <pubDate>Tue, 23 Apr 2019 13:33:33 +0200</pubDate>
+            
+            <guid>/posts/awesome-blog-digital-antiquarian/</guid>
+            <description>Another awesome blog!
+Check this: out https://www.filfre.net/ Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.
+I found it while doing some research on Ultima Underworld; his explanation of the unique mechanics in the game immediately caught my attention: simple, attentive, and almost entirely devoid of usual game critic cliches. Among other super interesting things I loved his coverage on the Ultima series, the history of early British video games, and his outstandingly coherent depiction of early technology.</description>
+            <content type="html"><![CDATA[<p>Another awesome blog!</p>
+
+<p>Check this: out <a href="https://www.filfre.net/">https://www.filfre.net/</a> Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.</p>
+
+<p>I found it while doing some research on Ultima Underworld; his explanation of the unique mechanics in the game immediately caught my attention: simple, attentive, and almost entirely devoid of usual game critic cliches. Among other super interesting things I loved his coverage on the Ultima series, the history of early British video games, and his outstandingly coherent depiction of early technology.</p>
+
+<p>His writing about the Apple II was so inspiring that I&rsquo;ve since read multiple books on the subject and even watched a film about Steve Jobs. I&rsquo;m amazed to report that Jimmy&rsquo;s posts are by far superior.</p>
+
+<p>Go ahead and check out <a href="https://www.filfre.net/about-me/hall-of-fame">Hall of Fame</a> or <a href="https://www.filfre.net/about-me/sitemap">Table of Contents</a>, pick a headline that seems interesting and chances are you&rsquo;ll find something special!</p>
+]]></content>
+        </item>
         
         <item>
             <title>github.io</title>

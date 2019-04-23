@@ -6,10 +6,21 @@
     <description>Recent content on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Apr 2019 13:28:53 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 13:33:33 +0200</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Awesome Blog: Digital Antiquarian</title>
+      <link>/posts/awesome-blog-digital-antiquarian/</link>
+      <pubDate>Tue, 23 Apr 2019 13:33:33 +0200</pubDate>
+      
+      <guid>/posts/awesome-blog-digital-antiquarian/</guid>
+      <description>Another awesome blog!
+Check this: out https://www.filfre.net/ Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.
+I found it while doing some research on Ultima Underworld; his explanation of the unique mechanics in the game immediately caught my attention: simple, attentive, and almost entirely devoid of usual game critic cliches. Among other super interesting things I loved his coverage on the Ultima series, the history of early British video games, and his outstandingly coherent depiction of early technology.</description>
+    </item>
     
     <item>
       <title>github.io</title>
