@@ -16,8 +16,7 @@
             
             <guid>/posts/awesome-blog-digital-antiquarian/</guid>
             <description>Another awesome blog!
-Check this: out https://www.filfre.net/ Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.
-I found it while doing some research on Ultima Underworld; his explanation of the unique mechanics in the game immediately caught my attention: simple, attentive, and almost entirely devoid of usual game critic cliches. Among other super interesting things I loved his coverage on the Ultima series, the history of early British video games, and his outstandingly coherent depiction of early technology.</description>
+Check this: out https://www.filfre.net/ Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.</description>
             <content type="html"><![CDATA[<p>Another awesome blog!</p>
 
 <p>Check this: out <a href="https://www.filfre.net/">https://www.filfre.net/</a> Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.</p>
@@ -38,8 +37,7 @@ I found it while doing some research on Ultima Underworld; his explanation of th
             <guid>/posts/githubio/</guid>
             <description>New Site!
 I&amp;rsquo;m pretty excited to try github.io for a personal landing page.
-I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for a simple, static website that is easy to control and easier on the user. Recently, a lot of opinions surfaced about the web being bloated, and I fully agree.
-&amp;quot;Why do I need a 4Ghz quadcore to run facebook?&amp;quot; This is why. A single word split up into 11 HTML DOM elements to avoid adblockers.</description>
+I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for a simple, static website that is easy to control and easier on the user.</description>
             <content type="html"><![CDATA[<p>New Site!</p>
 
 <p>I&rsquo;m pretty excited to try github.io for a personal landing page.</p>
@@ -71,8 +69,7 @@ I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for
             <pubDate>Mon, 08 Apr 2019 14:08:18 +0200</pubDate>
             
             <guid>/posts/awesome-blog-danluu/</guid>
-            <description>I found a great post at danluu.com. I strongly recommend it! The author explores player interactions from male and female perspectives. What I found captivating is the methodical, data-driven, scientific way he presented his findings. More of this please! His other posts are great too, and cover a wide variety of topics.
-Since then, I&amp;rsquo;ve been devouring his posts, and it&amp;rsquo;s all kinds of fascinating. It&amp;rsquo;s rare to find a blog so good, so I decided to write an endorsement post.</description>
+            <description>I found a great post at danluu.com. I strongly recommend it! The author explores player interactions from male and female perspectives.</description>
             <content type="html"><![CDATA[<p>I found a great post at danluu.com. I strongly recommend it! The author explores <a href="https://danluu.com/overwatch-gender/">player interactions from male and female perspectives</a>. What I found captivating is the methodical, data-driven, scientific way he presented his findings. More of this please! His other posts are great too, and cover a wide variety of topics.</p>
 
 <p>Since then, I&rsquo;ve been devouring his posts, and it&rsquo;s all kinds of fascinating. It&rsquo;s rare to find a blog so good, so I decided to write an endorsement post. I hope I can make this a regular occurence.</p>
@@ -88,8 +85,7 @@ Since then, I&amp;rsquo;ve been devouring his posts, and it&amp;rsquo;s all kind
             
             <guid>/posts/nodejs/</guid>
             <description>y So I decided to try NodeJS and Heroku.
-Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, you know what it is, right? You create apps using javascript, that&amp;rsquo;s what it is.
-There&amp;rsquo;s a lot of hype around these two, so I was curious to try them; I also come from a very different environment (desktop apps written in C#) so I expected nothing &amp;ndash; other than my own incompetence :) I knew I needed to learn this from scratch basically, so I tried to enter this world with no preconceptions.</description>
+Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, you know what it is, right?</description>
             <content type="html"><![CDATA[
 
 <h2 id="y">y</h2>
