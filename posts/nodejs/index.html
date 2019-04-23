@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="y So I decided to try NodeJS and Heroku.
+Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, you know what it is, right? You create apps using javascript, that&amp;rsquo;s what it is.
+There&amp;rsquo;s a lot of hype around these two, so I was curious to try them; I also come from a very different environment (desktop apps written in C#) so I expected nothing &amp;ndash; other than my own incompetence :) I knew I needed to learn this from scratch basically, so I tried to enter this world with no preconceptions." />
+<meta name="keywords" content="homepage, blog, informatics, development, programming" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/nodejs/" />
+
+
+<title>
+    
+    I tried node.js &#43; Heroku :: thelastpointer 
+    
+</title>
+
+
+
+
+<link rel="stylesheet" href="/scss/main.min.099699ab246bf26f50616f7c9f00c79d46110459d1bd727b2d07d6fc09ece082.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="theme-color" content="#252627">
+<meta itemprop="name" content="I tried node.js &#43; Heroku">
+<meta itemprop="description" content="y So I decided to try NodeJS and Heroku.
+Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you know what it is, right? You create apps using javascript, that&rsquo;s what it is.
+There&rsquo;s a lot of hype around these two, so I was curious to try them; I also come from a very different environment (desktop apps written in C#) so I expected nothing &ndash; other than my own incompetence :) I knew I needed to learn this from scratch basically, so I tried to enter this world with no preconceptions.">
+
+
+<meta itemprop="datePublished" content="2019-01-10T10:13:03&#43;01:00" />
+<meta itemprop="dateModified" content="2019-01-10T10:13:03&#43;01:00" />
+<meta itemprop="wordCount" content="2025">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="I tried node.js &#43; Heroku"/>
+<meta name="twitter:description" content="y So I decided to try NodeJS and Heroku.
+Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you know what it is, right? You create apps using javascript, that&rsquo;s what it is.
+There&rsquo;s a lot of hype around these two, so I was curious to try them; I also come from a very different environment (desktop apps written in C#) so I expected nothing &ndash; other than my own incompetence :) I knew I needed to learn this from scratch basically, so I tried to enter this world with no preconceptions."/>
+
+
+
+
+<meta property="article:published_time" content="2019-01-10 10:13:03 &#43;0100 CET" />
+
+
+
+
+
+
+
+<script src="/js/baguetteBox.min.js"></script>
+<link href="/css/baguetteBox.min.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__text">Home</span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Posts</a></li><li><a href="/proto">Prototypes</a></li><li><a href="/pro">Works</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019.01.10. 10:13 &#43;0100</p>
+            </div>
+
+        <article>
+            <h1 class="post-title"><a href="/posts/nodejs/">I tried node.js + Heroku</a></h1>
+
+            
+
+            <div class="post-content">
+                
+
+<h2 id="y">y</h2>
+
+<p>So I decided to try NodeJS and Heroku.</p>
+
+<p>Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you know what it is, right? You create apps using javascript, that&rsquo;s what it is.</p>
+
+<p>There&rsquo;s a lot of hype around these two, so I was curious to try them; I also come from a very different environment (desktop apps written in C#) so I expected nothing &ndash; other than my own incompetence :) I knew I needed to learn this from scratch basically, so I tried to enter this world with no preconceptions. So, these are my subjective observations coming from a standalone developer perspective.</p>
+
+<p>The project was simple: an online highscore-storing service for a Unity game. The Unity part is important: I wanted to access the service using C# code, which meant I needed an encryption routine that worked for both. I thought this was going to be the most difficult part, but I was wrong.</p>
+
+<p>Let&rsquo;s start with Heroku. I found it to be a very friendly service, it has a nice onboarding/tutorial page which guides you through the setup phase and runs a basic app. It works locally and on the web, too.</p>
+
+<p>I&rsquo;ve run into a minor problem; Heroku thought I had two projects in the local folder, despite having only one. I have no idea how did I end up there, but I eventually solved it by deleting a rogue git alias. It was a risky move because it&rsquo;s not clear what aliases does Heroku expect; now I have one remote called &ldquo;heroku&rdquo; and it works.</p>
+
+<p>Other that that, it&rsquo;s smooth sailing. You have a git repo, you have a Heroku account, Heroku runs whatever is in you repo &ndash; that&rsquo;s it.</p>
+
+<p>Aside: out of curiosity, I asked some of my more experienced friends how much time would this project take; the answers ranged from &ldquo;an hour&rdquo; to &ldquo;half a day&rdquo;. I think that&rsquo;s reasonable, as I only need two endpoints, a very simple database and some encryption. I was prepared to spend a few days on it to get the hang of things.</p>
+
+<p>So, onto NodeJS! The default Heroku sample uses a framework called &ldquo;Express&rdquo;. I had no idea what it did. It&rsquo;s an &ldquo;application framework&rdquo;, which is meaningless, and their website isn&rsquo;t very helpful either. After some fumbling around it turns out it has some handy tools for serving HTTP websites, so I decided to stick with it. I asked around and it&rsquo;s one of the most popular webserver frameworks, so there&rsquo;s probably no harm in using that instead of writing a lot of boilerplate code. It still strikes me odd that its functionality isn&rsquo;t really explained on their site.</p>
+
+<p>Handling a request is very simple; it&rsquo;s similar to writing to a console:</p>
+
+<pre><code>app.get('/', function(req, res) {
+  res.send(&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;ayy&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+});
+</code></pre>
+
+<p>I guess this is the part when I would have to look up a template engine to serve nice HTML content, but for this project I just need to pass data, so I&rsquo;m skipping that. Anyway, this ran flawlessly on Heroku, and seeing my own little NodeJS webserver running live is very promising! Note that I&rsquo;m about two hours in, including installing Heroku and NodeJS. So far, so good, I&rsquo;m progressing quite fast.</p>
+
+<p>Next, I&rsquo;ll need a database to work with some &ldquo;real&rdquo; data. The local pgsql install process takes some time (around an hour), and syncing it with Heroku is supposed to be simple. However, I screwed this up, someehow lost my root password, I had to reinstall, and after that Heroku wasn&rsquo;t so cooperative. I guess an environment variable got stuck somewhere; I remember seeing it on a stackoverflow answer? It&rsquo;s not clear what the problem is and how should I go about it. I have no doubt that it would work nicely if I don&rsquo;t fuck it up, but I did, and it&rsquo;s very hard to find out how to make it work again, because I have little idea what&rsquo;s going on.</p>
+
+<p>Eventually, I solve this too, but it takes a considerable amount of googling, and the solution turned out to be an unofficial post somewhere.</p>
+
+<p>Once working, Heroku can connect to a db seamlessly &ndash; the same code and config works locally and in the cloud. (Well, not for me, but you get the idea.)</p>
+
+<p>I had to look up the <code>await</code> and <code>async</code> keywords for javascript; these make it possible to run &ndash; yeah right &ndash; asynchronous code. I got a bit confused with <code>async</code> though. First, I forgot to declare my anonymous function as async, so I got a runtime error. This feels very awkward compared to compiled languages, but that was sort of expected. I wonder though if I could do a static analysis to catch these errors while deploying? This seems to be a major difference when developing web apps.</p>
+
+<p>Of course, I wanted to catch errors too. I looked into best practices for this, and I found conflicting opinions. Some say that try/catch doesn&rsquo;t handle exceptions coming from async code, some say they do. There&rsquo;s no definitive list of exceptions a function can throw; developers are advised to always use <code>Error</code> when throwing, as it is the only exception that&rsquo;s widely supported. There are error events for Express. There are &ldquo;Promises&rdquo; with <code>.catch()</code> clauses&hellip;</p>
+
+<p>The most striking statement is that after an error there is <em>no way</em> of ensuring the correctness of the application state, so you are to &ldquo;gracefully restart&rdquo; the application. This is unthinkable in the standalone world, but I guess it has something to do with a stateless environment and a large number of concurrent connections? Either way, there is a scary lack of documentation regarding this, and it&rsquo;s especially weird to work in an environment where you can never guarantee the correctness of the application. To be honest, it all seems to be a cop-out: nobody knows what&rsquo;s happening, so you just restart the app.</p>
+
+<p>I&rsquo;d like to emphasise that this is my subjective observation as a Node-rookie. Maybe I just haven&rsquo;t found the appropriate docs, or I haven&rsquo;t spent enough time looking?</p>
+
+<p>Perhaps an experienced developer could tell me what the best option is, but I&rsquo;d expect this topic to be well-covered, even for &ndash; especially for &ndash; beginner developers. The presence of &ldquo;opinions&rdquo; just highlight the lack of an official knowledge base.</p>
+
+<h2 id="getting-data">Getting data</h2>
+
+<p>Ending this rant, after a few hours I settled on using try/catch-ing the database code. The result, I have to admit, is super-clean, simple, and well-readable:</p>
+
+<pre><code>app.get('/getscores', async function(req, res) {
+  try
+  {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM scores ORDER BY score DESC LIMIT 20');
+
+    res.write(JSON.stringify(result.rows));
+    res.end();
+
+    client.release();
+  }
+  catch (err){
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  }
+});
+</code></pre>
+
+<p>Almost trivial. The &ldquo;getscores&rdquo; subpage returns a JSON containing the first 20 scores. I can&rsquo;t shake the feeling that this can crash for unknown reasons (why isn&rsquo;t <code>client.release()</code> in a finally block? I don&rsquo;t know), but let&rsquo;s hope for the best. I&rsquo;ve inserted some test scores into the database, and it works! Way simpler than I thought it would be.</p>
+
+<h2 id="uploading-data">Uploading data</h2>
+
+<p>As simple as the project is, I wanted to make score uploading somewhat secure. I have some experience with encryption, so I didn&rsquo;t have to learn this from scratch, and there is a nice library called &ldquo;CryptoJS&rdquo; that does the heavy lifting for me. A wonderful stackoverflow answer by user <em>usselite</em> basically solves the whole problem: encrypt some data using C#, decrypt it using javascript. Read it here: <a href="https://stackoverflow.com/questions/47891104/compatible-aes-encryption-and-decryption-for-c-sharp-and-javascript">https://stackoverflow.com/questions/47891104/compatible-aes-encryption-and-decryption-for-c-sharp-and-javascript</a></p>
+
+<p>Implementing this was surprisingly easy. I had to make some modifications to work with NodeJS (this included looking up what the bafflingly-named &ldquo;atob&rdquo; function does and replacing it using <code>Buffer</code> objects), but in less than an hour, I made a console app in C# that generated some encrypted data, a debug page to post my data, and the real endpoint that receives the encrypted payload, decrypts it, and writes it to console.</p>
+
+<p>Now, here&rsquo;s the catch.</p>
+
+<p>The payload decrypting was easy; inserting it into the database is easy. Since the payload is encrypted, it&rsquo;s hard to tamper with, but I still wanted to validate the data before doing any database operations.</p>
+
+<p>So I got stuck on trying to verify if the score is a valid integer. Amazingly, this took <em>hours</em>.</p>
+
+<p>Let&rsquo;s start with the solution, the one I settled with at least:</p>
+
+<pre><code>if (!Number.isInteger(payload.map) || (payload.map &lt;= 0))
+{
+  console.log('map invalid');
+  res.status(400).end('error');
+}
+</code></pre>
+
+<p>But getting there? That was surreal. The requirement is simple: the payload contains this data, and it should be a natural number (some values, like the level index, can be zero). There were all sorts of complications: how to check if the JSON (converted to an object after decryption) has a member? Converting it to bool doesn&rsquo;t work if the number is 0. There&rsquo;s a function for that; if we have the member, how to check if it&rsquo;s a number? Check its type? Which equality operator do you use for that? What&rsquo;s a number anyway? (Seriously, look that up.)</p>
+
+<p>There are <em>dozens</em> of ways to go around this, each of them slightly different, there are hidden conversion going on in the background with all sorts of results (number, string, undefined, NaN&hellip;). <em>And there is not one that is definitive.</em></p>
+
+<p>This is baffling. Should I use a validation library? Seems overkill for such a simple task. It seems like I need <em>more experience</em> to answer this question? That this is not a trivial problem?</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>I&rsquo;d like to remind you again that I spent about 8 hours on this project, so I&rsquo;m definitively not an expert, and please consider this as first-look impressions.</p>
+
+<p>Heroku is a very nice service. It just works, it&rsquo;s free, and does a lot of things for you so you can concentrate on development. It would be very interesting to see how it scales upwards, distributing work between multiple dynos (a VM, sort of), but&hellip; I&rsquo;m not going to do that :) It is amazingly friendly &ndash; you don&rsquo;t even have to remember git credentials?! That&rsquo;s the most streamlined service I ever saw.</p>
+
+<p>Developing stuff in NodeJS is very fast. You can get your online thing running in a day, which is a lot faster tha I expected. If you need something, there&rsquo;s a good chance that there is an npm module for that, so you&rsquo;re just a command line entry away from implementing your high-level vision.</p>
+
+<p>It is very hard, however, to write <em>correct</em> code. Debugging is very restricted, so you better log everything. I presume it also drastically increases the number of unit tests you need to write. Error handling is very weird &ndash; it seems like nobody knows how it works, and nobody cares. This means that even if you want to write correct code, chances are some of your dependencies will behave unpredictably.</p>
+
+<p>Documentation is, well, dare I say, non-existent? There is no single source of truth. There are, however, conflicting &ldquo;opinions&rdquo;. Most of your time will be spent on Stackoverflow and various personal blogs on Medium, with no apparent way to verify what you read (other than trying it). It&rsquo;s not unlikely that a developer will recommend a solution because they &ldquo;like it the most&rdquo;.</p>
+
+<p>Suprisingly, nobody thinks of this as a concern.</p>
+
+<p>I find this worrying, and I wouldn&rsquo;t recommend NodeJS for anything other than really small, insignificant projects. Maintaining even medium size projects would be a nightmare; my project is about 200 lines of code, and I have no idea if it&rsquo;s correct or not, nor have I any means of checking it. Does Express throw an exception somewhere? Or CryptoJS? Is it enough to put my database code in try/catch? Will it even catch errors in async functions? The only way to find out is to try it &ndash; which would take quite some time in itself.</p>
+
+<p>What happens when an exception is thrown somewhere I didn&rsquo;t expect? Okay, I know this one &ndash; the whole app will crash. How do I avoid that? I have no clue. It is telling that there are a fair number of tools that will automatically restart your app if it crashes.</p>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="/posts/awesome-blog-danluu/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Awesome Blog: Dan Luu (danluu.com)</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="/posts/first/">
+                                <span class="button__text">First</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+
+        
+    </main>
+
+            </div>
+
+            
+                
+
+            
+        </div>
+
+        
+
+
+
+
+
+<script type="text/javascript" src="/js/bundle.min.cf7871ed49474a80ed457154d24e61f7881adbe0f9384951a74ac46b688a39a4dbfa68bc6d37baeb058186de354ead3487d4ee7f083ea4cba860c48600b694f3.js" integrity="sha512-z3hx7UlHSoDtRXFU0k5h94ga2&#43;D5OElRp0rEa2iKOaTb&#43;mi8bTe66wWBht41Tq00h9Tufwg&#43;pMuoYMSGALaU8w=="></script>
+
+
+
+    </body>
+</html>

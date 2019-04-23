@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Awesome Blogs on thelastpointer</title>
+    <link>/tags/awesome-blogs/</link>
+    <description>Recent content in Awesome Blogs on thelastpointer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Apr 2019 14:08:18 +0200</lastBuildDate>
+    
+	<atom:link href="/tags/awesome-blogs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Awesome Blog: Dan Luu (danluu.com)</title>
+      <link>/posts/awesome-blog-danluu/</link>
+      <pubDate>Mon, 08 Apr 2019 14:08:18 +0200</pubDate>
+      
+      <guid>/posts/awesome-blog-danluu/</guid>
+      <description>I found a great post at danluu.com. I strongly recommend it! The author explores player interactions from male and female perspectives. What I found captivating is the methodical, data-driven, scientific way he presented his findings. More of this please! His other posts are great too, and cover a wide variety of topics.
+Since then, I&amp;rsquo;ve been devouring his posts, and it&amp;rsquo;s all kinds of fascinating. It&amp;rsquo;s rare to find a blog so good, so I decided to write an endorsement post.</description>
+    </item>
+    
+  </channel>
+</rss>
