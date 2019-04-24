@@ -6,10 +6,19 @@
     <description>Recent content on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2019 13:33:33 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 24 Apr 2019 09:48:52 +0200</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Optimizing Site</title>
+      <link>/posts/optimizing-site/</link>
+      <pubDate>Wed, 24 Apr 2019 09:48:52 +0200</pubDate>
+      
+      <guid>/posts/optimizing-site/</guid>
+      <description>So I showed the new site to a few friends, and as expected, they pointed out all kinds of things to fix :)</description>
+    </item>
     
     <item>
       <title>Awesome Blog: Digital Antiquarian</title>
