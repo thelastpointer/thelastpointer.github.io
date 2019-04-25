@@ -8,8 +8,38 @@
   </url>
   
   <url>
+    <loc>/posts/</loc>
+    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/untagged/</loc>
+    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/posts/awesome-blog-digital-antiquarian/</loc>
     <lastmod>2019-04-23T13:33:33+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/awesome-blogs/</loc>
+    <lastmod>2019-04-23T13:33:33+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -48,37 +78,7 @@
   </url>
   
   <url>
-    <loc>/tags/awesome-blogs/</loc>
-    <lastmod>2019-04-23T13:33:33+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-04-23T13:33:33+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/untagged/</loc>
-    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-04-24T09:48:52+02:00</lastmod>
     <priority>0</priority>
   </url>
   
