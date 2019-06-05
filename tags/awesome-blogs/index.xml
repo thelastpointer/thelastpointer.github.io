@@ -6,10 +6,20 @@
     <description>Recent content in Awesome blogs on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2019 13:33:33 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2019 11:27:00 +0200</lastBuildDate>
     
 	<atom:link href="/tags/awesome-blogs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Awesome Blog: The Old New Thing</title>
+      <link>/posts/awesome-blog-old-new-thing/</link>
+      <pubDate>Wed, 05 Jun 2019 11:27:00 +0200</pubDate>
+      
+      <guid>/posts/awesome-blog-old-new-thing/</guid>
+      <description>The Old New Thing
+Raymond Chen&amp;rsquo;s small posts are equal parts entertaining, terrifying and enlightening. As a renowned Microsoft engineer, he shares very interesting bits of information on a wide number of topics: tricky algorithms, anecdotes from Microsoft, and my favourite topic: explanations of features that made it in the SDK.</description>
+    </item>
     
     <item>
       <title>Awesome Blog: Digital Antiquarian</title>

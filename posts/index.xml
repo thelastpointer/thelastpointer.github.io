@@ -5,8 +5,108 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 24 Apr 2019 09:48:52 +0200</lastBuildDate>
+        <lastBuildDate>Wed, 05 Jun 2019 11:27:00 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Awesome Blog: The Old New Thing</title>
+            <link>/posts/awesome-blog-old-new-thing/</link>
+            <pubDate>Wed, 05 Jun 2019 11:27:00 +0200</pubDate>
+            
+            <guid>/posts/awesome-blog-old-new-thing/</guid>
+            <description>The Old New Thing
+Raymond Chen&amp;rsquo;s small posts are equal parts entertaining, terrifying and enlightening. As a renowned Microsoft engineer, he shares very interesting bits of information on a wide number of topics: tricky algorithms, anecdotes from Microsoft, and my favourite topic: explanations of features that made it in the SDK.</description>
+            <content type="html"><![CDATA[<p><a href="https://devblogs.microsoft.com/oldnewthing/">The Old New Thing</a></p>
+
+<p>Raymond Chen&rsquo;s small posts are equal parts entertaining, terrifying and enlightening. As a renowned Microsoft engineer, he shares very interesting bits of information on a wide number of topics: tricky algorithms, anecdotes from Microsoft, and my favourite topic: <em>explanations of features that made it in the SDK.</em> These often reveal some surprising side of software development that we rarely think about; and he comforts us by assuring that every software engineering decision is deliberate and has reasoning behind it.</p>
+
+<p>Those reasons, mind you, might be borderline insane: my favourite story is when a team reverse-engineered some OS code, used that hack some undocumented structures, and when the OS got updated and the hacked solution stopped working, guess who they blamed? That&rsquo;s right, the OS. And what did the OS team do? The reverted the structure so the program could work again. It&rsquo;s logical, but&hellip; you get the idea.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Hello World OS</title>
+            <link>/posts/hello-world-os/</link>
+            <pubDate>Wed, 05 Jun 2019 11:08:04 +0200</pubDate>
+            
+            <guid>/posts/hello-world-os/</guid>
+            <description>A good friend of mine just found an archive of his &amp;ldquo;operating system&amp;rdquo;, the &amp;ldquo;Hello World OS&amp;rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</description>
+            <content type="html"><![CDATA[<p>A good friend of mine just found an archive of his &ldquo;operating system&rdquo;, the &ldquo;Hello World OS&rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#a6e22e">asm</span>
+<span style="color:#75715e">;; boot &#34;Hello world!&#34; program
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">;; usage:
+</span><span style="color:#75715e">;; nasm -fbin hello.asm -o hello.bin
+</span><span style="color:#75715e">;; UltraISO -bootfile hello.bin -outfile hello.iso
+</span><span style="color:#75715e"></span>
+
+<span style="color:#a6e22e">bits</span>    <span style="color:#ae81ff">16</span>                              <span style="color:#75715e">; 16 bit instructions
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">org</span>     <span style="color:#ae81ff">0x7C00</span>                          <span style="color:#75715e">; BIOS transfers execution here after loading the boot sector
+</span><span style="color:#75715e"></span>
+start:
+	<span style="color:#75715e">;; zero out ds, because memory references use ds as base
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">;; ds can only be set via a register so reading from relative addresses would work
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ax</span>, <span style="color:#ae81ff">0</span>
+    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ds</span>, <span style="color:#66d9ef">ax</span>
+    
+    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">si</span>, <span style="color:#66d9ef">string</span>                      <span style="color:#75715e">; si points to the string we want to display
+</span><span style="color:#75715e"></span>
+loop:
+    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">al</span>, [<span style="color:#66d9ef">si</span>]                        <span style="color:#75715e">; al contains the character we want to display
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">ah</span>, <span style="color:#ae81ff">0xE</span>                         <span style="color:#75715e">; teletype (TTY) mode
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">bl</span>, <span style="color:#ae81ff">0x7</span>                         <span style="color:#75715e">; text color (doesn&#39;t matter in tty mode)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">bh</span>, <span style="color:#ae81ff">0</span>                           <span style="color:#75715e">; page number
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">cmp</span> <span style="color:#66d9ef">al</span>, <span style="color:#ae81ff">0</span>
+    <span style="color:#a6e22e">jz</span> <span style="color:#66d9ef">loop_end</span>                         <span style="color:#75715e">; end loop if we reached the zero byte
+</span><span style="color:#75715e"></span>    
+    <span style="color:#66d9ef">int</span> <span style="color:#ae81ff">0x10</span>                            <span style="color:#75715e">; BIOS interrupt
+</span><span style="color:#75715e"></span>    
+    <span style="color:#66d9ef">inc</span> <span style="color:#66d9ef">si</span>
+    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">loop</span>
+
+loop_end:
+    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">$</span>                               <span style="color:#75715e">; hog execution forever :D
+</span><span style="color:#75715e"></span>
+
+<span style="color:#a6e22e">string</span>  <span style="color:#66d9ef">db</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#66d9ef">Hello</span> <span style="color:#66d9ef">world</span>!<span style="color:#960050;background-color:#1e0010">&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">times</span> <span style="color:#ae81ff">510</span>-(<span style="color:#66d9ef">$-$$</span>) <span style="color:#66d9ef">db</span> <span style="color:#ae81ff">0</span>                   <span style="color:#75715e">; pad program to 512 bytes with zeroes
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">dw</span> <span style="color:#ae81ff">0xAA55</span>                               <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">boot</span> <span style="color:#66d9ef">sector</span> <span style="color:#66d9ef">closing</span> <span style="color:#66d9ef">bytes</span></code></pre></div>
+
+<p>Ah, this is amazing. 0x7C00? 0xAA55? Beautiful.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Proposal: 1bit file format</title>
+            <link>/posts/1bit/</link>
+            <pubDate>Mon, 03 Jun 2019 16:55:47 +0200</pubDate>
+            
+            <guid>/posts/1bit/</guid>
+            <description>I was recently working with user-editable texture masks, and I was a little surprized when I didn&amp;rsquo;t find a specialized image file format for 1-bit (monochrome) images.</description>
+            <content type="html"><![CDATA[<p>I was recently working with user-editable texture masks, and I was a little surprized when I didn&rsquo;t find a specialized image file format for 1-bit (monochrome) images. So, here&rsquo;s a file format proposal:</p>
+
+<ul>
+<li>File extension: .1bit</li>
+<li>Magic header: 4 bytes: &ldquo;1bit&rdquo; in ASCII</li>
+<li>2 bytes for the width of the image</li>
+<li>2 bytes for the height of the image</li>
+<li>1 byte for number of channels</li>
+<li>RLE-compressed binary data</li>
+<li>Optional:
+
+<ul>
+<li>1 byte for the length of the comment</li>
+<li>1-254 bytes of text comment because ebin memes</li>
+</ul></li>
+</ul>
+
+<p>Am I missing anything?</p>
+
+<p>I wonder how hard would it be to create a Photoshop plugin for this. A C or C# implementation would be fairly trivial, though it <em>can</em> be a bit tricky when doing 1-bit RLE compression.</p>
+]]></content>
+        </item>
         
         <item>
             <title>Optimizing Site</title>
