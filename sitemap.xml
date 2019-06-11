@@ -3,6 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/e3-2019/</loc>
+    <lastmod>2019-06-11T12:18:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2019-06-11T12:18:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-06-11T12:18:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-06-11T12:18:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/untagged/</loc>
+    <lastmod>2019-06-11T12:18:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/posts/awesome-blog-old-new-thing/</loc>
     <lastmod>2019-06-05T11:27:00+02:00</lastmod>
   </url>
@@ -14,32 +43,8 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/posts/hello-world-os/</loc>
     <lastmod>2019-06-05T11:08:04+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/untagged/</loc>
-    <lastmod>2019-06-05T11:08:04+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
