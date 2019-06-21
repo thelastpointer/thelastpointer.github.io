@@ -64,7 +64,27 @@ Check this: out https://www.filfre.net/ Jimmy Maher writes about early video gam
 
 <script src="/js/baguetteBox.min.js"></script>
 <link href="/css/baguetteBox.min.css" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#14a7d0"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-left",
+  "content": {
+    "message": "This website uses cookies.",
+    "href": "https://thelastpointer.github.io/posts/cookies/"
+  }
+})});
+</script>
     </head>
 
     <body class="">
@@ -177,6 +197,14 @@ Check this: out https://www.filfre.net/ Jimmy Maher writes about early video gam
 
 
 <script type="text/javascript" src="/js/bundle.min.2f6de2347b95298196f6e0109235c8ba4914b1469afd31095c91b6b24b95549c97b6077dcc4e7346c67d4ba73faf8c66174e1fc84e9c16d2b2b49273c7ae6345.js" integrity="sha512-L23iNHuVKYGW9uAQkjXIukkUsUaa/TEJXJG2skuVVJyXtgd9zE5zRsZ9S6c/r4xmF04fyE6cFtKytJJzx65jRQ=="></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-139587529-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 
 
 

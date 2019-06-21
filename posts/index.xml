@@ -5,8 +5,53 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 11 Jun 2019 12:18:28 +0200</lastBuildDate>
+        <lastBuildDate>Fri, 21 Jun 2019 11:44:01 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Cookies</title>
+            <link>/posts/cookies/</link>
+            <pubDate>Fri, 21 Jun 2019 11:44:01 +0200</pubDate>
+            
+            <guid>/posts/cookies/</guid>
+            <description>I finally bit the bullet and added a cookie consent popup to the site. Skip to the part where I explain these cookies.</description>
+            <content type="html"><![CDATA[<p>I finally bit the bullet and added a cookie consent popup to the site. <a href="#explanation">Skip to the part where I explain these cookies.</a></p>
+
+<p>I was trying my best to make this site as lean and hassle-free as possible, but I&rsquo;m also very curious about visitors &ndash; how many people see these posts? Are some posts more popular than others? Should I post <em>more</em> of something?</p>
+
+<p>I hoped that github will provide me with some stats one this &ndash; I wasn&rsquo;t expecting much, but then again, I didn&rsquo;t need much. Github, however, gives me zero information on traffic. I&rsquo;ve been staring at this &ldquo;data&rdquo; for months now:</p>
+
+<p><img src="/img/visitors.png" alt="Github doesn't have enough data" /></p>
+
+<p>I get that I don&rsquo;t have thousands of views, but I&rsquo;m sure that at least some of my friends see this&hellip;? (And how many visitors should I have before I get access to data anyway?)</p>
+
+<p>So I&rsquo;ve been looking around for other options. This is a static site, so I can&rsquo;t run any server-side code &ndash; that would be the easiest method, and the most user-friendly one. I seriously contemplated renting a server just for this, but I kinda like github.io and I feel that users can trust it too.</p>
+
+<p>Other methods are available, too, most notably Google Analytics. The problem with these is that they store a cookie (which is used to make sure that a single user isn&rsquo;t counted twice) and I really, <em>really</em> hate cookie-consent dialogs. The consent is enforced by law, and I found no service that does not need a consent dialog. I feel like these actively make websites worse &ndash; they are annoying and provide no useful information to the user. They usually point to confusing explanations, list hundreds of ad providers, and obscure legal text; I sincerely believe that nobody reads these. Even worse, if I don&rsquo;t agree (and most of time, I don&rsquo;t agree just out of spite), then the consent dialog will be displayed to me <em>every single time</em> I visit that particular site, meaning that I have to face this minor annoyance multiple times, which adds up.</p>
+
+<hr />
+
+<p><a name="explanation"></a>
+So what am I using these cookies for?</p>
+
+<p>I store a single Google Analytics cookie, which is used to make sure that when you visit the site multiple times, you will only be counted once. The cookie contains a string of random numbers and letters, something like this: <code>GA1.2.211694324.1557125602</code></p>
+
+<p>When you visit the site, google analytics checks if this string has been used before, and if not, it increases the unique visitor count.</p>
+
+<p>That&rsquo;s it.</p>
+
+<p>I don&rsquo;t know who you are, there is no personal information associated with this string, I&rsquo;m not trying to sell you anything and you won&rsquo;t be tracked in any way &ndash; except now I know if you visited the site.</p>
+
+<p>I opted out from nearly every feature of Google Analytics because I don&rsquo;t need them.</p>
+
+<p>If you need more information or you want to educate yourself on the subject, here are some simple explanations:
+* <a href="https://www.cookiesandyou.com/">An explanation of cookies</a>
+* <a href="http://www.whatarecookies.com/">What are cookies?</a>
+* <a href="https://www.wikihow.com/Disable-Cookies">How to disable cookies?</a></p>
+
+<p>I would also like to apologize for the inconvenience this causes you. It&rsquo;s a minor annoyance, but still an annoyance &ndash; sorry for that.</p>
+]]></content>
+        </item>
         
         <item>
             <title>E3 2019</title>
