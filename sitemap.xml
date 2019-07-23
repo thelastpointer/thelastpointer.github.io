@@ -3,26 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/cookies/</loc>
-    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
+    <loc>/posts/awesome-blog-ettingrinder/</loc>
+    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/awesome-blogs/</loc>
+    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
+    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
+    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
+    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/cookies/</loc>
+    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
   </url>
   
   <url>
@@ -39,12 +50,6 @@
   <url>
     <loc>/posts/awesome-blog-old-new-thing/</loc>
     <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/awesome-blogs/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
