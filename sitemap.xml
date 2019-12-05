@@ -3,43 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/awesome-blog-ettingrinder/</loc>
-    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/awesome-blogs/</loc>
-    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-07-23T12:44:03+02:00</lastmod>
-    <priority>0</priority>
+    <loc>/posts/unity-and-sonarqube/</loc>
+    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
   </url>
   
   <url>
     <loc>/posts/cookies/</loc>
     <lastmod>2019-06-21T11:44:01+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/untagged/</loc>
-    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -108,7 +78,43 @@
   </url>
   
   <url>
+    <loc>/tags/awesome-blogs/</loc>
+    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/unity/</loc>
+    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/untagged/</loc>
+    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
     <priority>0</priority>
   </url>
   

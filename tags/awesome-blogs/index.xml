@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Awesome blogs on thelastpointer</title>
+    <title>Awesome Blogs on thelastpointer</title>
     <link>/tags/awesome-blogs/</link>
-    <description>Recent content in Awesome blogs on thelastpointer</description>
+    <description>Recent content in Awesome Blogs on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Jul 2019 12:44:03 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2019 11:27:00 +0200</lastBuildDate>
     
 	<atom:link href="/tags/awesome-blogs/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Awesome Blog: Ettingrinder&#39;s Fortress</title>
-      <link>/posts/awesome-blog-ettingrinder/</link>
-      <pubDate>Tue, 23 Jul 2019 12:44:03 +0200</pubDate>
-      
-      <guid>/posts/awesome-blog-ettingrinder/</guid>
-      <description>I found this guy while looking for oldschool fantasy textures &amp;ndash; ETTiNGRiNDER runs a blog about his favourite games, which include several fantasy classics like Heretic (1994) and HeXen (1995).</description>
-    </item>
     
     <item>
       <title>Awesome Blog: The Old New Thing</title>

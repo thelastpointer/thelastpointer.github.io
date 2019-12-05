@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on thelastpointer</title>
@@ -5,19 +6,93 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 23 Jul 2019 12:44:03 +0200</lastBuildDate>
+        <lastBuildDate>Thu, 05 Dec 2019 22:20:41 +0100</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Awesome Blog: Ettingrinder&#39;s Fortress</title>
-            <link>/posts/awesome-blog-ettingrinder/</link>
-            <pubDate>Tue, 23 Jul 2019 12:44:03 +0200</pubDate>
+            <title>Unity and Sonarqube</title>
+            <link>/posts/unity-and-sonarqube/</link>
+            <pubDate>Thu, 05 Dec 2019 22:20:41 +0100</pubDate>
             
-            <guid>/posts/awesome-blog-ettingrinder/</guid>
-            <description>I found this guy while looking for oldschool fantasy textures &amp;ndash; ETTiNGRiNDER runs a blog about his favourite games, which include several fantasy classics like Heretic (1994) and HeXen (1995).</description>
-            <content type="html"><![CDATA[<p>I found this guy while looking for oldschool fantasy textures &ndash; <a href="http://ettingrinder.youfailit.net/">ETTiNGRiNDER</a> runs a blog about his favourite games, which include several fantasy classics like Heretic (1994) and HeXen (1995). I also love these and ETTiNGRiNDER has an awesome archive full of manuals, articles, mods, maps and such; really, it&rsquo;s just a treat to look at.</p>
+            <guid>/posts/unity-and-sonarqube/</guid>
+            <description>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
+            <content type="html"><![CDATA[
 
-<p><a href="http://ettingrinder.youfailit.net/">Check it out!</a></p>
+<p>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a <em>real developer</em>. I was trying to incorporate this into my Unity workflow, but recently I got really good results, so I thought I&rsquo;d share.</p>
+
+<p>I&rsquo;m on Windows 10, using Unity, Visual Studio, and SonarQube.</p>
+
+<p>SonarQube is a very nice tool, but previously I ran into all sorts of problems; incompatible input/output, cumbersome programs, formatting, conversion, etc etc. A few days ago I accidentally stumbled into Kuldeep Singh&rsquo;s article, and I thought I&rsquo;d try it again &ndash; this time it worked almost flawlessly!</p>
+
+<p>So here is the article: <a href="https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03">https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03</a></p>
+
+<p>There are a few things I&rsquo;d add to this.</p>
+
+<p>First of all, a Java install now requires a registration, which I find outrageous. Fuck you, Oracle, what were you thinking? SonarQube requires Java, but I ran into some path mismatch because I have both JRE and JDK installed (Java Runtime Environment and Java Development Kit). If you find SonarQube complaining about your Java version, then it might be using JRE instead of JDK. To remedy this, find SonarQube&rsquo;s config file, called <code>conf/wrapper.conf</code>, and add this line:</p>
+
+<pre><code>wrapper.java.command=c:\Program Files\Java\jdk-11.0.5\bin\java
+</code></pre>
+
+<p>You can run SonarQube as a service or in a console; if you opt for a console, do yourself a favor and use <a href="https://cmder.net/">cmder</a>.</p>
+
+<p>I think it is worth noting that you need to open the C# project inside Unity &ndash; this will generate the solution file (.sln) that we analyse. Simply cloning a project, or creating a test project with no code will, duh, not work. While we&rsquo;re talking about git, you should also add the top-level <code>.sonarqube</code> folder to your git ignore list.</p>
+
+<p>When SonarQube is ready, you might want to consider setting up a &ldquo;real&rdquo; database instead of the built-in one. It&rsquo;s not <em>that</em> important, but keep in mind that if you switch later, your previous work will be lost &ndash; including settings, projects, users, permissions, etc.</p>
+
+<p>I did this using <a href="https://www.postgresql.org/download/">PostgreSQL</a>. Installation is painless; make sure you install PgAdmin too. Note the port you&rsquo;re going to open; it&rsquo;s 5432 by default. After install, open PgAdmin, create a new database (called &ldquo;sonar&rdquo; in my case), and create a user who has permission to alter it. Please don&rsquo;t use the admin user!</p>
+
+<p>When done, tell SonarQube to use your database: find <code>conf/sonar.properties</code> and enter these lines:</p>
+
+<pre><code># Note: the '/sonar' is the database name
+sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar
+
+sonar.jdbc.username=sonarqube
+sonar.jdbc.password=password
+</code></pre>
+
+<p>The database URL took a while to figure out. Restart SonarQube, and you should be set.</p>
+
+<p>I also created a SonarQube user for scanning; this is done by opening SonarQube (<a href="http://localhost:9000">localhost:9000</a> by default), logging in with admin/admin, Administration panel, Security/Users tab, and Create User button. Easy.</p>
+
+<p>Now you&rsquo;re ready to go. If you can&rsquo;t find MSBuild, it should be in your Visual Studio folder:</p>
+
+<pre><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
+</code></pre>
+
+<p>This assumes Visual Studio 2019 (the <em>best</em> Visual Studio) and default install paths.</p>
+
+<p>I created a .bat file for scanning my project &ndash; it is way easier this way. It looks like this:</p>
+
+<pre><code>@echo off
+
+SET scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe
+SET msbuild=&quot;c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
+
+echo Start pre-processing project
+%scanner% begin /k:&quot;sonar-project-name&quot;
+
+echo Rebuilding solution
+%msbuild% unityprojectname.sln /t:Rebuild
+
+echo Pushing results to Sonar Server
+%scanner% end
+</code></pre>
+
+<p>I set the paths so they are easier to call, then set up the scanner (which, I assume, will look for stuff to happen). While it&rsquo;s watching, I build the solution using MSBuild &ndash; your Unity project actually compiles to a DLL called <code>Assembly-CSharp.dll</code> (you could find this in the Library/ScriptAssemblies folder in your project path). When it&rsquo;s built, I end the scanner. From then on, it takes a few seconds for SonarQube to actually process the results, but otherwise, the results should be available now.</p>
+
+<p>Now scan that project!</p>
+
+<h2 id="scheduling">Scheduling</h2>
+
+<p>I&rsquo;m considering a scheduled task for running analysis every night. You can quite simply just call the batch file, but it gets a bit more difficult if SonarQube isn&rsquo;t running all the time &ndash; start the server, wait for it to get up, start the PostgreSQL service, stuff like that. I&rsquo;ll do this in another post later.</p>
+
+<h2 id="code-coverage">Code Coverage</h2>
+
+<p>You&rsquo;ll quickly notice that from your second run, the project will &ldquo;fail&rdquo;. This is because you have no code coverage data! This process is not trivial, so I&rsquo;d suggest creating a new quality gate that has no Coverage requirement.</p>
+
+<p>Getting coverage data from Unity is complicated; code coverage is only supported in 2019.3, which is in beta as I write this, the code coverage package is also a preview version (=beta), and even if you&rsquo;re okay with that, the output is not compatible with SonarQube. I&rsquo;ll cover this, too, in a later post.</p>
+
+<p>But now you got code analysis! Go and fix those code smells!</p>
 ]]></content>
         </item>
         
