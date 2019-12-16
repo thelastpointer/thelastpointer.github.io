@@ -1,0 +1,13 @@
+
+	.visible-print  { display: none !important; }
+	.hidden-print   { display: inherit !important; }
+	
+@media print {
+	.visible-print  { display: inherit !important; }
+	.hidden-print   { display: none !important; }
+	
+	.post-title { display: none }
+	.header { display: none }
+	
+	.m-p-g { display: none }
+}

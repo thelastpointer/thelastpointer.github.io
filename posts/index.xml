@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on thelastpointer</title>
@@ -6,8 +5,34 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 05 Dec 2019 22:20:41 +0100</lastBuildDate>
+        <lastBuildDate>Mon, 16 Dec 2019 09:29:01 +0100</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Site UI</title>
+            <link>/posts/site-ui/</link>
+            <pubDate>Mon, 16 Dec 2019 09:29:01 +0100</pubDate>
+            
+            <guid>/posts/site-ui/</guid>
+            <description>I showed my site to a few friends again, and I have been kindly informed that they do not, in fact, give a singular fuck about the exact hour, minute and timezone of a post&amp;rsquo;s creation.</description>
+            <content type="html"><![CDATA[<p>I showed my site to a few friends again, and I have been kindly informed that they do not, in fact, give a singular fuck about the exact hour, minute and timezone of a post&rsquo;s creation. Some other remarks:</p>
+
+<ul>
+<li>They requested a portrait. While I find this unneccessary, there&rsquo;s no denying how handsome I am, so there it is.</li>
+<li>The contact page has been updated with an email address; spam crawlers can find me more easily now.</li>
+<li>An interesting request was a printable CV. I mean, wow, omg, lol, but the guy who told me this is actually a recruiter, so I did it. I was curious about the CSS media query anyways.</li>
+<li>Galleries. The galleries <em>sucked</em>, I know. I switched to <a href="https://github.com/micahstubbs/material-photo-gallery">Material Photo Gallery</a>. The minified javascript for this is twice as large (about 20kb), but it works, and I&rsquo;m willing to pay an additional 10kb for that.</li>
+</ul>
+
+<p>For the new galleries I totally restructured the CV page; I automatically <a href="https://gohugo.io/content-management/image-processing/">generate thumbnails</a> &ndash; this took a while to get my head around, but it&rsquo;s so worth it! I made a custom <a href="https://gohugo.io/content-management/shortcodes/">Hugo shortcode</a> to display a folder as a gallery, too, so now everything is automatic.</p>
+
+<p>It was also readily apparent that anyone opening the site would scroll down immediately. This had the implication that the menu was not readily apparent, so I changed that too.</p>
+
+<p>Got any comments about this? Well visit my <em>CONTACT</em> PAGE TO WRITE ME A MAIL ABOUT IT MWAHAHAHA</p>
+
+<p>Kudos for Viktor and Árpi for the remarks!</p>
+]]></content>
+        </item>
         
         <item>
             <title>Unity and Sonarqube</title>

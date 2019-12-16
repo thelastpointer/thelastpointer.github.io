@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on thelastpointer</title>
@@ -6,22 +6,22 @@
     <description>Recent content in Tags on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Jun 2019 11:27:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 09:29:01 +0100</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Awesome Blogs</title>
-      <link>/tags/awesome-blogs/</link>
-      <pubDate>Wed, 05 Jun 2019 11:27:00 +0200</pubDate>
+      <title>untagged</title>
+      <link>/tags/untagged/</link>
+      <pubDate>Mon, 16 Dec 2019 09:29:01 +0100</pubDate>
       
-      <guid>/tags/awesome-blogs/</guid>
+      <guid>/tags/untagged/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Unity</title>
+      <title>unity</title>
       <link>/tags/unity/</link>
       <pubDate>Thu, 05 Dec 2019 22:20:41 +0100</pubDate>
       
@@ -30,11 +30,11 @@
     </item>
     
     <item>
-      <title>Untagged</title>
-      <link>/tags/untagged/</link>
-      <pubDate>Fri, 21 Jun 2019 11:44:01 +0200</pubDate>
+      <title>Awesome blogs</title>
+      <link>/tags/awesome-blogs/</link>
+      <pubDate>Wed, 05 Jun 2019 11:27:00 +0200</pubDate>
       
-      <guid>/tags/untagged/</guid>
+      <guid>/tags/awesome-blogs/</guid>
       <description></description>
     </item>
     

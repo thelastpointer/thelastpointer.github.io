@@ -1,6 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2019-12-16T09:29:01+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/site-ui/</loc>
+    <lastmod>2019-12-16T09:29:01+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-12-16T09:29:01+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-12-16T09:29:01+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/untagged/</loc>
+    <lastmod>2019-12-16T09:29:01+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/unity/</loc>
+    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
+  </url>
   
   <url>
     <loc>/posts/unity-and-sonarqube/</loc>
@@ -19,6 +49,11 @@
   
   <url>
     <loc>/posts/awesome-blog-old-new-thing/</loc>
+    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/awesome-blogs/</loc>
     <lastmod>2019-06-05T11:27:00+02:00</lastmod>
   </url>
   
@@ -63,11 +98,6 @@
   </url>
   
   <url>
-    <loc>/pro/</loc>
-    <lastmod>2019-01-09T11:23:21+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/proto/</loc>
     <lastmod>2019-01-09T11:23:21+01:00</lastmod>
   </url>
@@ -78,44 +108,12 @@
   </url>
   
   <url>
-    <loc>/tags/awesome-blogs/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-    <priority>0</priority>
+    <loc>/cv/</loc>
+    <lastmod>2019-01-04T16:10:42+01:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/unity/</loc>
-    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/untagged/</loc>
-    <lastmod>2019-06-21T11:44:01+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-12-05T22:20:41+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>
