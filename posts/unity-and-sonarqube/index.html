@@ -173,8 +173,8 @@ sonar.jdbc.password=password
 
 <pre><code>@echo off
 
-SET scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe
-SET msbuild=&quot;c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
+SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
+SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
 
 echo Start pre-processing project
 %scanner% begin /k:&quot;sonar-project-name&quot;

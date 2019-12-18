@@ -5,8 +5,72 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 16 Dec 2019 09:29:01 +0100</lastBuildDate>
+        <lastBuildDate>Wed, 18 Dec 2019 12:09:48 +0100</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Unity and Sonarqube Part II: Code Coverage</title>
+            <link>/posts/unity-sonarqube-coverage/</link>
+            <pubDate>Wed, 18 Dec 2019 12:09:48 +0100</pubDate>
+            
+            <guid>/posts/unity-sonarqube-coverage/</guid>
+            <description>In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</description>
+            <content type="html"><![CDATA[<p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
+
+<p>Code coverage is a useful tool: it tells you how much of your code is covered by tests, so basically, how much of your code is reliable. It implies the presence of tests, which is sadly not that common in the game industry &ndash; this is reflected by Unity&rsquo;s tools, which are adequate, but not spectacular.</p>
+
+<p>Code coverage, for example, isn&rsquo;t even supported until 2019.3, which at the time I&rsquo;m writing this, is in beta. Code coverage is served as a package, which is a preview version. Still, we can work with this, if you&rsquo;re willing to risk the instability of beta versions.</p>
+
+<p>For this to work, you have to install Unity 2019.3 (at least), then open the package manager, check &lsquo;Show Preview Packages&rsquo;, and get the Code Coverage package.</p>
+
+<p>So here&rsquo;s what we&rsquo;ll do: we start the analysis process (<code>SonarScanner.MSBuild.exe /begin</code>), build the solution, run some tests with code coverage enabled, and process the results.</p>
+
+<p>Yes, you will need tests for this to work. Familiarize yourself with the <a href="https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/index.html">Unity Test Framework</a> (it is based on <a href="https://nunit.org/">NUnit</a> if you&rsquo;re from a .NET background).</p>
+
+<p>Unity will generate an xml file (it can also generate HTML reports too, but we&rsquo;ll ignore that), which is in <a href="https://github.com/OpenCover/opencover">OpenCover</a> format. Fortunately this is supported by SonarQube out of the box (I&rsquo;m using version 8.0). To process the file, we pass <code>/d:sonar.cs.opencover.reportsPaths=&quot;TestResults.xml&quot;</code> when calling <code>begin</code>. Note that we&rsquo;re telling the scanner where to look for the file before the file even exists.</p>
+
+<p>The result file will be created at <code>projectPath\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml</code>. You will need to figure out where your Unity installation is; if you use Unity Hub (please do!), it is something like this: <code>c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe</code>. Replace your version accordingly. I have yet to find a (non-hacky) way to start the &ldquo;appropriate Unity version&rdquo;.</p>
+
+<p>Next, we&rsquo;ll modify the original batch file to run unit tests. Unity has a <a href="https://docs.unity3d.com/Manual/CommandLineArguments.html">quite a few command line arguments</a>; what we need is <code>-runTests</code>, <code>-batchmode</code> and of course the code coverage ones. But enough talk, here&rsquo;s the .bat file:</p>
+
+<pre><code>@echo off
+
+SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
+SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
+SET &quot;unity=c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe&quot;
+
+SET &quot;unity_project=C:\unity_other\codecoverage&quot;
+SET &quot;sonar_project=codecoverage&quot;
+SET &quot;solution=codecoverage.sln&quot;
+
+SET &quot;coverage=\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml&quot;
+
+echo Start pre-processing project
+&quot;%scanner%&quot; begin /k:&quot;%sonar_project%&quot; /d:sonar.cs.opencover.reportsPaths=&quot;%unity_project%%coverage%&quot;
+
+echo Rebuilding solution
+&quot;%msbuild%&quot; %solution% /t:Rebuild
+
+echo Running tests and code coverage
+&quot;%unity%&quot; -runTests -batchmode -projectPath &quot;%unity_project%&quot; -testResults &quot;%unity_project%\testResults.xml&quot; -testPlatform EditMode -forgetProjectPath -enableCodeCoverage -coverageOptions assemblyFilters:-*unity*
+
+echo Pushing results to Sonar Server
+&quot;%scanner%&quot; end
+</code></pre>
+
+<p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
+
+<p>My SonarQube project is also called &ldquo;codecoverage&rdquo;. The Unity project and the SonarQube project <em>can</em> have different names if you want.</p>
+
+<p>Having to define both <code>unity_project</code> and <code>solution</code> feels a bit awkward, but it&rsquo;s valid &ndash; I know it&rsquo;s not used 90% of the time, but I wouldn&rsquo;t omit it either.</p>
+
+<p><code>coverage</code> is a constant for now, but as stated earlier, the code coverage package is just a preview, so that may change any time.</p>
+
+<p>And now, if you run your test, your SonarQube project will have accurate code coverage data. Well, it would tell you how much of your code is covered by tests, which will in turn say something about your tests.</p>
+
+<p>For me, personally &ndash; it tells me to get my shit together. But, if you&rsquo;re like me, you&rsquo;ve already turned off coverage requirements in the SonarQube quality gate, so&hellip; ;)</p>
+]]></content>
+        </item>
         
         <item>
             <title>Site UI</title>
@@ -90,8 +154,8 @@ sonar.jdbc.password=password
 
 <pre><code>@echo off
 
-SET scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe
-SET msbuild=&quot;c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
+SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
+SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
 
 echo Start pre-processing project
 %scanner% begin /k:&quot;sonar-project-name&quot;

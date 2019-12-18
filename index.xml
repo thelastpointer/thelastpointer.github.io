@@ -6,10 +6,19 @@
     <description>Recent content on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Dec 2019 09:29:01 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 18 Dec 2019 12:09:48 +0100</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unity and Sonarqube Part II: Code Coverage</title>
+      <link>/posts/unity-sonarqube-coverage/</link>
+      <pubDate>Wed, 18 Dec 2019 12:09:48 +0100</pubDate>
+      
+      <guid>/posts/unity-sonarqube-coverage/</guid>
+      <description>In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</description>
+    </item>
     
     <item>
       <title>Site UI</title>
