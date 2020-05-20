@@ -5,8 +5,57 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 18 Dec 2019 12:09:48 +0100</lastBuildDate>
+        <lastBuildDate>Wed, 20 May 2020 09:03:35 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>MyMIDIController</title>
+            <link>/posts/mymidicontroller/</link>
+            <pubDate>Wed, 20 May 2020 09:03:35 +0200</pubDate>
+            
+            <guid>/posts/mymidicontroller/</guid>
+            <description>Recently I&amp;rsquo;ve been trying my hand at music production (again), and to this end I purchased a few gadgets, including the AKAI LPD8.</description>
+            <content type="html"><![CDATA[<p>Recently I&rsquo;ve been trying my hand at music production (again), and to this end I purchased a few gadgets, including the AKAI LPD8. This is a simple, cheap MIDI controller with a few knobs and pads (buttons). I was wondering if I could use it as an everyday audio controller? Starting and stopping music, adjusting system volume, etc. I know some keyboards have this functionality, so it should definitely be possible.</p>
+
+<p>tl;dr: <a href="https://github.com/thelastpointer/MyMIDIController">source on GitHub</a></p>
+
+<p><img src="/img/lpd8.jpg" alt="AKAI LPD8" /></p>
+
+<p>I started looking around, and I found a few tools that can do this. First, there&rsquo;s <a href="https://www.bome.com/products/mtclassic">Bome&rsquo;s MIDI Translator Classic</a>. This is a tool that intercepts events coming from a MIDI device, and emits keystrokes. Windows has support for media keys &ndash; play/pause, stop, forward, backward &ndash; so the idea was to simulate these. Unfortunately, I don&rsquo;t have media keys. I got around this by launching <a href="https://www.autohotkey.com/">AutoHotkey</a>, setting up some key combos, and using that in MIDI Translator&rsquo;s interface. Sounds complicated, huh? It was, and I had to find my way around incorrectly displayed symbols and weird parantheses to get this right (I mean, you can&rsquo;t just type in the letter for media keys, right?). It also displayed a nag screen at startup. I could work with this, but it was a bit annoying.</p>
+
+<p>So I found <a href="https://www.actualsolution.com/power-mixer/">Power Mixer</a>. This is a full-featured audio mixer replacement for Windows, and has support for MIDI input (and output, too). It is a very comprehensive app. I could assign a knob to control the volume of an indvidual app (Spotify, for example). I couldn&rsquo;t get the buttons to work, though. That&rsquo;s understandable &ndash; this is a mixer, designed to control volume. However, it is able to run programs on button presses.</p>
+
+<p>How hard would it be to write a program that broadcasts a single keystroke? Is the overhead of executing a program too much?</p>
+
+<p>So I did exactly that. It&rsquo;s 167 lines, and is basically copy+paste. It calls a function found in <code>user32.dll</code>, and 75% of that code is interop (defining structs and constants to make it resemble the non-managed counterparts). I had concerns about the performance, but there isn&rsquo;t any (the resulting .exe is 16kb). So that&rsquo;s a success!</p>
+
+<p>&hellip;but wait. If I can do <em>that</em>, can I just&hellip; write my own MIDI controller?</p>
+
+<p>Well, yes. I did that too, and I&rsquo;d be delighted to share some useful insights, but, alas, this turned out to be another excercise in copy+pasting.</p>
+
+<p>First of all, to connect to the device, there&rsquo;s <a href="Melanchall.DryWetMidi">Dry Wet MIDI</a>. It is awesome, it works like expected &ndash; you connect to the device, you get an event when something happens. <sup>10</sup>&frasl;<sub>10</sub>, far better than what I anticipated.</p>
+
+<p>Sending media keys is already solved from the previous project.</p>
+
+<p>Setting the system volume? That&rsquo;s a bit complicated to understand, but once you find <a href="https://eskerahn.dk/?p=2089">this post by EskeRahn</a>, the problem is basically solved. It calls specific COM objects, referenced by their GUID, to control the volume of the <em>default device</em>. That&rsquo;s good enough for me; for app-specific controls and manipulating different interfaces (I have 8 different output devices, don&rsquo;t ask), the code would get considerably more complex.</p>
+
+<p>I also wanted the program to run at startup. This is done by writing a registry key as described in <a href="https://stackoverflow.com/questions/5089601/how-to-run-a-c-sharp-application-at-windows-startup">this StackOverflow answer</a>.</p>
+
+<p>If you need any of these, check out the <a href="https://github.com/thelastpointer/MyMIDIController">source on GitHub</a>!</p>
+
+<hr />
+
+<p>So, what&rsquo;s the takeaway?</p>
+
+<p><img src="/img/mymidi.png" alt="The finished stuff" /></p>
+
+<p>Well, I&rsquo;m super happy how it turned out, and it was way easier to do than I first thought. Maybe I should do this more often? I&rsquo;m a programmer after all, and I&hellip; never do this. I look for the &ldquo;perfect tool&rdquo; to do the job, even simple jobs, even when I could roll my own solution.</p>
+
+<p>An interesting thing to note is that I can create a highly-specific tool for myself, which means it is generally more efficient, and I can even be a bit lazier with things like error handling and managing settings &ndash; there are only so many things that consistently happen on my machine, I don&rsquo;t have to worry about exotic setups, user privileges, and so on. If it crashes, I only have myself to blame, and I just restart it &ndash; no need to investigate, as I know for sure that there&rsquo;s no malicious code in there.</p>
+
+<p>But anyways, I&rsquo;ve been using it for 1.5 month now without a single crash, and the warm fuzzy feeling of that is the best part. Try it!</p>
+]]></content>
+        </item>
         
         <item>
             <title>Unity and Sonarqube Part II: Code Coverage</title>
