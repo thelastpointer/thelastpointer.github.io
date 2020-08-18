@@ -5,8 +5,38 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 18 Dec 2019 12:09:48 +0100</lastBuildDate>
+        <lastBuildDate>Wed, 20 May 2020 09:03:35 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>MyMIDIController</title>
+            <link>/posts/mymidicontroller/</link>
+            <pubDate>Wed, 20 May 2020 09:03:35 +0200</pubDate>
+            
+            <guid>/posts/mymidicontroller/</guid>
+            <description>Recently I&amp;rsquo;ve been trying my hand at music production (again), and to this end I purchased a few gadgets, including the AKAI LPD8.</description>
+            <content type="html"><![CDATA[<p>Recently I&rsquo;ve been trying my hand at music production (again), and to this end I purchased a few gadgets, including the AKAI LPD8. This is a simple, cheap MIDI controller with a few knobs and pads (buttons). I was wondering if I could use it as an everyday audio controller? Starting and stopping music, adjusting system volume, etc. I know some keyboards have this functionality, so it should definitely be possible.</p>
+<p>tl;dr: <a href="https://github.com/thelastpointer/MyMIDIController">source on GitHub</a></p>
+<p><img src="/img/lpd8.jpg" alt="AKAI LPD8"></p>
+<p>I started looking around, and I found a few tools that can do this. First, there&rsquo;s <a href="https://www.bome.com/products/mtclassic">Bome&rsquo;s MIDI Translator Classic</a>. This is a tool that intercepts events coming from a MIDI device, and emits keystrokes. Windows has support for media keys &ndash; play/pause, stop, forward, backward &ndash; so the idea was to simulate these. Unfortunately, I don&rsquo;t have media keys. I got around this by launching <a href="https://www.autohotkey.com/">AutoHotkey</a>, setting up some key combos, and using that in MIDI Translator&rsquo;s interface. Sounds complicated, huh? It was, and I had to find my way around incorrectly displayed symbols and weird parantheses to get this right (I mean, you can&rsquo;t just type in the letter for media keys, right?). It also displayed a nag screen at startup. I could work with this, but it was a bit annoying.</p>
+<p>So I found <a href="https://www.actualsolution.com/power-mixer/">Power Mixer</a>. This is a full-featured audio mixer replacement for Windows, and has support for MIDI input (and output, too). It is a very comprehensive app. I could assign a knob to control the volume of an indvidual app (Spotify, for example). I couldn&rsquo;t get the buttons to work, though. That&rsquo;s understandable &ndash; this is a mixer, designed to control volume. However, it is able to run programs on button presses.</p>
+<p>How hard would it be to write a program that broadcasts a single keystroke? Is the overhead of executing a program too much?</p>
+<p>So I did exactly that. It&rsquo;s 167 lines, and is basically copy+paste. It calls a function found in <code>user32.dll</code>, and 75% of that code is interop (defining structs and constants to make it resemble the non-managed counterparts). I had concerns about the performance, but there isn&rsquo;t any (the resulting .exe is 16kb). So that&rsquo;s a success!</p>
+<p>&hellip;but wait. If I can do <em>that</em>, can I just&hellip; write my own MIDI controller?</p>
+<p>Well, yes. I did that too, and I&rsquo;d be delighted to share some useful insights, but, alas, this turned out to be another excercise in copy+pasting.</p>
+<p>First of all, to connect to the device, there&rsquo;s <a href="Melanchall.DryWetMidi">Dry Wet MIDI</a>. It is awesome, it works like expected &ndash; you connect to the device, you get an event when something happens. 10/10, far better than what I anticipated.</p>
+<p>Sending media keys is already solved from the previous project.</p>
+<p>Setting the system volume? That&rsquo;s a bit complicated to understand, but once you find <a href="https://eskerahn.dk/?p=2089">this post by EskeRahn</a>, the problem is basically solved. It calls specific COM objects, referenced by their GUID, to control the volume of the <em>default device</em>. That&rsquo;s good enough for me; for app-specific controls and manipulating different interfaces (I have 8 different output devices, don&rsquo;t ask), the code would get considerably more complex.</p>
+<p>I also wanted the program to run at startup. This is done by writing a registry key as described in <a href="https://stackoverflow.com/questions/5089601/how-to-run-a-c-sharp-application-at-windows-startup">this StackOverflow answer</a>.</p>
+<p>If you need any of these, check out the <a href="https://github.com/thelastpointer/MyMIDIController">source on GitHub</a>!</p>
+<hr>
+<p>So, what&rsquo;s the takeaway?</p>
+<p><img src="/img/mymidi.png" alt="The finished stuff"></p>
+<p>Well, I&rsquo;m super happy how it turned out, and it was way easier to do than I first thought. Maybe I should do this more often? I&rsquo;m a programmer after all, and I&hellip; never do this. I look for the &ldquo;perfect tool&rdquo; to do the job, even simple jobs, even when I could roll my own solution.</p>
+<p>An interesting thing to note is that I can create a highly-specific tool for myself, which means it is generally more efficient, and I can even be a bit lazier with things like error handling and managing settings &ndash; there are only so many things that consistently happen on my machine, I don&rsquo;t have to worry about exotic setups, user privileges, and so on. If it crashes, I only have myself to blame, and I just restart it &ndash; no need to investigate, as I know for sure that there&rsquo;s no malicious code in there.</p>
+<p>But anyways, I&rsquo;ve been using it for 1.5 month now without a single crash, and the warm fuzzy feeling of that is the best part. Try it!</p>
+]]></content>
+        </item>
         
         <item>
             <title>Unity and Sonarqube Part II: Code Coverage</title>
@@ -16,23 +46,14 @@
             <guid>/posts/unity-sonarqube-coverage/</guid>
             <description>In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</description>
             <content type="html"><![CDATA[<p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
-
 <p>Code coverage is a useful tool: it tells you how much of your code is covered by tests, so basically, how much of your code is reliable. It implies the presence of tests, which is sadly not that common in the game industry &ndash; this is reflected by Unity&rsquo;s tools, which are adequate, but not spectacular.</p>
-
 <p>Code coverage, for example, isn&rsquo;t even supported until 2019.3, which at the time I&rsquo;m writing this, is in beta. Code coverage is served as a package, which is a preview version. Still, we can work with this, if you&rsquo;re willing to risk the instability of beta versions.</p>
-
 <p>For this to work, you have to install Unity 2019.3 (at least), then open the package manager, check &lsquo;Show Preview Packages&rsquo;, and get the Code Coverage package.</p>
-
 <p>So here&rsquo;s what we&rsquo;ll do: we start the analysis process (<code>SonarScanner.MSBuild.exe /begin</code>), build the solution, run some tests with code coverage enabled, and process the results.</p>
-
 <p>Yes, you will need tests for this to work. Familiarize yourself with the <a href="https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/index.html">Unity Test Framework</a> (it is based on <a href="https://nunit.org/">NUnit</a> if you&rsquo;re from a .NET background).</p>
-
 <p>Unity will generate an xml file (it can also generate HTML reports too, but we&rsquo;ll ignore that), which is in <a href="https://github.com/OpenCover/opencover">OpenCover</a> format. Fortunately this is supported by SonarQube out of the box (I&rsquo;m using version 8.0). To process the file, we pass <code>/d:sonar.cs.opencover.reportsPaths=&quot;TestResults.xml&quot;</code> when calling <code>begin</code>. Note that we&rsquo;re telling the scanner where to look for the file before the file even exists.</p>
-
 <p>The result file will be created at <code>projectPath\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml</code>. You will need to figure out where your Unity installation is; if you use Unity Hub (please do!), it is something like this: <code>c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe</code>. Replace your version accordingly. I have yet to find a (non-hacky) way to start the &ldquo;appropriate Unity version&rdquo;.</p>
-
 <p>Next, we&rsquo;ll modify the original batch file to run unit tests. Unity has a <a href="https://docs.unity3d.com/Manual/CommandLineArguments.html">quite a few command line arguments</a>; what we need is <code>-runTests</code>, <code>-batchmode</code> and of course the code coverage ones. But enough talk, here&rsquo;s the .bat file:</p>
-
 <pre><code>@echo off
 
 SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
@@ -56,18 +77,11 @@ echo Running tests and code coverage
 
 echo Pushing results to Sonar Server
 &quot;%scanner%&quot; end
-</code></pre>
-
-<p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
-
+</code></pre><p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
 <p>My SonarQube project is also called &ldquo;codecoverage&rdquo;. The Unity project and the SonarQube project <em>can</em> have different names if you want.</p>
-
 <p>Having to define both <code>unity_project</code> and <code>solution</code> feels a bit awkward, but it&rsquo;s valid &ndash; I know it&rsquo;s not used 90% of the time, but I wouldn&rsquo;t omit it either.</p>
-
 <p><code>coverage</code> is a constant for now, but as stated earlier, the code coverage package is just a preview, so that may change any time.</p>
-
 <p>And now, if you run your test, your SonarQube project will have accurate code coverage data. Well, it would tell you how much of your code is covered by tests, which will in turn say something about your tests.</p>
-
 <p>For me, personally &ndash; it tells me to get my shit together. But, if you&rsquo;re like me, you&rsquo;ve already turned off coverage requirements in the SonarQube quality gate, so&hellip; ;)</p>
 ]]></content>
         </item>
@@ -80,20 +94,15 @@ echo Pushing results to Sonar Server
             <guid>/posts/site-ui/</guid>
             <description>I showed my site to a few friends again, and I have been kindly informed that they do not, in fact, give a singular fuck about the exact hour, minute and timezone of a post&amp;rsquo;s creation.</description>
             <content type="html"><![CDATA[<p>I showed my site to a few friends again, and I have been kindly informed that they do not, in fact, give a singular fuck about the exact hour, minute and timezone of a post&rsquo;s creation. Some other remarks:</p>
-
 <ul>
 <li>They requested a portrait. While I find this unneccessary, there&rsquo;s no denying how handsome I am, so there it is.</li>
 <li>The contact page has been updated with an email address; spam crawlers can find me more easily now.</li>
 <li>An interesting request was a printable CV. I mean, wow, omg, lol, but the guy who told me this is actually a recruiter, so I did it. I was curious about the CSS media query anyways.</li>
 <li>Galleries. The galleries <em>sucked</em>, I know. I switched to <a href="https://github.com/micahstubbs/material-photo-gallery">Material Photo Gallery</a>. The minified javascript for this is twice as large (about 20kb), but it works, and I&rsquo;m willing to pay an additional 10kb for that.</li>
 </ul>
-
 <p>For the new galleries I totally restructured the CV page; I automatically <a href="https://gohugo.io/content-management/image-processing/">generate thumbnails</a> &ndash; this took a while to get my head around, but it&rsquo;s so worth it! I made a custom <a href="https://gohugo.io/content-management/shortcodes/">Hugo shortcode</a> to display a folder as a gallery, too, so now everything is automatic.</p>
-
 <p>It was also readily apparent that anyone opening the site would scroll down immediately. This had the implication that the menu was not readily apparent, so I changed that too.</p>
-
 <p>Got any comments about this? Well visit my <em>CONTACT</em> PAGE TO WRITE ME A MAIL ABOUT IT MWAHAHAHA</p>
-
 <p>Kudos for Viktor and Árpi for the remarks!</p>
 ]]></content>
         </item>
@@ -105,53 +114,29 @@ echo Pushing results to Sonar Server
             
             <guid>/posts/unity-and-sonarqube/</guid>
             <description>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
-            <content type="html"><![CDATA[
-
-<p>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a <em>real developer</em>. I was trying to incorporate this into my Unity workflow, but recently I got really good results, so I thought I&rsquo;d share.</p>
-
+            <content type="html"><![CDATA[<p>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a <em>real developer</em>. I was trying to incorporate this into my Unity workflow, but recently I got really good results, so I thought I&rsquo;d share.</p>
 <p>I&rsquo;m on Windows 10, using Unity, Visual Studio, and SonarQube.</p>
-
 <p>SonarQube is a very nice tool, but previously I ran into all sorts of problems; incompatible input/output, cumbersome programs, formatting, conversion, etc etc. A few days ago I accidentally stumbled into Kuldeep Singh&rsquo;s article, and I thought I&rsquo;d try it again &ndash; this time it worked almost flawlessly!</p>
-
 <p>So here is the article: <a href="https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03">https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03</a></p>
-
 <p>There are a few things I&rsquo;d add to this.</p>
-
 <p>First of all, a Java install now requires a registration, which I find outrageous. Fuck you, Oracle, what were you thinking? SonarQube requires Java, but I ran into some path mismatch because I have both JRE and JDK installed (Java Runtime Environment and Java Development Kit). If you find SonarQube complaining about your Java version, then it might be using JRE instead of JDK. To remedy this, find SonarQube&rsquo;s config file, called <code>conf/wrapper.conf</code>, and add this line:</p>
-
 <pre><code>wrapper.java.command=c:\Program Files\Java\jdk-11.0.5\bin\java
-</code></pre>
-
-<p>You can run SonarQube as a service or in a console; if you opt for a console, do yourself a favor and use <a href="https://cmder.net/">cmder</a>.</p>
-
+</code></pre><p>You can run SonarQube as a service or in a console; if you opt for a console, do yourself a favor and use <a href="https://cmder.net/">cmder</a>.</p>
 <p>I think it is worth noting that you need to open the C# project inside Unity &ndash; this will generate the solution file (.sln) that we analyse. Simply cloning a project, or creating a test project with no code will, duh, not work. While we&rsquo;re talking about git, you should also add the top-level <code>.sonarqube</code> folder to your git ignore list.</p>
-
 <p>When SonarQube is ready, you might want to consider setting up a &ldquo;real&rdquo; database instead of the built-in one. It&rsquo;s not <em>that</em> important, but keep in mind that if you switch later, your previous work will be lost &ndash; including settings, projects, users, permissions, etc.</p>
-
 <p>I did this using <a href="https://www.postgresql.org/download/">PostgreSQL</a>. Installation is painless; make sure you install PgAdmin too. Note the port you&rsquo;re going to open; it&rsquo;s 5432 by default. After install, open PgAdmin, create a new database (called &ldquo;sonar&rdquo; in my case), and create a user who has permission to alter it. Please don&rsquo;t use the admin user!</p>
-
 <p>When done, tell SonarQube to use your database: find <code>conf/sonar.properties</code> and enter these lines:</p>
-
 <pre><code># Note: the '/sonar' is the database name
 sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar
 
 sonar.jdbc.username=sonarqube
 sonar.jdbc.password=password
-</code></pre>
-
-<p>The database URL took a while to figure out. Restart SonarQube, and you should be set.</p>
-
+</code></pre><p>The database URL took a while to figure out. Restart SonarQube, and you should be set.</p>
 <p>I also created a SonarQube user for scanning; this is done by opening SonarQube (<a href="http://localhost:9000">localhost:9000</a> by default), logging in with admin/admin, Administration panel, Security/Users tab, and Create User button. Easy.</p>
-
 <p>Now you&rsquo;re ready to go. If you can&rsquo;t find MSBuild, it should be in your Visual Studio folder:</p>
-
 <pre><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
-</code></pre>
-
-<p>This assumes Visual Studio 2019 (the <em>best</em> Visual Studio) and default install paths.</p>
-
+</code></pre><p>This assumes Visual Studio 2019 (the <em>best</em> Visual Studio) and default install paths.</p>
 <p>I created a .bat file for scanning my project &ndash; it is way easier this way. It looks like this:</p>
-
 <pre><code>@echo off
 
 SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
@@ -165,22 +150,13 @@ echo Rebuilding solution
 
 echo Pushing results to Sonar Server
 %scanner% end
-</code></pre>
-
-<p>I set the paths so they are easier to call, then set up the scanner (which, I assume, will look for stuff to happen). While it&rsquo;s watching, I build the solution using MSBuild &ndash; your Unity project actually compiles to a DLL called <code>Assembly-CSharp.dll</code> (you could find this in the Library/ScriptAssemblies folder in your project path). When it&rsquo;s built, I end the scanner. From then on, it takes a few seconds for SonarQube to actually process the results, but otherwise, the results should be available now.</p>
-
+</code></pre><p>I set the paths so they are easier to call, then set up the scanner (which, I assume, will look for stuff to happen). While it&rsquo;s watching, I build the solution using MSBuild &ndash; your Unity project actually compiles to a DLL called <code>Assembly-CSharp.dll</code> (you could find this in the Library/ScriptAssemblies folder in your project path). When it&rsquo;s built, I end the scanner. From then on, it takes a few seconds for SonarQube to actually process the results, but otherwise, the results should be available now.</p>
 <p>Now scan that project!</p>
-
 <h2 id="scheduling">Scheduling</h2>
-
 <p>I&rsquo;m considering a scheduled task for running analysis every night. You can quite simply just call the batch file, but it gets a bit more difficult if SonarQube isn&rsquo;t running all the time &ndash; start the server, wait for it to get up, start the PostgreSQL service, stuff like that. I&rsquo;ll do this in another post later.</p>
-
 <h2 id="code-coverage">Code Coverage</h2>
-
 <p>You&rsquo;ll quickly notice that from your second run, the project will &ldquo;fail&rdquo;. This is because you have no code coverage data! This process is not trivial, so I&rsquo;d suggest creating a new quality gate that has no Coverage requirement.</p>
-
 <p>Getting coverage data from Unity is complicated; code coverage is only supported in 2019.3, which is in beta as I write this, the code coverage package is also a preview version (=beta), and even if you&rsquo;re okay with that, the output is not compatible with SonarQube. I&rsquo;ll cover this, too, in a later post.</p>
-
 <p>But now you got code analysis! Go and fix those code smells!</p>
 ]]></content>
         </item>
@@ -193,39 +169,26 @@ echo Pushing results to Sonar Server
             <guid>/posts/cookies/</guid>
             <description>I finally bit the bullet and added a cookie consent popup to the site. Skip to the part where I explain these cookies.</description>
             <content type="html"><![CDATA[<p>I finally bit the bullet and added a cookie consent popup to the site. <a href="#explanation">Skip to the part where I explain these cookies.</a></p>
-
 <p>I was trying my best to make this site as lean and hassle-free as possible, but I&rsquo;m also very curious about visitors &ndash; how many people see these posts? Are some posts more popular than others? Should I post <em>more</em> of something?</p>
-
 <p>I hoped that github will provide me with some stats one this &ndash; I wasn&rsquo;t expecting much, but then again, I didn&rsquo;t need much. Github, however, gives me zero information on traffic. I&rsquo;ve been staring at this &ldquo;data&rdquo; for months now:</p>
-
-<p><img src="/img/visitors.png" alt="Github doesn't have enough data" /></p>
-
+<p><img src="/img/visitors.png" alt="Github doesn&rsquo;t have enough data"></p>
 <p>I get that I don&rsquo;t have thousands of views, but I&rsquo;m sure that at least some of my friends see this&hellip;? (And how many visitors should I have before I get access to data anyway?)</p>
-
 <p>So I&rsquo;ve been looking around for other options. This is a static site, so I can&rsquo;t run any server-side code &ndash; that would be the easiest method, and the most user-friendly one. I seriously contemplated renting a server just for this, but I kinda like github.io and I feel that users can trust it too.</p>
-
 <p>Other methods are available, too, most notably Google Analytics. The problem with these is that they store a cookie (which is used to make sure that a single user isn&rsquo;t counted twice) and I really, <em>really</em> hate cookie-consent dialogs. The consent is enforced by law, and I found no service that does not need a consent dialog. I feel like these actively make websites worse &ndash; they are annoying and provide no useful information to the user. They usually point to confusing explanations, list hundreds of ad providers, and obscure legal text; I sincerely believe that nobody reads these. Even worse, if I don&rsquo;t agree (and most of time, I don&rsquo;t agree just out of spite), then the consent dialog will be displayed to me <em>every single time</em> I visit that particular site, meaning that I have to face this minor annoyance multiple times, which adds up.</p>
-
-<hr />
-
-<p><a name="explanation"></a>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
 So what am I using these cookies for?</p>
-
 <p>I store a single Google Analytics cookie, which is used to make sure that when you visit the site multiple times, you will only be counted once. The cookie contains a string of random numbers and letters, something like this: <code>GA1.2.211694324.1557125602</code></p>
-
 <p>When you visit the site, google analytics checks if this string has been used before, and if not, it increases the unique visitor count.</p>
-
 <p>That&rsquo;s it.</p>
-
 <p>I don&rsquo;t know who you are, there is no personal information associated with this string, I&rsquo;m not trying to sell you anything and you won&rsquo;t be tracked in any way &ndash; except now I know if you visited the site.</p>
-
 <p>I opted out from nearly every feature of Google Analytics because I don&rsquo;t need them.</p>
-
-<p>If you need more information or you want to educate yourself on the subject, here are some simple explanations:
-* <a href="https://www.cookiesandyou.com/">An explanation of cookies</a>
-* <a href="http://www.whatarecookies.com/">What are cookies?</a>
-* <a href="https://www.wikihow.com/Disable-Cookies">How to disable cookies?</a></p>
-
+<p>If you need more information or you want to educate yourself on the subject, here are some simple explanations:</p>
+<ul>
+<li><a href="https://www.cookiesandyou.com/">An explanation of cookies</a></li>
+<li><a href="http://www.whatarecookies.com/">What are cookies?</a></li>
+<li><a href="https://www.wikihow.com/Disable-Cookies">How to disable cookies?</a></li>
+</ul>
 <p>I would also like to apologize for the inconvenience this causes you. It&rsquo;s a minor annoyance, but still an annoyance &ndash; sorry for that.</p>
 ]]></content>
         </item>
@@ -237,39 +200,30 @@ So what am I using these cookies for?</p>
             
             <guid>/posts/e3-2019/</guid>
             <description>Helen, Level 12 Hacker Avengers Video Game to ride the success of Endgame Marvel&amp;#39;s Avengers (Dev. Crystal Dynamics.) pic.twitter.com/VrbnlM4zE1
-&amp;mdash; Matt Kim (@LawofTD) June 11, 2019  Bethesda dudes talking about games</description>
+&amp;mdash; Matt T.</description>
             <content type="html"><![CDATA[<p><em>Helen, Level 12 Hacker</em>
-<img src="/img/helen.png" alt="Helen" /></p>
-
+<img src="/img/helen.png" alt="Helen"></p>
 <p><em>Avengers Video Game to ride the success of Endgame</em>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Marvel&#39;s Avengers (Dev. Crystal Dynamics.) <a href="https://t.co/VrbnlM4zE1">pic.twitter.com/VrbnlM4zE1</a></p>&mdash; Matt Kim (@LawofTD) <a href="https://twitter.com/LawofTD/status/1138267396953726977?ref_src=twsrc%5Etfw">June 11, 2019</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Marvel&#39;s Avengers (Dev. Crystal Dynamics.) <a href="https://t.co/VrbnlM4zE1">pic.twitter.com/VrbnlM4zE1</a></p>&mdash; Matt T.M. Kim (@LawofTD) <a href="https://twitter.com/LawofTD/status/1138267396953726977?ref_src=twsrc%5Etfw">June 11, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
-
-<p><em>Bethesda dudes talking about games</em><br />
+<p><em>Bethesda dudes talking about games</em>	
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Bethesda Front Row Hypeman Squad freaking out over every other sentence is honestly the funniest thing I&#39;ve seen all day. <a href="https://t.co/XnxntXzNPB">pic.twitter.com/XnxntXzNPB</a></p>&mdash; Tylor (@theSirToasty) <a href="https://twitter.com/theSirToasty/status/1137896050201698304?ref_src=twsrc%5Etfw">June 10, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
-
 <p><em>Doomguy treads Bugs Bunny territory</em>
 
 <video width="100%" controls preload="none" poster="/img/posters/doomcannon.jpg"><source src="https://giant.gfycat.com/FarawayGiganticChinesecrocodilelizard.webm" type="video/webm"></video>
 </p>
-
-<hr />
-
+<hr>
 <p>But, of course, E3 2019 was single-handedly eclipsed by Keanu Reeves:
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Best part of <a href="https://twitter.com/hashtag/XboxE3?src=hash&amp;ref_src=twsrc%5Etfw">#XboxE3</a> for me <a href="https://t.co/fi6Jf1y0AF">pic.twitter.com/fi6Jf1y0AF</a></p>&mdash; Nibel (@Nibellion) <a href="https://twitter.com/Nibellion/status/1137837183233077250?ref_src=twsrc%5Etfw">June 9, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </p>
-
-<hr />
-
+<hr>
 <p>On a serious note, this boot sequence in the Halo Infinite trailer is just delicious:</p>
 
-
 <video width="100%" controls preload="none" poster="/img/posters/haloboot.jpg"><source src="/img/haloboot.webm" type="video/webm"></video>
-
 
 <p>(Watch the full trailer <a href="https://www.youtube.com/watch?v=ZtgzKBrU1GY">here</a>.)</p>
 ]]></content>
@@ -284,9 +238,7 @@ So what am I using these cookies for?</p>
             <description>The Old New Thing
 Raymond Chen&amp;rsquo;s small posts are equal parts entertaining, terrifying and enlightening. As a renowned Microsoft engineer, he shares very interesting bits of information on a wide number of topics: tricky algorithms, anecdotes from Microsoft, and my favourite topic: explanations of features that made it in the SDK.</description>
             <content type="html"><![CDATA[<p><a href="https://devblogs.microsoft.com/oldnewthing/">The Old New Thing</a></p>
-
 <p>Raymond Chen&rsquo;s small posts are equal parts entertaining, terrifying and enlightening. As a renowned Microsoft engineer, he shares very interesting bits of information on a wide number of topics: tricky algorithms, anecdotes from Microsoft, and my favourite topic: <em>explanations of features that made it in the SDK.</em> These often reveal some surprising side of software development that we rarely think about; and he comforts us by assuring that every software engineering decision is deliberate and has reasoning behind it.</p>
-
 <p>Those reasons, mind you, might be borderline insane: my favourite story is when a team reverse-engineered some OS code, used that hack some undocumented structures, and when the OS got updated and the hacked solution stopped working, guess who they blamed? That&rsquo;s right, the OS. And what did the OS team do? The reverted the structure so the program could work again. It&rsquo;s logical, but&hellip; you get the idea.</p>
 ]]></content>
         </item>
@@ -299,7 +251,6 @@ Raymond Chen&amp;rsquo;s small posts are equal parts entertaining, terrifying an
             <guid>/posts/hello-world-os/</guid>
             <description>A good friend of mine just found an archive of his &amp;ldquo;operating system&amp;rdquo;, the &amp;ldquo;Hello World OS&amp;rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</description>
             <content type="html"><![CDATA[<p>A good friend of mine just found an archive of his &ldquo;operating system&rdquo;, the &ldquo;Hello World OS&rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#a6e22e">asm</span>
 <span style="color:#75715e">;; boot &#34;Hello world!&#34; program
 </span><span style="color:#75715e"></span>
@@ -340,7 +291,6 @@ loop_end:
 <span style="color:#a6e22e">string</span>  <span style="color:#66d9ef">db</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#66d9ef">Hello</span> <span style="color:#66d9ef">world</span>!<span style="color:#960050;background-color:#1e0010">&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>
 <span style="color:#a6e22e">times</span> <span style="color:#ae81ff">510</span>-(<span style="color:#66d9ef">$-$$</span>) <span style="color:#66d9ef">db</span> <span style="color:#ae81ff">0</span>                   <span style="color:#75715e">; pad program to 512 bytes with zeroes
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">dw</span> <span style="color:#ae81ff">0xAA55</span>                               <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">boot</span> <span style="color:#66d9ef">sector</span> <span style="color:#66d9ef">closing</span> <span style="color:#66d9ef">bytes</span></code></pre></div>
-
 <p>Ah, this is amazing. 0x7C00? 0xAA55? Beautiful.</p>
 ]]></content>
         </item>
@@ -353,7 +303,6 @@ loop_end:
             <guid>/posts/1bit/</guid>
             <description>I was recently working with user-editable texture masks, and I was a little surprized when I didn&amp;rsquo;t find a specialized image file format for 1-bit (monochrome) images.</description>
             <content type="html"><![CDATA[<p>I was recently working with user-editable texture masks, and I was a little surprized when I didn&rsquo;t find a specialized image file format for 1-bit (monochrome) images. So, here&rsquo;s a file format proposal:</p>
-
 <ul>
 <li>File extension: .1bit</li>
 <li>Magic header: 4 bytes: &ldquo;1bit&rdquo; in ASCII</li>
@@ -362,15 +311,13 @@ loop_end:
 <li>1 byte for number of channels</li>
 <li>RLE-compressed binary data</li>
 <li>Optional:
-
 <ul>
 <li>1 byte for the length of the comment</li>
 <li>1-254 bytes of text comment because ebin memes</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>Am I missing anything?</p>
-
 <p>I wonder how hard would it be to create a Photoshop plugin for this. A C or C# implementation would be fairly trivial, though it <em>can</em> be a bit tricky when doing 1-bit RLE compression.</p>
 ]]></content>
         </item>
@@ -383,39 +330,22 @@ loop_end:
             <guid>/posts/optimizing-site/</guid>
             <description>So I showed the new site to a few friends, and as expected, they pointed out all kinds of things to fix :)</description>
             <content type="html"><![CDATA[<p>So I showed the new site to a few friends, and as expected, they pointed out all kinds of things to fix :)</p>
-
 <p>Chief among them was the observation that if I&rsquo;m complaining about website sizes, the least I could do is to stop spamming 2MB images on my portfolio pages. While these are basically galleries, nothing advertises them as such and it might surprise some users. I was also curious how this works.</p>
-
 <p>I checked <a href="https://www.webpagetest.org/">webpagetest</a>; the starting page is good enough:</p>
-
-<p><img src="/img/optimizing-site/01 start.PNG" alt="screenshot of size render timings" /></p>
-
+<p>![screenshot of size render timings](/img/optimizing-site/01 start.PNG)</p>
 <p>The full page loads under 1 second. That&rsquo;s good enough, but it&rsquo;s a page with 13 words on it, so&hellip; checking the waterfall image, we can see that the javascript and fonts are the bulk of the page.</p>
-
-<p><img src="/img/optimizing-site/02 start waterfall.png" alt="waterfall graph of page download" /></p>
-
+<p>![waterfall graph of page download](/img/optimizing-site/02 start waterfall.png)</p>
 <p>That&rsquo;s unfortunate, but sort of expected: both are part of the theme I&rsquo;m using here, and I haven&rsquo;t gotten around removing them. I suspect the fonts will be rather easy, but the javascript seems to be some kind of minimized package of multiple libraries, so it&rsquo;s not readily apparent which parts will I need to stay responsive. The author stated that I&rsquo;ll need to fire up nodeJS to edit it, which is baffling to be honest.</p>
-
 <p>A single post with no images yields the same results. So let&rsquo;s move on to the galleries; here&rsquo;s how the prototypes page looks like in webpagetest:</p>
-
-<p><img src="/img/optimizing-site/03 proto start.PNG" alt="screenshot of site render timings" /></p>
-
-<p><img src="/img/optimizing-site/04 proto waterfall.png" alt="waterfall graph of page download" /></p>
-
+<p>![screenshot of site render timings](/img/optimizing-site/03 proto start.PNG)</p>
+<p>![waterfall graph of page download](/img/optimizing-site/04 proto waterfall.png)</p>
 <p>So: this page takes 13 seconds to fully load. The waterfall image is simple: images dominate everything. I&rsquo;m not using thumbnails, nor do I want to. But the images can be optimized, so I tried a few services. The &ldquo;space shooter&rdquo; gallery was originally ~9.5MB large. I tried <a href="https://imagecompressor.com/">imagecompressor.com</a>, <a href="https://tinypng.com/">TinyPNG</a>, and <a href="https://sourceforge.net/projects/nikkhokkho/">fileoptimizer</a>. I was looking for tools that can compress images in bulk.</p>
-
 <p>fileoptimizer is a downloadable tool, and it is unbearably slow: a single image took 3 minutes to process. I wasn&rsquo;t going to wait 4 hours to do this, so I moved on. Of the remaining two, TinyPNG did slightly better: it compressed the 9.5MB gallery to 2.5MB (imagecompressor compressed to 2.9MB).</p>
-
 <p>Compressing all images took some time. Let&rsquo;s check the results!</p>
-
-<p><img src="/img/optimizing-site/05 proto optimized.PNG" alt="screenshot of site render timings" /></p>
-
+<p>![screenshot of site render timings](/img/optimizing-site/05 proto optimized.PNG)</p>
 <p>The prototype page is down to 3 seconds! That&rsquo;s almost 80%; not insignificant at all.</p>
-
 <p>To be honest, while compressing the images, it occured to me that maybe all this work doesn&rsquo;t even worth it? But seeing the results this is clearly not the case. I&rsquo;d say I wouldn&rsquo;t bother with all this compressing, but for image-heavy pages this might very well make a difference.</p>
-
-<hr />
-
+<hr>
 <p><em>Update: I removed the fonts! It was not exactly straightforward, but the site is even leaner.</em></p>
 ]]></content>
         </item>
@@ -429,13 +359,9 @@ loop_end:
             <description>Another awesome blog!
 Check this: out https://www.filfre.net/ Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.</description>
             <content type="html"><![CDATA[<p>Another awesome blog!</p>
-
 <p>Check this: out <a href="https://www.filfre.net/">https://www.filfre.net/</a> Jimmy Maher writes about early video games in an exquisitely detailed, yet interesting manner.</p>
-
 <p>I found it while doing some research on Ultima Underworld; his explanation of the unique mechanics in the game immediately caught my attention: simple, attentive, and almost entirely devoid of usual game critic cliches. Among other super interesting things I loved his coverage on the Ultima series, the history of early British video games, and his outstandingly coherent depiction of early technology.</p>
-
 <p>His writing about the Apple II was so inspiring that I&rsquo;ve since read multiple books on the subject and even watched a film about Steve Jobs. I&rsquo;m amazed to report that Jimmy&rsquo;s posts are by far superior.</p>
-
 <p>Go ahead and check out <a href="https://www.filfre.net/about-me/hall-of-fame">Hall of Fame</a> or <a href="https://www.filfre.net/about-me/sitemap">Table of Contents</a>, pick a headline that seems interesting and chances are you&rsquo;ll find something special!</p>
 ]]></content>
         </item>
@@ -450,30 +376,19 @@ Check this: out https://www.filfre.net/ Jimmy Maher writes about early video gam
 I&amp;rsquo;m pretty excited to try github.io for a personal landing page.
 I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for a simple, static website that is easy to control and easier on the user.</description>
             <content type="html"><![CDATA[<p>New Site!</p>
-
 <p>I&rsquo;m pretty excited to try github.io for a personal landing page.</p>
-
 <p>I got inspired by <a href="https://www.forrestthewoods.com/blog/saying_goodbye_to_medium/">Forrest Smith&rsquo;s post</a> on leaving Medium; he opted for a simple, static website that is easy to control and easier on the user. Recently, a lot of opinions surfaced about the web being bloated, and I fully agree.</p>
-
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Why do I need a 4Ghz quadcore to run facebook?&quot; This is why. A single word split up into 11 HTML DOM elements to avoid adblockers. <a href="https://t.co/Zv4RfInrL0">pic.twitter.com/Zv4RfInrL0</a></p>&mdash; Mike Pan (@themikepan) <a href="https://twitter.com/themikepan/status/1093035372186034176?ref_src=twsrc%5Etfw">February 6, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-
 <p>So I started looking around, and found <a href="https://gohugo.io/">Hugo</a>. I can write stuff in Markdown (which I love) and it generates a static HTML site.</p>
-
 <p>Alas, I spent way too much time trying to find the perfect theme and trying to create my own. I wanted the site to be responsive, but lean. Apparently, nobody really wants to do that &ndash; it&rsquo;s either unformatted HTML or &ldquo;fully-featured&rdquo;, with little middle ground. Anyway I found <a href="https://github.com/rhazdon/hugo-theme-hello-friend-ng">Hello NG</a>; it&rsquo;s pretty lightweight, cool looking and clear, but still, it has some features that I don&rsquo;t really want, so I forked it and started removing features. I still have some work to do, but it&rsquo;s getting there.</p>
-
 <p>A text-only page is ~650kb, which is not especially good. A quick look in the Chrome networking console tells me the asset sizes, which are:
-<img src="/img/site-sizes.png" alt="Pie chart of size asset sizes" /></p>
-
+<img src="/img/site-sizes.png" alt="Pie chart of size asset sizes"></p>
 <p>So there&rsquo;s vast room for improvement here. First of all, I don&rsquo;t think I need fancy fonts; I could use a built-in one. The amount of javascript is&hellip; amazing, too :) I don&rsquo;t have a lot of scripts, but this particular theme does include prism.js (code syntax highlighter) which might prove to be useful later on. (The responsive menu is JS too.)</p>
-
 <p>I&rsquo;m convinced that syntax highlighting should happen when I build the site with Hugo; and in any case, it should only load for pages that have, you know, actual code in it.</p>
-
 <p>Anyways! It&rsquo;s better than nothing. At least there are no cookies, popups and ads!</p>
-
-<hr />
-
+<hr>
 <p><em>Update: I&rsquo;ve since spent some time <a href="/posts/optimizing-site/">optimizing this site</a>.</em></p>
 ]]></content>
         </item>
@@ -486,9 +401,7 @@ I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for
             <guid>/posts/awesome-blog-danluu/</guid>
             <description>I found a great post at danluu.com. I strongly recommend it! The author explores player interactions from male and female perspectives.</description>
             <content type="html"><![CDATA[<p>I found a great post at danluu.com. I strongly recommend it! The author explores <a href="https://danluu.com/overwatch-gender/">player interactions from male and female perspectives</a>. What I found captivating is the methodical, data-driven, scientific way he presented his findings. More of this please! His other posts are great too, and cover a wide variety of topics.</p>
-
 <p>Since then, I&rsquo;ve been devouring his posts, and it&rsquo;s all kinds of fascinating. It&rsquo;s rare to find a blog so good, so I decided to write an endorsement post. I hope I can make this a regular occurence.</p>
-
 <p><a href="https://danluu.com/">Check out his blog now!</a> (It&rsquo;s way better than mine anyway.)</p>
 ]]></content>
         </item>
@@ -501,57 +414,31 @@ I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for
             <guid>/posts/nodejs/</guid>
             <description>y So I decided to try NodeJS and Heroku.
 Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, you know what it is, right?</description>
-            <content type="html"><![CDATA[
-
-<h2 id="y">y</h2>
-
+            <content type="html"><![CDATA[<h2 id="y">y</h2>
 <p>So I decided to try NodeJS and Heroku.</p>
-
 <p>Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you know what it is, right? You create apps using javascript, that&rsquo;s what it is.</p>
-
 <p>There&rsquo;s a lot of hype around these two, so I was curious to try them; I also come from a very different environment (desktop apps written in C#) so I expected nothing &ndash; other than my own incompetence :) I knew I needed to learn this from scratch basically, so I tried to enter this world with no preconceptions. So, these are my subjective observations coming from a standalone developer perspective.</p>
-
 <p>The project was simple: an online highscore-storing service for a Unity game. The Unity part is important: I wanted to access the service using C# code, which meant I needed an encryption routine that worked for both. I thought this was going to be the most difficult part, but I was wrong.</p>
-
 <p>Let&rsquo;s start with Heroku. I found it to be a very friendly service, it has a nice onboarding/tutorial page which guides you through the setup phase and runs a basic app. It works locally and on the web, too.</p>
-
 <p>I&rsquo;ve run into a minor problem; Heroku thought I had two projects in the local folder, despite having only one. I have no idea how did I end up there, but I eventually solved it by deleting a rogue git alias. It was a risky move because it&rsquo;s not clear what aliases does Heroku expect; now I have one remote called &ldquo;heroku&rdquo; and it works.</p>
-
 <p>Other that that, it&rsquo;s smooth sailing. You have a git repo, you have a Heroku account, Heroku runs whatever is in you repo &ndash; that&rsquo;s it.</p>
-
 <p>Aside: out of curiosity, I asked some of my more experienced friends how much time would this project take; the answers ranged from &ldquo;an hour&rdquo; to &ldquo;half a day&rdquo;. I think that&rsquo;s reasonable, as I only need two endpoints, a very simple database and some encryption. I was prepared to spend a few days on it to get the hang of things.</p>
-
 <p>So, onto NodeJS! The default Heroku sample uses a framework called &ldquo;Express&rdquo;. I had no idea what it did. It&rsquo;s an &ldquo;application framework&rdquo;, which is meaningless, and their website isn&rsquo;t very helpful either. After some fumbling around it turns out it has some handy tools for serving HTTP websites, so I decided to stick with it. I asked around and it&rsquo;s one of the most popular webserver frameworks, so there&rsquo;s probably no harm in using that instead of writing a lot of boilerplate code. It still strikes me odd that its functionality isn&rsquo;t really explained on their site.</p>
-
 <p>Handling a request is very simple; it&rsquo;s similar to writing to a console:</p>
-
 <pre><code>app.get('/', function(req, res) {
   res.send(&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;ayy&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
 });
-</code></pre>
-
-<p>I guess this is the part when I would have to look up a template engine to serve nice HTML content, but for this project I just need to pass data, so I&rsquo;m skipping that. Anyway, this ran flawlessly on Heroku, and seeing my own little NodeJS webserver running live is very promising! Note that I&rsquo;m about two hours in, including installing Heroku and NodeJS. So far, so good, I&rsquo;m progressing quite fast.</p>
-
+</code></pre><p>I guess this is the part when I would have to look up a template engine to serve nice HTML content, but for this project I just need to pass data, so I&rsquo;m skipping that. Anyway, this ran flawlessly on Heroku, and seeing my own little NodeJS webserver running live is very promising! Note that I&rsquo;m about two hours in, including installing Heroku and NodeJS. So far, so good, I&rsquo;m progressing quite fast.</p>
 <p>Next, I&rsquo;ll need a database to work with some &ldquo;real&rdquo; data. The local pgsql install process takes some time (around an hour), and syncing it with Heroku is supposed to be simple. However, I screwed this up, someehow lost my root password, I had to reinstall, and after that Heroku wasn&rsquo;t so cooperative. I guess an environment variable got stuck somewhere; I remember seeing it on a stackoverflow answer? It&rsquo;s not clear what the problem is and how should I go about it. I have no doubt that it would work nicely if I don&rsquo;t fuck it up, but I did, and it&rsquo;s very hard to find out how to make it work again, because I have little idea what&rsquo;s going on.</p>
-
 <p>Eventually, I solve this too, but it takes a considerable amount of googling, and the solution turned out to be an unofficial post somewhere.</p>
-
 <p>Once working, Heroku can connect to a db seamlessly &ndash; the same code and config works locally and in the cloud. (Well, not for me, but you get the idea.)</p>
-
 <p>I had to look up the <code>await</code> and <code>async</code> keywords for javascript; these make it possible to run &ndash; yeah right &ndash; asynchronous code. I got a bit confused with <code>async</code> though. First, I forgot to declare my anonymous function as async, so I got a runtime error. This feels very awkward compared to compiled languages, but that was sort of expected. I wonder though if I could do a static analysis to catch these errors while deploying? This seems to be a major difference when developing web apps.</p>
-
 <p>Of course, I wanted to catch errors too. I looked into best practices for this, and I found conflicting opinions. Some say that try/catch doesn&rsquo;t handle exceptions coming from async code, some say they do. There&rsquo;s no definitive list of exceptions a function can throw; developers are advised to always use <code>Error</code> when throwing, as it is the only exception that&rsquo;s widely supported. There are error events for Express. There are &ldquo;Promises&rdquo; with <code>.catch()</code> clauses&hellip;</p>
-
 <p>The most striking statement is that after an error there is <em>no way</em> of ensuring the correctness of the application state, so you are to &ldquo;gracefully restart&rdquo; the application. This is unthinkable in the standalone world, but I guess it has something to do with a stateless environment and a large number of concurrent connections? Either way, there is a scary lack of documentation regarding this, and it&rsquo;s especially weird to work in an environment where you can never guarantee the correctness of the application. To be honest, it all seems to be a cop-out: nobody knows what&rsquo;s happening, so you just restart the app.</p>
-
 <p>I&rsquo;d like to emphasise that this is my subjective observation as a Node-rookie. Maybe I just haven&rsquo;t found the appropriate docs, or I haven&rsquo;t spent enough time looking?</p>
-
 <p>Perhaps an experienced developer could tell me what the best option is, but I&rsquo;d expect this topic to be well-covered, even for &ndash; especially for &ndash; beginner developers. The presence of &ldquo;opinions&rdquo; just highlight the lack of an official knowledge base.</p>
-
 <h2 id="getting-data">Getting data</h2>
-
 <p>Ending this rant, after a few hours I settled on using try/catch-ing the database code. The result, I have to admit, is super-clean, simple, and well-readable:</p>
-
 <pre><code>app.get('/getscores', async function(req, res) {
   try
   {
@@ -568,53 +455,30 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
     res.status(500).send('Error: ' + err);
   }
 });
-</code></pre>
-
-<p>Almost trivial. The &ldquo;getscores&rdquo; subpage returns a JSON containing the first 20 scores. I can&rsquo;t shake the feeling that this can crash for unknown reasons (why isn&rsquo;t <code>client.release()</code> in a finally block? I don&rsquo;t know), but let&rsquo;s hope for the best. I&rsquo;ve inserted some test scores into the database, and it works! Way simpler than I thought it would be.</p>
-
+</code></pre><p>Almost trivial. The &ldquo;getscores&rdquo; subpage returns a JSON containing the first 20 scores. I can&rsquo;t shake the feeling that this can crash for unknown reasons (why isn&rsquo;t <code>client.release()</code> in a finally block? I don&rsquo;t know), but let&rsquo;s hope for the best. I&rsquo;ve inserted some test scores into the database, and it works! Way simpler than I thought it would be.</p>
 <h2 id="uploading-data">Uploading data</h2>
-
 <p>As simple as the project is, I wanted to make score uploading somewhat secure. I have some experience with encryption, so I didn&rsquo;t have to learn this from scratch, and there is a nice library called &ldquo;CryptoJS&rdquo; that does the heavy lifting for me. A wonderful stackoverflow answer by user <em>usselite</em> basically solves the whole problem: encrypt some data using C#, decrypt it using javascript. Read it here: <a href="https://stackoverflow.com/questions/47891104/compatible-aes-encryption-and-decryption-for-c-sharp-and-javascript">https://stackoverflow.com/questions/47891104/compatible-aes-encryption-and-decryption-for-c-sharp-and-javascript</a></p>
-
 <p>Implementing this was surprisingly easy. I had to make some modifications to work with NodeJS (this included looking up what the bafflingly-named &ldquo;atob&rdquo; function does and replacing it using <code>Buffer</code> objects), but in less than an hour, I made a console app in C# that generated some encrypted data, a debug page to post my data, and the real endpoint that receives the encrypted payload, decrypts it, and writes it to console.</p>
-
 <p>Now, here&rsquo;s the catch.</p>
-
 <p>The payload decrypting was easy; inserting it into the database is easy. Since the payload is encrypted, it&rsquo;s hard to tamper with, but I still wanted to validate the data before doing any database operations.</p>
-
 <p>So I got stuck on trying to verify if the score is a valid integer. Amazingly, this took <em>hours</em>.</p>
-
 <p>Let&rsquo;s start with the solution, the one I settled with at least:</p>
-
 <pre><code>if (!Number.isInteger(payload.map) || (payload.map &lt;= 0))
 {
   console.log('map invalid');
   res.status(400).end('error');
 }
-</code></pre>
-
-<p>But getting there? That was surreal. The requirement is simple: the payload contains this data, and it should be a natural number (some values, like the level index, can be zero). There were all sorts of complications: how to check if the JSON (converted to an object after decryption) has a member? Converting it to bool doesn&rsquo;t work if the number is 0. There&rsquo;s a function for that; if we have the member, how to check if it&rsquo;s a number? Check its type? Which equality operator do you use for that? What&rsquo;s a number anyway? (Seriously, look that up.)</p>
-
+</code></pre><p>But getting there? That was surreal. The requirement is simple: the payload contains this data, and it should be a natural number (some values, like the level index, can be zero). There were all sorts of complications: how to check if the JSON (converted to an object after decryption) has a member? Converting it to bool doesn&rsquo;t work if the number is 0. There&rsquo;s a function for that; if we have the member, how to check if it&rsquo;s a number? Check its type? Which equality operator do you use for that? What&rsquo;s a number anyway? (Seriously, look that up.)</p>
 <p>There are <em>dozens</em> of ways to go around this, each of them slightly different, there are hidden conversion going on in the background with all sorts of results (number, string, undefined, NaN&hellip;). <em>And there is not one that is definitive.</em></p>
-
 <p>This is baffling. Should I use a validation library? Seems overkill for such a simple task. It seems like I need <em>more experience</em> to answer this question? That this is not a trivial problem?</p>
-
 <h2 id="conclusions">Conclusions</h2>
-
 <p>I&rsquo;d like to remind you again that I spent about 8 hours on this project, so I&rsquo;m definitively not an expert, and please consider this as first-look impressions.</p>
-
 <p>Heroku is a very nice service. It just works, it&rsquo;s free, and does a lot of things for you so you can concentrate on development. It would be very interesting to see how it scales upwards, distributing work between multiple dynos (a VM, sort of), but&hellip; I&rsquo;m not going to do that :) It is amazingly friendly &ndash; you don&rsquo;t even have to remember git credentials?! That&rsquo;s the most streamlined service I ever saw.</p>
-
 <p>Developing stuff in NodeJS is very fast. You can get your online thing running in a day, which is a lot faster tha I expected. If you need something, there&rsquo;s a good chance that there is an npm module for that, so you&rsquo;re just a command line entry away from implementing your high-level vision.</p>
-
 <p>It is very hard, however, to write <em>correct</em> code. Debugging is very restricted, so you better log everything. I presume it also drastically increases the number of unit tests you need to write. Error handling is very weird &ndash; it seems like nobody knows how it works, and nobody cares. This means that even if you want to write correct code, chances are some of your dependencies will behave unpredictably.</p>
-
 <p>Documentation is, well, dare I say, non-existent? There is no single source of truth. There are, however, conflicting &ldquo;opinions&rdquo;. Most of your time will be spent on Stackoverflow and various personal blogs on Medium, with no apparent way to verify what you read (other than trying it). It&rsquo;s not unlikely that a developer will recommend a solution because they &ldquo;like it the most&rdquo;.</p>
-
 <p>Suprisingly, nobody thinks of this as a concern.</p>
-
 <p>I find this worrying, and I wouldn&rsquo;t recommend NodeJS for anything other than really small, insignificant projects. Maintaining even medium size projects would be a nightmare; my project is about 200 lines of code, and I have no idea if it&rsquo;s correct or not, nor have I any means of checking it. Does Express throw an exception somewhere? Or CryptoJS? Is it enough to put my database code in try/catch? Will it even catch errors in async functions? The only way to find out is to try it &ndash; which would take quite some time in itself.</p>
-
 <p>What happens when an exception is thrown somewhere I didn&rsquo;t expect? Okay, I know this one &ndash; the whole app will crash. How do I avoid that? I have no clue. It is telling that there are a fair number of tools that will automatically restart your app if it crashes.</p>
 ]]></content>
         </item>

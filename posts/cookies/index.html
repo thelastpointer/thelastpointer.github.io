@@ -20,9 +20,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b3600498cc4c094c442fcdffeb398771f7944b58651a975332408f26602b9909.css">
-
-
+<link rel="stylesheet" href="/scss/main.min.7a41f7756fabf640fdd53155dc4ff6df1532d2d91f6d0e97fcd187d3085a54fd.css">
 
 
 
@@ -34,16 +32,14 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Cookies">
 <meta itemprop="description" content="I finally bit the bullet and added a cookie consent popup to the site. Skip to the part where I explain these cookies.">
-
-
 <meta itemprop="datePublished" content="2019-06-21T11:44:01&#43;02:00" />
 <meta itemprop="dateModified" content="2019-06-21T11:44:01&#43;02:00" />
-<meta itemprop="wordCount" content="530">
+<meta itemprop="wordCount" content="527">
+<meta itemprop="image" content="/"/>
 
 
 
-<meta itemprop="keywords" content="untagged," />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta itemprop="keywords" content="untagged," /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
 <meta name="twitter:title" content="Cookies"/>
@@ -60,28 +56,8 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-<script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000"
-    },
-    "button": {
-      "background": "#14a7d0"
-    }
-  },
-  "theme": "edgeless",
-  "position": "bottom-left",
-  "content": {
-    "message": "This website uses cookies.",
-    "href": "https://thelastpointer.github.io/posts/cookies/"
-  }
-})});
-</script>
+<script src="/js/baguetteBox.min.js"></script>
+<link href="/css/baguetteBox.min.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body class="">
@@ -104,6 +80,12 @@ window.cookieconsent.initialise({
     </ul>
 </nav>
 
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
             
         </span>
     </span>
@@ -115,7 +97,7 @@ window.cookieconsent.initialise({
     <main class="post">
 
         <div class="post-info">
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019 Jun 21</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019.06.21. 11:44 &#43;0200</p>
             </div>
 
         <article>
@@ -125,39 +107,26 @@ window.cookieconsent.initialise({
 
             <div class="post-content">
                 <p>I finally bit the bullet and added a cookie consent popup to the site. <a href="#explanation">Skip to the part where I explain these cookies.</a></p>
-
 <p>I was trying my best to make this site as lean and hassle-free as possible, but I&rsquo;m also very curious about visitors &ndash; how many people see these posts? Are some posts more popular than others? Should I post <em>more</em> of something?</p>
-
 <p>I hoped that github will provide me with some stats one this &ndash; I wasn&rsquo;t expecting much, but then again, I didn&rsquo;t need much. Github, however, gives me zero information on traffic. I&rsquo;ve been staring at this &ldquo;data&rdquo; for months now:</p>
-
-<p><img src="/img/visitors.png" alt="Github doesn't have enough data" /></p>
-
+<p><img src="/img/visitors.png" alt="Github doesn&rsquo;t have enough data"></p>
 <p>I get that I don&rsquo;t have thousands of views, but I&rsquo;m sure that at least some of my friends see this&hellip;? (And how many visitors should I have before I get access to data anyway?)</p>
-
 <p>So I&rsquo;ve been looking around for other options. This is a static site, so I can&rsquo;t run any server-side code &ndash; that would be the easiest method, and the most user-friendly one. I seriously contemplated renting a server just for this, but I kinda like github.io and I feel that users can trust it too.</p>
-
 <p>Other methods are available, too, most notably Google Analytics. The problem with these is that they store a cookie (which is used to make sure that a single user isn&rsquo;t counted twice) and I really, <em>really</em> hate cookie-consent dialogs. The consent is enforced by law, and I found no service that does not need a consent dialog. I feel like these actively make websites worse &ndash; they are annoying and provide no useful information to the user. They usually point to confusing explanations, list hundreds of ad providers, and obscure legal text; I sincerely believe that nobody reads these. Even worse, if I don&rsquo;t agree (and most of time, I don&rsquo;t agree just out of spite), then the consent dialog will be displayed to me <em>every single time</em> I visit that particular site, meaning that I have to face this minor annoyance multiple times, which adds up.</p>
-
-<hr />
-
-<p><a name="explanation"></a>
+<hr>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
 So what am I using these cookies for?</p>
-
 <p>I store a single Google Analytics cookie, which is used to make sure that when you visit the site multiple times, you will only be counted once. The cookie contains a string of random numbers and letters, something like this: <code>GA1.2.211694324.1557125602</code></p>
-
 <p>When you visit the site, google analytics checks if this string has been used before, and if not, it increases the unique visitor count.</p>
-
 <p>That&rsquo;s it.</p>
-
 <p>I don&rsquo;t know who you are, there is no personal information associated with this string, I&rsquo;m not trying to sell you anything and you won&rsquo;t be tracked in any way &ndash; except now I know if you visited the site.</p>
-
 <p>I opted out from nearly every feature of Google Analytics because I don&rsquo;t need them.</p>
-
-<p>If you need more information or you want to educate yourself on the subject, here are some simple explanations:
-* <a href="https://www.cookiesandyou.com/">An explanation of cookies</a>
-* <a href="http://www.whatarecookies.com/">What are cookies?</a>
-* <a href="https://www.wikihow.com/Disable-Cookies">How to disable cookies?</a></p>
-
+<p>If you need more information or you want to educate yourself on the subject, here are some simple explanations:</p>
+<ul>
+<li><a href="https://www.cookiesandyou.com/">An explanation of cookies</a></li>
+<li><a href="http://www.whatarecookies.com/">What are cookies?</a></li>
+<li><a href="https://www.wikihow.com/Disable-Cookies">How to disable cookies?</a></li>
+</ul>
 <p>I would also like to apologize for the inconvenience this causes you. It&rsquo;s a minor annoyance, but still an annoyance &ndash; sorry for that.</p>
 
             </div>
@@ -213,17 +182,10 @@ So what am I using these cookies for?</p>
 
 
 
-<script type="text/javascript" src="/js/bundle.min.e28e547f8138106fbdd0c6fcdb4147d981437f822e5f86df530402eeb78ad5986071758904a30adb7df45c810b685249f0788f7df4bd98feb430f8ee5cc22b1c.js" integrity="sha512-4o5Uf4E4EG&#43;90Mb820FH2YFDf4IuX4bfUwQC7reK1ZhgcXWJBKMK2330XIELaFJJ8HiPffS9mP60MPjuXMIrHA=="></script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-139587529-1', 'auto');
-        ga('send', 'pageview');
-    </script>
+<script type="text/javascript" src="/js/bundle.min.41d1273dd6f907e319ea47523574f850d6eefdd79844e5af508396129b5bfb1af3507c454c30501e9f192dd8b216cc4828ded9cf51a24f8e6286c9273a049c38.js" integrity="sha512-QdEnPdb5B&#43;MZ6kdSNXT4UNbu/deYROWvUIOWEptb&#43;xrzUHxFTDBQHp8ZLdiyFsxIKN7Zz1GiT45ihsknOgScOA=="></script>
 
 
 
+<script data-goatcounter="https://thelastpointer.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     </body>
 </html>

@@ -20,9 +20,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b3600498cc4c094c442fcdffeb398771f7944b58651a975332408f26602b9909.css">
-
-
+<link rel="stylesheet" href="/scss/main.min.7a41f7756fabf640fdd53155dc4ff6df1532d2d91f6d0e97fcd187d3085a54fd.css">
 
 
 
@@ -34,16 +32,14 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Unity and Sonarqube Part II: Code Coverage">
 <meta itemprop="description" content="In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.">
-
-
 <meta itemprop="datePublished" content="2019-12-18T12:09:48&#43;01:00" />
 <meta itemprop="dateModified" content="2019-12-18T12:09:48&#43;01:00" />
 <meta itemprop="wordCount" content="624">
+<meta itemprop="image" content="/"/>
 
 
 
-<meta itemprop="keywords" content="unity," />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta itemprop="keywords" content="unity," /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
 <meta name="twitter:title" content="Unity and Sonarqube Part II: Code Coverage"/>
@@ -60,28 +56,8 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-<script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#000"
-    },
-    "button": {
-      "background": "#14a7d0"
-    }
-  },
-  "theme": "edgeless",
-  "position": "bottom-left",
-  "content": {
-    "message": "This website uses cookies.",
-    "href": "https://thelastpointer.github.io/posts/cookies/"
-  }
-})});
-</script>
+<script src="/js/baguetteBox.min.js"></script>
+<link href="/css/baguetteBox.min.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body class="">
@@ -104,6 +80,12 @@ window.cookieconsent.initialise({
     </ul>
 </nav>
 
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
             
         </span>
     </span>
@@ -115,7 +97,7 @@ window.cookieconsent.initialise({
     <main class="post">
 
         <div class="post-info">
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019 Dec 18</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019.12.18. 12:09 &#43;0100</p>
             </div>
 
         <article>
@@ -125,23 +107,14 @@ window.cookieconsent.initialise({
 
             <div class="post-content">
                 <p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
-
 <p>Code coverage is a useful tool: it tells you how much of your code is covered by tests, so basically, how much of your code is reliable. It implies the presence of tests, which is sadly not that common in the game industry &ndash; this is reflected by Unity&rsquo;s tools, which are adequate, but not spectacular.</p>
-
 <p>Code coverage, for example, isn&rsquo;t even supported until 2019.3, which at the time I&rsquo;m writing this, is in beta. Code coverage is served as a package, which is a preview version. Still, we can work with this, if you&rsquo;re willing to risk the instability of beta versions.</p>
-
 <p>For this to work, you have to install Unity 2019.3 (at least), then open the package manager, check &lsquo;Show Preview Packages&rsquo;, and get the Code Coverage package.</p>
-
 <p>So here&rsquo;s what we&rsquo;ll do: we start the analysis process (<code>SonarScanner.MSBuild.exe /begin</code>), build the solution, run some tests with code coverage enabled, and process the results.</p>
-
 <p>Yes, you will need tests for this to work. Familiarize yourself with the <a href="https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/index.html">Unity Test Framework</a> (it is based on <a href="https://nunit.org/">NUnit</a> if you&rsquo;re from a .NET background).</p>
-
 <p>Unity will generate an xml file (it can also generate HTML reports too, but we&rsquo;ll ignore that), which is in <a href="https://github.com/OpenCover/opencover">OpenCover</a> format. Fortunately this is supported by SonarQube out of the box (I&rsquo;m using version 8.0). To process the file, we pass <code>/d:sonar.cs.opencover.reportsPaths=&quot;TestResults.xml&quot;</code> when calling <code>begin</code>. Note that we&rsquo;re telling the scanner where to look for the file before the file even exists.</p>
-
 <p>The result file will be created at <code>projectPath\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml</code>. You will need to figure out where your Unity installation is; if you use Unity Hub (please do!), it is something like this: <code>c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe</code>. Replace your version accordingly. I have yet to find a (non-hacky) way to start the &ldquo;appropriate Unity version&rdquo;.</p>
-
 <p>Next, we&rsquo;ll modify the original batch file to run unit tests. Unity has a <a href="https://docs.unity3d.com/Manual/CommandLineArguments.html">quite a few command line arguments</a>; what we need is <code>-runTests</code>, <code>-batchmode</code> and of course the code coverage ones. But enough talk, here&rsquo;s the .bat file:</p>
-
 <pre><code>@echo off
 
 SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
@@ -165,18 +138,11 @@ echo Running tests and code coverage
 
 echo Pushing results to Sonar Server
 &quot;%scanner%&quot; end
-</code></pre>
-
-<p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
-
+</code></pre><p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
 <p>My SonarQube project is also called &ldquo;codecoverage&rdquo;. The Unity project and the SonarQube project <em>can</em> have different names if you want.</p>
-
 <p>Having to define both <code>unity_project</code> and <code>solution</code> feels a bit awkward, but it&rsquo;s valid &ndash; I know it&rsquo;s not used 90% of the time, but I wouldn&rsquo;t omit it either.</p>
-
 <p><code>coverage</code> is a constant for now, but as stated earlier, the code coverage package is just a preview, so that may change any time.</p>
-
 <p>And now, if you run your test, your SonarQube project will have accurate code coverage data. Well, it would tell you how much of your code is covered by tests, which will in turn say something about your tests.</p>
-
 <p>For me, personally &ndash; it tells me to get my shit together. But, if you&rsquo;re like me, you&rsquo;ve already turned off coverage requirements in the SonarQube quality gate, so&hellip; ;)</p>
 
             </div>
@@ -196,6 +162,13 @@ echo Pushing results to Sonar Server
                 </div>
 
                 <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="/posts/mymidicontroller/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">MyMIDIController</span>
+                            </a>
+                        </span>
                     
 
                     
@@ -225,17 +198,10 @@ echo Pushing results to Sonar Server
 
 
 
-<script type="text/javascript" src="/js/bundle.min.e28e547f8138106fbdd0c6fcdb4147d981437f822e5f86df530402eeb78ad5986071758904a30adb7df45c810b685249f0788f7df4bd98feb430f8ee5cc22b1c.js" integrity="sha512-4o5Uf4E4EG&#43;90Mb820FH2YFDf4IuX4bfUwQC7reK1ZhgcXWJBKMK2330XIELaFJJ8HiPffS9mP60MPjuXMIrHA=="></script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-139587529-1', 'auto');
-        ga('send', 'pageview');
-    </script>
+<script type="text/javascript" src="/js/bundle.min.41d1273dd6f907e319ea47523574f850d6eefdd79844e5af508396129b5bfb1af3507c454c30501e9f192dd8b216cc4828ded9cf51a24f8e6286c9273a049c38.js" integrity="sha512-QdEnPdb5B&#43;MZ6kdSNXT4UNbu/deYROWvUIOWEptb&#43;xrzUHxFTDBQHp8ZLdiyFsxIKN7Zz1GiT45ihsknOgScOA=="></script>
 
 
 
+<script data-goatcounter="https://thelastpointer.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     </body>
 </html>

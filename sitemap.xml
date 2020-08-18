@@ -3,18 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/mymidicontroller/</loc>
+    <lastmod>2020-05-20T09:03:35+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/</loc>
-    <lastmod>2019-12-18T12:09:48+01:00</lastmod>
+    <lastmod>2020-05-20T09:03:35+02:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2019-12-18T12:09:48+01:00</lastmod>
+    <lastmod>2020-05-20T09:03:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-12-18T12:09:48+01:00</lastmod>
+    <loc>/tags/untagged/</loc>
+    <lastmod>2020-05-20T09:03:35+02:00</lastmod>
   </url>
   
   <url>
@@ -29,11 +34,6 @@
   
   <url>
     <loc>/posts/site-ui/</loc>
-    <lastmod>2019-12-16T09:29:01+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/untagged/</loc>
     <lastmod>2019-12-16T09:29:01+01:00</lastmod>
   </url>
   
@@ -104,6 +104,11 @@
   
   <url>
     <loc>/proto/</loc>
+    <lastmod>2019-01-09T11:23:21+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
     <lastmod>2019-01-09T11:23:21+01:00</lastmod>
   </url>
   
