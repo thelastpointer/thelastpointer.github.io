@@ -34,7 +34,7 @@
 <meta itemprop="description" content="So I showed the new site to a few friends, and as expected, they pointed out all kinds of things to fix :)">
 <meta itemprop="datePublished" content="2019-04-24T09:48:52&#43;02:00" />
 <meta itemprop="dateModified" content="2019-04-24T09:48:52&#43;02:00" />
-<meta itemprop="wordCount" content="462">
+<meta itemprop="wordCount" content="434">
 <meta itemprop="image" content="/"/>
 
 
@@ -56,8 +56,8 @@
 
 
 
-<script src="/js/baguetteBox.min.js"></script>
-<link href="/css/baguetteBox.min.css" rel="stylesheet" type="text/css" />
+
+
     </head>
 
     <body class="">
@@ -111,15 +111,15 @@
 <p>I checked <a href="https://www.webpagetest.org/">webpagetest</a>; the starting page is good enough:</p>
 <p>![screenshot of size render timings](/img/optimizing-site/01 start.PNG)</p>
 <p>The full page loads under 1 second. That&rsquo;s good enough, but it&rsquo;s a page with 13 words on it, so&hellip; checking the waterfall image, we can see that the javascript and fonts are the bulk of the page.</p>
-<p>![waterfall graph of page download](/img/optimizing-site/02 start waterfall.png)</p>
+<p><img src="/img/optimizing-site/02startwaterfall.png" alt="waterfall graph of page download"></p>
 <p>That&rsquo;s unfortunate, but sort of expected: both are part of the theme I&rsquo;m using here, and I haven&rsquo;t gotten around removing them. I suspect the fonts will be rather easy, but the javascript seems to be some kind of minimized package of multiple libraries, so it&rsquo;s not readily apparent which parts will I need to stay responsive. The author stated that I&rsquo;ll need to fire up nodeJS to edit it, which is baffling to be honest.</p>
 <p>A single post with no images yields the same results. So let&rsquo;s move on to the galleries; here&rsquo;s how the prototypes page looks like in webpagetest:</p>
-<p>![screenshot of site render timings](/img/optimizing-site/03 proto start.PNG)</p>
-<p>![waterfall graph of page download](/img/optimizing-site/04 proto waterfall.png)</p>
+<p><img src="/img/optimizing-site/03protostart.png" alt="screenshot of site render timings"></p>
+<p><img src="/img/optimizing-site/04protowaterfall.png" alt="waterfall graph of page download"></p>
 <p>So: this page takes 13 seconds to fully load. The waterfall image is simple: images dominate everything. I&rsquo;m not using thumbnails, nor do I want to. But the images can be optimized, so I tried a few services. The &ldquo;space shooter&rdquo; gallery was originally ~9.5MB large. I tried <a href="https://imagecompressor.com/">imagecompressor.com</a>, <a href="https://tinypng.com/">TinyPNG</a>, and <a href="https://sourceforge.net/projects/nikkhokkho/">fileoptimizer</a>. I was looking for tools that can compress images in bulk.</p>
 <p>fileoptimizer is a downloadable tool, and it is unbearably slow: a single image took 3 minutes to process. I wasn&rsquo;t going to wait 4 hours to do this, so I moved on. Of the remaining two, TinyPNG did slightly better: it compressed the 9.5MB gallery to 2.5MB (imagecompressor compressed to 2.9MB).</p>
 <p>Compressing all images took some time. Let&rsquo;s check the results!</p>
-<p>![screenshot of site render timings](/img/optimizing-site/05 proto optimized.PNG)</p>
+<p><img src="/img/optimizing-site/05protooptimized.png" alt="screenshot of site render timings"></p>
 <p>The prototype page is down to 3 seconds! That&rsquo;s almost 80%; not insignificant at all.</p>
 <p>To be honest, while compressing the images, it occured to me that maybe all this work doesn&rsquo;t even worth it? But seeing the results this is clearly not the case. I&rsquo;d say I wouldn&rsquo;t bother with all this compressing, but for image-heavy pages this might very well make a difference.</p>
 <hr>
