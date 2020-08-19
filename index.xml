@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Keeping the site up-to-date</title>
+      <link>/posts/site-2020/</link>
+      <pubDate>Wed, 19 Aug 2020 11:32:36 +0200</pubDate>
+      
+      <guid>/posts/site-2020/</guid>
+      <description>This site, despite not getting any traffic, is a project I very much like, and periodically I feel the need to polish it.</description>
+    </item>
+    
+    <item>
       <title>MyMIDIController</title>
       <link>/posts/mymidicontroller/</link>
       <pubDate>Wed, 20 May 2020 09:03:35 +0200</pubDate>
@@ -176,8 +185,7 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
       <pubDate>Fri, 04 Jan 2019 16:10:42 +0100</pubDate>
       
       <guid>/cv/</guid>
-      <description>This is basically my CV, but with more pictures. Don&amp;rsquo;t take it too seriously :)
- Lead Programmer / Elder Brain Studios / 2015- I took on a lot of responsibility by joining Elder Brains to build a whole game.</description>
+      <description>This is basically my CV, but with more pictures. Don&#39;t take it too seriously :)László Petrovánszkithelastpointer@gmail.comUnity, C#, Windows, Android; active since 2008  Lead Programmer / Elder Brain Studios / 2015- I took on a lot of responsibility by joining Elder Brains to build a whole game.</description>
     </item>
     
   </channel>

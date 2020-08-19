@@ -5,8 +5,23 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 20 May 2020 09:03:35 +0200</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2020 11:32:36 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Keeping the site up-to-date</title>
+            <link>/posts/site-2020/</link>
+            <pubDate>Wed, 19 Aug 2020 11:32:36 +0200</pubDate>
+            
+            <guid>/posts/site-2020/</guid>
+            <description>This site, despite not getting any traffic, is a project I very much like, and periodically I feel the need to polish it.</description>
+            <content type="html"><![CDATA[<p>This site, despite not getting any traffic, is a project I very much like, and periodically I feel the need to polish it.</p>
+<p>First of all, I changed my gallery to <a href="https://fotorama.io/">Fotorama</a>. It is very simple, relatively lightweight, and supports everything I need &ndash; mobile view, fullscreen and thumbnails. That also means I could get rid of the old gallery, which mysteriously stopped working. I think it was the Hugo version upgrade?</p>
+<p>Whatever. I also added a link to <a href="https://store.steampowered.com/app/1123590/Herogrinder_Tactical_Combat_Arenas/">Herogrinder&rsquo;s Steam page</a> on my <a href="/cv/">CV</a> to keep things up-to-date. I&rsquo;ll probably add some more images too.</p>
+<p>By far the biggest change is the migration to <a href="https://www.goatcounter.com/">GoatCounter</a> &ndash; this is a web analytics platform that is lightweight <em>and does not require fucking cookies</em>. So I can ditch Google Analytics and the extremely useless cookie consent popup! Yay! But seriously, that project is amazing, and I can 100% stand behind <a href="https://www.goatcounter.com/why">Marting&rsquo;s rationale</a> for creating it.</p>
+<p>Sadly, this year has been busy in a not-really-spectacular way, so I have little to post. There are some interesting things in the pipeline &ndash; my first electronics project, some coding, some game design, so while I&rsquo;ll never get to last years post count, I hope I can add some useful content soon.</p>
+]]></content>
+        </item>
         
         <item>
             <title>MyMIDIController</title>
@@ -101,7 +116,7 @@ echo Pushing results to Sonar Server
 <li>Galleries. The galleries <em>sucked</em>, I know. I switched to <a href="https://github.com/micahstubbs/material-photo-gallery">Material Photo Gallery</a>. The minified javascript for this is twice as large (about 20kb), but it works, and I&rsquo;m willing to pay an additional 10kb for that.</li>
 </ul>
 <p>For the new galleries I totally restructured the CV page; I automatically <a href="https://gohugo.io/content-management/image-processing/">generate thumbnails</a> &ndash; this took a while to get my head around, but it&rsquo;s so worth it! I made a custom <a href="https://gohugo.io/content-management/shortcodes/">Hugo shortcode</a> to display a folder as a gallery, too, so now everything is automatic.</p>
-<p>It was also readily apparent that anyone opening the site would scroll down immediately. This had the implication that the menu was not readily apparent, so I changed that too.</p>
+<p>It was also readily apparent that anyone opening the site would scroll down immediately. This had the implication that the menu was not immediately obvious, so I changed that too.</p>
 <p>Got any comments about this? Well visit my <em>CONTACT</em> PAGE TO WRITE ME A MAIL ABOUT IT MWAHAHAHA</p>
 <p>Kudos for Viktor and Árpi for the remarks!</p>
 ]]></content>
@@ -176,8 +191,7 @@ echo Pushing results to Sonar Server
 <p>So I&rsquo;ve been looking around for other options. This is a static site, so I can&rsquo;t run any server-side code &ndash; that would be the easiest method, and the most user-friendly one. I seriously contemplated renting a server just for this, but I kinda like github.io and I feel that users can trust it too.</p>
 <p>Other methods are available, too, most notably Google Analytics. The problem with these is that they store a cookie (which is used to make sure that a single user isn&rsquo;t counted twice) and I really, <em>really</em> hate cookie-consent dialogs. The consent is enforced by law, and I found no service that does not need a consent dialog. I feel like these actively make websites worse &ndash; they are annoying and provide no useful information to the user. They usually point to confusing explanations, list hundreds of ad providers, and obscure legal text; I sincerely believe that nobody reads these. Even worse, if I don&rsquo;t agree (and most of time, I don&rsquo;t agree just out of spite), then the consent dialog will be displayed to me <em>every single time</em> I visit that particular site, meaning that I have to face this minor annoyance multiple times, which adds up.</p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-So what am I using these cookies for?</p>
+<p>So what am I using these cookies for?</p>
 <p>I store a single Google Analytics cookie, which is used to make sure that when you visit the site multiple times, you will only be counted once. The cookie contains a string of random numbers and letters, something like this: <code>GA1.2.211694324.1557125602</code></p>
 <p>When you visit the site, google analytics checks if this string has been used before, and if not, it increases the unique visitor count.</p>
 <p>That&rsquo;s it.</p>

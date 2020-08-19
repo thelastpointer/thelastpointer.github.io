@@ -6,10 +6,19 @@
     <description>Recent content in untagged on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2020 09:03:35 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2020 11:32:36 +0200</lastBuildDate>
     
 	<atom:link href="/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Keeping the site up-to-date</title>
+      <link>/posts/site-2020/</link>
+      <pubDate>Wed, 19 Aug 2020 11:32:36 +0200</pubDate>
+      
+      <guid>/posts/site-2020/</guid>
+      <description>This site, despite not getting any traffic, is a project I very much like, and periodically I feel the need to polish it.</description>
+    </item>
     
     <item>
       <title>MyMIDIController</title>

@@ -97,7 +97,7 @@
     <main class="post">
 
         <div class="post-info">
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019.06.21. 11:44 &#43;0200</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019.06.21. 11:44</p>
             </div>
 
         <article>
@@ -114,8 +114,7 @@
 <p>So I&rsquo;ve been looking around for other options. This is a static site, so I can&rsquo;t run any server-side code &ndash; that would be the easiest method, and the most user-friendly one. I seriously contemplated renting a server just for this, but I kinda like github.io and I feel that users can trust it too.</p>
 <p>Other methods are available, too, most notably Google Analytics. The problem with these is that they store a cookie (which is used to make sure that a single user isn&rsquo;t counted twice) and I really, <em>really</em> hate cookie-consent dialogs. The consent is enforced by law, and I found no service that does not need a consent dialog. I feel like these actively make websites worse &ndash; they are annoying and provide no useful information to the user. They usually point to confusing explanations, list hundreds of ad providers, and obscure legal text; I sincerely believe that nobody reads these. Even worse, if I don&rsquo;t agree (and most of time, I don&rsquo;t agree just out of spite), then the consent dialog will be displayed to me <em>every single time</em> I visit that particular site, meaning that I have to face this minor annoyance multiple times, which adds up.</p>
 <hr>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->
-So what am I using these cookies for?</p>
+<p>So what am I using these cookies for?</p>
 <p>I store a single Google Analytics cookie, which is used to make sure that when you visit the site multiple times, you will only be counted once. The cookie contains a string of random numbers and letters, something like this: <code>GA1.2.211694324.1557125602</code></p>
 <p>When you visit the site, google analytics checks if this string has been used before, and if not, it increases the unique visitor count.</p>
 <p>That&rsquo;s it.</p>
