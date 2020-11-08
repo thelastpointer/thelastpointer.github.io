@@ -6,10 +6,19 @@
     <description>Recent content in Awesome blogs on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Jun 2019 11:27:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2020 12:57:43 +0200</lastBuildDate>
     
 	<atom:link href="/tags/awesome-blogs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Awesome Blog: A Collection of Unmitigated Pedantry</title>
+      <link>/posts/awesome-blog-acoup/</link>
+      <pubDate>Thu, 08 Oct 2020 12:57:43 +0200</pubDate>
+      
+      <guid>/posts/awesome-blog-acoup/</guid>
+      <description>Defining what an &amp;lsquo;awesome blog&amp;rsquo; is really hard; I appreciate perspicuous writing, useful insights, a sense of understanding, an interesting topic, and several other factors.</description>
+    </item>
     
     <item>
       <title>Awesome Blog: The Old New Thing</title>

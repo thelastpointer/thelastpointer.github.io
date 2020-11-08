@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/site-2020/</loc>
-    <lastmod>2020-08-19T11:32:36+02:00</lastmod>
+    <loc>/posts/awesome-blog-acoup/</loc>
+    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/awesome-blogs/</loc>
+    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
   </url>
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2020-08-19T11:32:36+02:00</lastmod>
+    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/site-2020/</loc>
     <lastmod>2020-08-19T11:32:36+02:00</lastmod>
   </url>
   
@@ -59,11 +69,6 @@
   
   <url>
     <loc>/posts/awesome-blog-old-new-thing/</loc>
-    <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/awesome-blogs/</loc>
     <lastmod>2019-06-05T11:27:00+02:00</lastmod>
   </url>
   
