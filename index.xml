@@ -12,6 +12,25 @@
     
     
     <item>
+      <title>What happened in 2021?</title>
+      <link>/posts/2021/</link>
+      <pubDate>Mon, 17 Jan 2022 00:24:31 +0100</pubDate>
+      
+      <guid>/posts/2021/</guid>
+      <description>Covid. Fucking Covid&amp;rsquo;s what&amp;rsquo;s happened in 2021.
+ (No seriously, I worked my ass off to release Vagrus, I had a breakup, I stopped kung fu, I started bouldering, I made an entire doom metal EP, so lots of stuff happened, just writing a blog was not one of them.</description>
+    </item>
+    
+    <item>
+      <title>The 48 Hour RPG -- Part 2</title>
+      <link>/posts/48hrrpgdiary/</link>
+      <pubDate>Tue, 01 Dec 2020 12:10:23 +0100</pubDate>
+      
+      <guid>/posts/48hrrpgdiary/</guid>
+      <description>For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours.</description>
+    </item>
+    
+    <item>
       <title>Awesome Blog: A Collection of Unmitigated Pedantry</title>
       <link>/posts/awesome-blog-acoup/</link>
       <pubDate>Thu, 08 Oct 2020 12:57:43 +0200</pubDate>
@@ -81,7 +100,7 @@
       
       <guid>/posts/e3-2019/</guid>
       <description>Helen, Level 12 Hacker Avengers Video Game to ride the success of Endgame Marvel&amp;#39;s Avengers (Dev. Crystal Dynamics.) pic.twitter.com/VrbnlM4zE1
-&amp;mdash; Matt T.</description>
+&amp;mdash; Matt Kim (@LawofTD) June 11, 2019  Bethesda dudes talking about games	Bethesda Front Row Hypeman Squad freaking out over every other sentence is honestly the funniest thing I&amp;#39;ve seen all day.</description>
     </item>
     
     <item>
@@ -194,7 +213,7 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
       <pubDate>Fri, 04 Jan 2019 16:10:42 +0100</pubDate>
       
       <guid>/cv/</guid>
-      <description>This is basically my CV, but with more pictures. Don&#39;t take it too seriously :)László Petrovánszkithelastpointer@gmail.comUnity, C#, Windows, Android; active since 2008  Lead Programmer / Elder Brain Studios / 2015- I took on a lot of responsibility by joining Elder Brains to build a whole game.</description>
+      <description>This is basically my CV, but with more pictures. Don&#39;t take it too seriously :)László Petrovánszkithelastpointer@gmail.comUnity, C#, Windows, Android; active since 2008  Lead Programmer / Lost Pilgrims Studio / 2020- Vagrus: The Riven Realms Joining Lost Pilgrims was a huge challenge on multiple fronts, the biggest being the switch to a full-remote environment.</description>
     </item>
     
   </channel>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours." />
+<meta name="keywords" content="homepage, blog, informatics, development, programming, Unity3d, C#" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/48hrrpgdiary/" />
+
+
+<title>
+    
+    The 48 Hour RPG -- Part 2 :: thelastpointer 
+    
+</title>
+
+
+
+
+<link rel="stylesheet" href="/scss/main.min.31bd7a16d0c68e9ea4670e645598e37a120c7bbcefba8fc0ca2a49218bb0c7c1.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="theme-color" content="#252627"><meta itemprop="name" content="The 48 Hour RPG -- Part 2">
+<meta itemprop="description" content="For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours.">
+<meta itemprop="datePublished" content="2020-12-01T12:10:23&#43;01:00" />
+<meta itemprop="dateModified" content="2020-12-01T12:10:23&#43;01:00" />
+<meta itemprop="wordCount" content="1343">
+<meta itemprop="image" content="/"/>
+
+
+
+<meta itemprop="keywords" content="untagged," /><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="The 48 Hour RPG -- Part 2"/>
+<meta name="twitter:description" content="For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours."/>
+
+
+
+
+<meta property="article:published_time" content="2020-12-01 12:10:23 &#43;0100 CET" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__text">Home</span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Blog</a></li><li><a href="/proto">Projects</a></li><li><a href="/cv">CV</a></li><li><a href="/about">Contact</a></li>
+    </ul>
+</nav>
+
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020.12.01. 12:10</p>
+            </div>
+
+        <article>
+            <h1 class="post-title"><a href="/posts/48hrrpgdiary/">The 48 Hour RPG &ndash; Part 2</a></h1>
+
+            
+
+            <div class="post-content">
+                <p>For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours. I <a href="https://thelastpointer.wordpress.com/2017/06/10/an-rpg-in-48-hours/">outlined my idea in my previous blog</a> and started the project, but I <a href="https://thelastpointer.wordpress.com/2018/04/15/48-hour-rpg-well-that-didnt-work-out/">deemed it a failure</a> after not touching the project for several months.</p>
+<p>I restarted the project in March 2020. And I failed again! But it was a <em>better</em> failure this time. There&rsquo;s a video at the end if you want to see where I got.</p>
+<p>This time, I kept a private diary which I intend to share here. Here&rsquo;s the full document &ndash; sorry for the formatting, but I kinda wanted to highlight just how <em>sloppy</em> the whole thing is:</p>
+<pre><code>got some basic movement working
+abilities are going to be big, better spend some time on them
+spent way too much fucking time on the ability editor
+	but some bugs got fixed so it was kinda worth it?
+fucking windows update
+importing standard assets into a urp project is cumbersome
+shader graph is surprisingly buggy -- need to save asset multiple times to get it working
+testing abilities is hard.
+	it requires a target, which is a critter for simplicity
+	it requires an abilit; just a debug version for now
+	it requires UI -- I can either make throwaway debug ui, or something that's usable in the long run
+i fucked up abilities. i tried to be too smart.
+rewriting it took two hours, shit!
+spent 20 minutes looking for a suitable low-res rendering method for URP, then i panicked and stopped
+ranged abilities took another hour; collisions, layers, passing data between actor and projectile, etc.
+a simple enemy took 2 hours. not bad at all! I'm *kinda* proud because they're *kinda* smart
+making a hud is boring, yet, it's a super-high priority task. I get why so many games reuse the same UI paradigms.
+an hour and 10 minutes passed while i was refactoring abilities, just to revert them again.
+	current version is cumbersome: an ability is a ScriptableObject, so I must juggle a lot of files
+	I wanted to inline these, but then I couldn't create different types from the editor
+	so I fucked around with CustomEditors and PropertyDrawers; none of them worked
+	I'm back to juggling files, that, at least, works flawlessly. still cumbersome though
+I noticed that I'm writing less and less comments. I have not seen this observation before -- lots of quality comments at the beginning of the project, and it gets less frequent with elapsed time -- or added complexity.
+I'm using http://cpetry.github.io/NormalMap-Online/ it's nice.
+Dener1111, you absolute genious, you made low-res mode possible! https://github.com/Dener1111/LowRes
+I finally decided that fuck it, I'm not gonna release the source
+importing shit takes a lot more time that I anticipated
+I decided to tackle the URP; I'm not logging these hours, but it's about 2-3-4?
+	I managed to get a dither pass working. it was fucking convoluted, documentation is the usual Unity bullshit (I found a cool tutorial which was almost exactly what I needed, then it turned out the whole thing is missing altogether)
+	anyway, dithering is an option now. I need to get some graphics ASAP so I'll know what features do I want
+	dithering is cool, but it is very crude, maybe too much.
+I included fantasy creature assets. OMG, it is coming alive!!! but seriously, I'll need an inventory, fast :P
+added music and some footstep sounds. this really adds to the atmosphere! i need to pay attention to sounds.
+	also, Actor and ActorFX is a bit of a mess; I need to clean this up. Still not as bad as Abilities though
+There are quite a few warnings in the project. Solution:
+	#pragma warning disable 649
+	Unity should somehow sort this out. But, on the other hand, I _did_ catch two variables that were unused...
+	Cleaning those up, I now have 15 warnings: two valid (temporary debugging stuff), the rest in external assets
+	that's for 12.000 lines of code. my work is 2000 lines, the rest is third-party.
+spent 40 minutes trying to replicate Diablo3's resource globes.
+	https://simonschreibt.de/gat/diablo-3-resource-bubbles/
+	I consider this a very valuable learning experience, however, it is a horrible waste of time if I consider its impact on the project.
+the whole inventory took a single hour! drag&amp;drop, icons, multiple grids, stacking, rarity borders...
+	I was putting this aside for the longest time because I thought it would be so difficult.
+	But I already had some prototypes for drag&amp;drop and stuff, so it went so well! niceeeeeee
+I updated the resource globe effects. I didn't log the time, this might be cheating...
+I got carried away with App State. I had some scripts that do _way more_ than what I need.
+	Shit. I wanted to keep this simple. Either use something that works, or don't use it!
+	...speaking of which, I could use a simple app framework...
+I spent 45€ on a modular main character. Let's hope it works...
+I'm spending a LOT of time on the main menu.
+I created a cool logo and scene. I was on a call, so I didn't log the time. I regret nothing!
+Fuck, my gorgeous logo is crashing the game all the time. _what the f_
+	okay, got it, i think -- if the Game view is scaled down significantly (~0.6x), it will crash the editor. wow.
+	edit: nah, that didn't fix it. it's just too random. I have a single fucking point light in my menu scene (which gives it all the color, fuuuuuck, I need to redo the whole menu), disabling it might work. maybe it's about lit particles.
+coding the app state was easier than I thought. I was postponing it for too long now. I feel like I could make a useful library for dealing with this kind of shit in the future.
+I have 6 hours left, fuck! There's no game yet! So many things are missing, so many useless things are done... I need a plan to turn this into a full game, quickly...
+I set up an orc enemy, with animations and footstep sounds. It took an hour; not so bad, but I'm sooo out of time. It is very apparent that I'd need effects and sound for the combat, it lacks weight right now. Animations are a bit off too, but not too bad.
+I'm kinda at a loss about what to work on next. I'm not sure I can make a full game out of this, there are 1) too many features missing 2) the combat needs more polish to be acceptable. But I don't want to announce failure again...
+I did level up. It was fairly fast! Looks like creating a level would be the best thing to do now.
+</code></pre><p>This has been sitting on my desktop since 4-5 months.</p>
+<p>A couple of things stand out. I often, if not always, <em>knew immediately</em> when I was wasting time.
+There&rsquo;s cheating too, which might tell something about my self-discipline?
+And I&rsquo;m positively suprised by the number of observations I made during work. I assumed that these observations occur when I look back at a project session, but apparently that&rsquo;s not the case. I&rsquo;m glad I learned something about learning. :)</p>
+<p>An unexpected side-effect of this project was making music: one day I just sat down to fuck around with a DAW &ndash; no time tracking, no clear goals, just to see if I can make some background stuff. And I was immediately hooked &ndash; since then, I made an entire hour worth of music! I basically got an entire new hobby from this.</p>
+<p>So while the game itself remains incomplete, it was an absolutely positive experience in all regards. I learned a lot from my failures, I tried lots of new things, and got into electronic music production (disclaimer: I&rsquo;m a long time guitar player, so making music is not <em>entirely</em> new, but making <em>electronic</em> music certainly is).</p>
+<p>Oh yeah, and here&rsquo;s the video of the game, with its single enemy and both items:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/xzeXZKqICFg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Doesn&rsquo;t look <em>that</em> bad, right?</p>
+
+            </div>
+        </article>
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="/tags/untagged">untagged</a></span>
+                </p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="/posts/2021/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">What happened in 2021?</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="/posts/awesome-blog-acoup/">
+                                <span class="button__text">Awesome Blog: A Collection of Unmitigated Pedantry</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+
+        
+    </main>
+
+            </div>
+
+            
+                
+
+            
+        </div>
+
+        
+
+
+<script type="text/javascript" src="/js/bundle.min.cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e.js" integrity="sha512-z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP&#43;DGNKHfuwvY7kxvUdBeoGlODJ6&#43;SfaPg=="></script>
+
+
+
+<script data-goatcounter="https://thelastpointer.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>

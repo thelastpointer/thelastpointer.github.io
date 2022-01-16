@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/</loc>
+    <lastmod>2022-01-17T00:24:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/2021/</loc>
+    <lastmod>2022-01-17T00:24:31+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-12-01T12:10:23+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/48hrrpgdiary/</loc>
+    <lastmod>2020-12-01T12:10:23+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/untagged/</loc>
+    <lastmod>2020-12-01T12:10:23+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/awesome-blog-acoup/</loc>
     <lastmod>2020-10-08T12:57:43+02:00</lastmod>
   </url>
@@ -13,22 +38,7 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/posts/site-2020/</loc>
-    <lastmod>2020-08-19T11:32:36+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/untagged/</loc>
     <lastmod>2020-08-19T11:32:36+02:00</lastmod>
   </url>
   
