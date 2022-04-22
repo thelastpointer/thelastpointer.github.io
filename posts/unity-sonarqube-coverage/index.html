@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing." />
+<meta name="description" content="There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
+ In my last post I wrote about some of the nuances of using SonarQube with a Unity project." />
 <meta name="keywords" content="homepage, blog, informatics, development, programming, Unity3d, C#" />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="/posts/unity-sonarqube-coverage/" />
@@ -32,10 +33,11 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Unity and Sonarqube Part II: Code Coverage">
-<meta itemprop="description" content="In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.">
+<meta itemprop="description" content="There&rsquo;s an update to this article with some corrections and an updated batch script here.
+ In my last post I wrote about some of the nuances of using SonarQube with a Unity project.">
 <meta itemprop="datePublished" content="2019-12-18T12:09:48&#43;01:00" />
 <meta itemprop="dateModified" content="2019-12-18T12:09:48&#43;01:00" />
-<meta itemprop="wordCount" content="624">
+<meta itemprop="wordCount" content="639">
 <meta itemprop="image" content="/"/>
 
 
@@ -44,7 +46,8 @@
 <meta name="twitter:image" content="/"/>
 
 <meta name="twitter:title" content="Unity and Sonarqube Part II: Code Coverage"/>
-<meta name="twitter:description" content="In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing."/>
+<meta name="twitter:description" content="There&rsquo;s an update to this article with some corrections and an updated batch script here.
+ In my last post I wrote about some of the nuances of using SonarQube with a Unity project."/>
 
 
 
@@ -101,7 +104,10 @@
             
 
             <div class="post-content">
-                <p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
+                <blockquote>
+<p>There&rsquo;s an update to this article with some corrections and an <a href="/posts/unity-sonarqube-3/">updated batch script here</a>.</p>
+</blockquote>
+<p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
 <p>Code coverage is a useful tool: it tells you how much of your code is covered by tests, so basically, how much of your code is reliable. It implies the presence of tests, which is sadly not that common in the game industry &ndash; this is reflected by Unity&rsquo;s tools, which are adequate, but not spectacular.</p>
 <p>Code coverage, for example, isn&rsquo;t even supported until 2019.3, which at the time I&rsquo;m writing this, is in beta. Code coverage is served as a package, which is a preview version. Still, we can work with this, if you&rsquo;re willing to risk the instability of beta versions.</p>
 <p>For this to work, you have to install Unity 2019.3 (at least), then open the package manager, check &lsquo;Show Preview Packages&rsquo;, and get the Code Coverage package.</p>

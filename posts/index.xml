@@ -5,8 +5,83 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 17 Jan 2022 00:24:31 +0100</lastBuildDate>
+        <lastBuildDate>Thu, 21 Apr 2022 17:32:11 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Unity×Sonarqube update for 2022</title>
+            <link>/posts/unity-sonarqube-3/</link>
+            <pubDate>Thu, 21 Apr 2022 17:32:11 +0200</pubDate>
+            
+            <guid>/posts/unity-sonarqube-3/</guid>
+            <description>This is an update to my earlier Unity×Sonarqube posts. I&amp;rsquo;m writing this in 2022 &amp;ndash; things have changed since I wrote those.</description>
+            <content type="html"><![CDATA[<p>This is an update to my earlier Unity×Sonarqube posts. I&rsquo;m writing this in 2022 &ndash; things have changed since I wrote those. I&rsquo;m keeping the old articles, but you&rsquo;ll find a current version of the batch file I&rsquo;m using, with the differences highlighted here.</p>
+<p>I suggest reading the old posts first for explanations:</p>
+<ul>
+<li><a href="/posts/unity-and-sonarqube/">Unity and Sonarqube</a></li>
+<li><a href="/posts/unity-sonarqube-coverage/">Unity and Sonarqube Part II: Code Coverage</a></li>
+</ul>
+<p>You&rsquo;ll only find updates to those articles in this one.</p>
+<h2 id="sonarqube">Sonarqube</h2>
+<p>Sonar needs the .net SDK now. Get it: <a href="https://docs.microsoft.com/en-us/dotnet/core/sdk">https://docs.microsoft.com/en-us/dotnet/core/sdk</a></p>
+<p>Their documentation currently has some typos/outdated sections. The dotnet core SDK has its own CLI now, dubbed <code>dotnet</code>. You&rsquo;ll use that to install a package:</p>
+<pre><code>dotnet add package dotnet-sonarscanner
+</code></pre><p>This should add <code>dotnet-sonarscanner</code> to your path, so you&rsquo;ll call that instead of the previous SonarScanner.MSBuild.exe. The build process got easier, too, the hardcoded path now replaced with <code>dotnet build</code>.</p>
+<h2 id="unity">Unity</h2>
+<p>Coverage is now out of beta, and is a package you need to add to your project. Use the package manager to find it.</p>
+<p>There is a new switch called <code>-debugCodeOptimization</code>; this is recommended to get the most accurate coverage info.</p>
+<p>I&rsquo;m now running both Play Mode and Test Mode unit tests. This is specified with the <code>-testPlatform</code> switch. This will generate two xml files; we pass them to sonar using wildcards.</p>
+<p>I&rsquo;m also importing unit test results too. Sadly, sonar doesn&rsquo;t do a lot with them, but you can see how many you have, and they may integrate them more deeply in the future, so fingers crossed for that. As with coverage, there will be two results for Play Mode and Edit Mode, and we need to parse them both.</p>
+<h2 id="the-result">The result</h2>
+<p>Here&rsquo;s the updated .bat file. Again, change names to your project and your paths; pay attention to apostropes, because they can break your paths; and note that I&rsquo;ve split commands into multiple lines by adding <code>^</code> to the end of the line <em>and a leading space to the next line</em>.</p>
+<pre><code>@echo off
+
+SET &quot;unity_project=C:\unity\sonar.test.project&quot;
+SET &quot;solution=sonar.test.project&quot;
+SET &quot;unity=c:\Program Files\Unity\Hub\Editor\2020.3.27f1\Editor\Unity.exe&quot;
+SET &quot;coverage=\CodeCoverage\%solution%-opencov\**&quot;
+SET &quot;sonarproject=YOUR_SONAR_PROJECT_NAME&quot;
+SET &quot;sonartoken=YOUR_SONAR_PROJECT_TOKEN&quot;
+
+echo Sonar scanner firing up
+dotnet-sonarscanner begin^
+ /k:&quot;%sonarproject%&quot;^
+ /d:sonar.login=&quot;%sonartoken%&quot;^
+ /d:sonar.cs.opencover.reportsPaths=&quot;%unity_project%%coverage%&quot;^
+ /d:sonar.cs.nunit.reportsPaths=&quot;%unity_project%\TestResult*.xml&quot;
+
+echo Rebuilding project
+dotnet build &quot;%solution%.sln&quot; /t:Rebuild
+
+echo Running Edit Mode tests
+&quot;%unity%&quot;^
+ -projectPath &quot;%unity_project%&quot;^
+ -batchmode -runTests -debugCodeOptimization -enableCodeCoverage^
+ -testPlatform editmode^
+ -testResults &quot;%unity_project%\TestResultEditMode.xml&quot;^
+ -coverageResultsPath &quot;%unity_project%&quot;^
+ -coverageOptions &quot;generateAdditionalMetrics;assemblyFilters:-*unity*&quot;
+
+echo Running Play Mode tests
+&quot;%unity%&quot;^
+ -projectPath &quot;%unity_project%&quot;^
+ -batchmode -runTests -debugCodeOptimization -enableCodeCoverage^
+ -testPlatform playmode^
+ -testResults &quot;%unity_project%\TestResultPlayMode.xml&quot;^
+ -coverageResultsPath &quot;%unity_project%&quot;^
+ -coverageOptions &quot;generateAdditionalMetrics;assemblyFilters:-*unity*&quot;
+
+echo Sonar scanner finished
+dotnet-sonarscanner end /d:sonar.login=&quot;%sonartoken%&quot;
+
+</code></pre><p>I tried to keep things in their default locations as much as I could. The following files will be generated in your project root:</p>
+<pre><code>TestResultEditMode.xml
+TestResultPlayMode.xml
+CodeCoverage\projectname-opencov\EditMode\TestCoverageResults_0000.xml
+CodeCoverage\projectname-opencov\PlayMode\TestCoverageResults_0000.xml
+</code></pre><p>Now write tests and fix those code smells!</p>
+]]></content>
+        </item>
         
         <item>
             <title>What happened in 2021?</title>
@@ -173,8 +248,12 @@ And I&rsquo;m positively suprised by the number of observations I made during wo
             <pubDate>Wed, 18 Dec 2019 12:09:48 +0100</pubDate>
             
             <guid>/posts/unity-sonarqube-coverage/</guid>
-            <description>In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</description>
-            <content type="html"><![CDATA[<p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
+            <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
+ In my last post I wrote about some of the nuances of using SonarQube with a Unity project.</description>
+            <content type="html"><![CDATA[<blockquote>
+<p>There&rsquo;s an update to this article with some corrections and an <a href="/posts/unity-sonarqube-3/">updated batch script here</a>.</p>
+</blockquote>
+<p><a href="/posts/unity-and-sonarqube/">In my last post</a> I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</p>
 <p>Code coverage is a useful tool: it tells you how much of your code is covered by tests, so basically, how much of your code is reliable. It implies the presence of tests, which is sadly not that common in the game industry &ndash; this is reflected by Unity&rsquo;s tools, which are adequate, but not spectacular.</p>
 <p>Code coverage, for example, isn&rsquo;t even supported until 2019.3, which at the time I&rsquo;m writing this, is in beta. Code coverage is served as a package, which is a preview version. Still, we can work with this, if you&rsquo;re willing to risk the instability of beta versions.</p>
 <p>For this to work, you have to install Unity 2019.3 (at least), then open the package manager, check &lsquo;Show Preview Packages&rsquo;, and get the Code Coverage package.</p>
@@ -242,8 +321,12 @@ echo Pushing results to Sonar Server
             <pubDate>Thu, 05 Dec 2019 22:20:41 +0100</pubDate>
             
             <guid>/posts/unity-and-sonarqube/</guid>
-            <description>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
-            <content type="html"><![CDATA[<p>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a <em>real developer</em>. I was trying to incorporate this into my Unity workflow, but recently I got really good results, so I thought I&rsquo;d share.</p>
+            <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
+ Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
+            <content type="html"><![CDATA[<blockquote>
+<p>There&rsquo;s an update to this article with some corrections and an <a href="/posts/unity-sonarqube-3/">updated batch script here</a>.</p>
+</blockquote>
+<p>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a <em>real developer</em>. I was trying to incorporate this into my Unity workflow, but recently I got really good results, so I thought I&rsquo;d share.</p>
 <p>I&rsquo;m on Windows 10, using Unity, Visual Studio, and SonarQube.</p>
 <p>SonarQube is a very nice tool, but previously I ran into all sorts of problems; incompatible input/output, cumbersome programs, formatting, conversion, etc etc. A few days ago I accidentally stumbled into Kuldeep Singh&rsquo;s article, and I thought I&rsquo;d try it again &ndash; this time it worked almost flawlessly!</p>
 <p>So here is the article: <a href="https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03">https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03</a></p>

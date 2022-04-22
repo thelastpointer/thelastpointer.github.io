@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Unity×Sonarqube update for 2022</title>
+      <link>/posts/unity-sonarqube-3/</link>
+      <pubDate>Thu, 21 Apr 2022 17:32:11 +0200</pubDate>
+      
+      <guid>/posts/unity-sonarqube-3/</guid>
+      <description>This is an update to my earlier Unity×Sonarqube posts. I&amp;rsquo;m writing this in 2022 &amp;ndash; things have changed since I wrote those.</description>
+    </item>
+    
+    <item>
       <title>Résumé</title>
       <link>/ver2/</link>
       <pubDate>Mon, 04 Apr 2022 16:10:42 +0100</pubDate>
@@ -72,7 +81,8 @@
       <pubDate>Wed, 18 Dec 2019 12:09:48 +0100</pubDate>
       
       <guid>/posts/unity-sonarqube-coverage/</guid>
-      <description>In my last post I wrote about some of the nuances of using SonarQube with a Unity project. It works mostly well, but code coverage was missing.</description>
+      <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
+ In my last post I wrote about some of the nuances of using SonarQube with a Unity project.</description>
     </item>
     
     <item>
@@ -90,7 +100,8 @@
       <pubDate>Thu, 05 Dec 2019 22:20:41 +0100</pubDate>
       
       <guid>/posts/unity-and-sonarqube/</guid>
-      <description>Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
+      <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
+ Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
     </item>
     
     <item>
