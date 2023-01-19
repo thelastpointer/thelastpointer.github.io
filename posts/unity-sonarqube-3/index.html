@@ -21,7 +21,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b79d6060f3bf4c5d2bb6f64813f50e1bf223addf4d469bf4c12bbd537df8fde2.css">
+<link rel="stylesheet" href="/scss/main.min.89ebc165766180b87179cbd26a4fe25a1d3528df046fe446ae5b5d18cc62f2c0.css">
 
 
 
@@ -32,14 +32,9 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Unity×Sonarqube update for 2022">
-<meta itemprop="description" content="This is an update to my earlier Unity×Sonarqube posts. I&rsquo;m writing this in 2022 &ndash; things have changed since I wrote those.">
-<meta itemprop="datePublished" content="2022-04-21T17:32:11&#43;02:00" />
-<meta itemprop="dateModified" content="2022-04-21T17:32:11&#43;02:00" />
-<meta itemprop="wordCount" content="442">
-<meta itemprop="image" content="/"/>
-
-
-
+<meta itemprop="description" content="This is an update to my earlier Unity×Sonarqube posts. I&rsquo;m writing this in 2022 &ndash; things have changed since I wrote those."><meta itemprop="datePublished" content="2022-04-21T17:32:11+02:00" />
+<meta itemprop="dateModified" content="2022-04-21T17:32:11+02:00" />
+<meta itemprop="wordCount" content="443"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
@@ -111,7 +106,7 @@
 <h2 id="sonarqube">Sonarqube</h2>
 <p>Sonar needs the .net SDK now. Get it: <a href="https://docs.microsoft.com/en-us/dotnet/core/sdk">https://docs.microsoft.com/en-us/dotnet/core/sdk</a></p>
 <p>Their documentation currently has some typos/outdated sections. The dotnet core SDK has its own CLI now, dubbed <code>dotnet</code>. You&rsquo;ll use that to install a package:</p>
-<pre><code>dotnet add package dotnet-sonarscanner
+<pre tabindex="0"><code>dotnet tool install --global dotnet-sonarscanner
 </code></pre><p>This should add <code>dotnet-sonarscanner</code> to your path, so you&rsquo;ll call that instead of the previous SonarScanner.MSBuild.exe. The build process got easier, too, the hardcoded path now replaced with <code>dotnet build</code>.</p>
 <h2 id="unity">Unity</h2>
 <p>Coverage is now out of beta, and is a package you need to add to your project. Use the package manager to find it.</p>
@@ -120,48 +115,47 @@
 <p>I&rsquo;m also importing unit test results too. Sadly, sonar doesn&rsquo;t do a lot with them, but you can see how many you have, and they may integrate them more deeply in the future, so fingers crossed for that. As with coverage, there will be two results for Play Mode and Edit Mode, and we need to parse them both.</p>
 <h2 id="the-result">The result</h2>
 <p>Here&rsquo;s the updated .bat file. Again, change names to your project and your paths; pay attention to apostropes, because they can break your paths; and note that I&rsquo;ve split commands into multiple lines by adding <code>^</code> to the end of the line <em>and a leading space to the next line</em>.</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 
-SET &quot;unity_project=C:\unity\sonar.test.project&quot;
-SET &quot;solution=sonar.test.project&quot;
-SET &quot;unity=c:\Program Files\Unity\Hub\Editor\2020.3.27f1\Editor\Unity.exe&quot;
-SET &quot;coverage=\CodeCoverage\%solution%-opencov\**&quot;
-SET &quot;sonarproject=YOUR_SONAR_PROJECT_NAME&quot;
-SET &quot;sonartoken=YOUR_SONAR_PROJECT_TOKEN&quot;
+SET &#34;unity_project=C:\unity\sonar.test.project&#34;
+SET &#34;solution=sonar.test.project&#34;
+SET &#34;unity=c:\Program Files\Unity\Hub\Editor\2020.3.27f1\Editor\Unity.exe&#34;
+SET &#34;coverage=\CodeCoverage\%solution%-opencov\**&#34;
+SET &#34;sonarproject=YOUR_SONAR_PROJECT_NAME&#34;
+SET &#34;sonartoken=YOUR_SONAR_PROJECT_TOKEN&#34;
 
 echo Sonar scanner firing up
 dotnet-sonarscanner begin^
- /k:&quot;%sonarproject%&quot;^
- /d:sonar.login=&quot;%sonartoken%&quot;^
- /d:sonar.cs.opencover.reportsPaths=&quot;%unity_project%%coverage%&quot;^
- /d:sonar.cs.nunit.reportsPaths=&quot;%unity_project%\TestResult*.xml&quot;
+ /k:&#34;%sonarproject%&#34;^
+ /d:sonar.login=&#34;%sonartoken%&#34;^
+ /d:sonar.cs.opencover.reportsPaths=&#34;%unity_project%%coverage%&#34;^
+ /d:sonar.cs.nunit.reportsPaths=&#34;%unity_project%\TestResult*.xml&#34;
 
 echo Rebuilding project
-dotnet build &quot;%solution%.sln&quot; /t:Rebuild
+dotnet build &#34;%solution%.sln&#34; /t:Rebuild
 
 echo Running Edit Mode tests
-&quot;%unity%&quot;^
- -projectPath &quot;%unity_project%&quot;^
+&#34;%unity%&#34;^
+ -projectPath &#34;%unity_project%&#34;^
  -batchmode -runTests -debugCodeOptimization -enableCodeCoverage^
  -testPlatform editmode^
- -testResults &quot;%unity_project%\TestResultEditMode.xml&quot;^
- -coverageResultsPath &quot;%unity_project%&quot;^
- -coverageOptions &quot;generateAdditionalMetrics;assemblyFilters:-*unity*&quot;
+ -testResults &#34;%unity_project%\TestResultEditMode.xml&#34;^
+ -coverageResultsPath &#34;%unity_project%&#34;^
+ -coverageOptions &#34;generateAdditionalMetrics;assemblyFilters:-*unity*&#34;
 
 echo Running Play Mode tests
-&quot;%unity%&quot;^
- -projectPath &quot;%unity_project%&quot;^
+&#34;%unity%&#34;^
+ -projectPath &#34;%unity_project%&#34;^
  -batchmode -runTests -debugCodeOptimization -enableCodeCoverage^
  -testPlatform playmode^
- -testResults &quot;%unity_project%\TestResultPlayMode.xml&quot;^
- -coverageResultsPath &quot;%unity_project%&quot;^
- -coverageOptions &quot;generateAdditionalMetrics;assemblyFilters:-*unity*&quot;
+ -testResults &#34;%unity_project%\TestResultPlayMode.xml&#34;^
+ -coverageResultsPath &#34;%unity_project%&#34;^
+ -coverageOptions &#34;generateAdditionalMetrics;assemblyFilters:-*unity*&#34;
 
 echo Sonar scanner finished
-dotnet-sonarscanner end /d:sonar.login=&quot;%sonartoken%&quot;
-
+dotnet-sonarscanner end /d:sonar.login=&#34;%sonartoken%&#34;
 </code></pre><p>I tried to keep things in their default locations as much as I could. The following files will be generated in your project root:</p>
-<pre><code>TestResultEditMode.xml
+<pre tabindex="0"><code>TestResultEditMode.xml
 TestResultPlayMode.xml
 CodeCoverage\projectname-opencov\EditMode\TestCoverageResults_0000.xml
 CodeCoverage\projectname-opencov\PlayMode\TestCoverageResults_0000.xml
@@ -181,6 +175,13 @@ CodeCoverage\projectname-opencov\PlayMode\TestCoverageResults_0000.xml
                 </div>
 
                 <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="/posts/awesome-blog-bartosz-ciechanowski/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Awesome Blog: Bartosz Ciechanowski</span>
+                            </a>
+                        </span>
                     
 
                     

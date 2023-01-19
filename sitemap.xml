@@ -1,159 +1,97 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>/posts/awesome-blog-bartosz-ciechanowski/</loc>
+    <lastmod>2022-05-06T10:12:43+02:00</lastmod>
+  </url><url>
+    <loc>/tags/awesome-blogs/</loc>
+    <lastmod>2022-05-06T10:12:43+02:00</lastmod>
+  </url><url>
     <loc>/posts/</loc>
-    <lastmod>2022-04-21T17:32:11+02:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2022-05-06T10:12:43+02:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2022-05-06T10:12:43+02:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2022-05-06T10:12:43+02:00</lastmod>
+  </url><url>
     <loc>/posts/unity-sonarqube-3/</loc>
     <lastmod>2022-04-21T17:32:11+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/ver2/</loc>
     <lastmod>2022-04-04T16:10:42+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2022-04-04T16:10:42+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/2021/</loc>
     <lastmod>2022-01-17T00:24:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-12-01T12:10:23+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/48hrrpgdiary/</loc>
     <lastmod>2020-12-01T12:10:23+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/untagged/</loc>
     <lastmod>2020-12-01T12:10:23+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/awesome-blog-acoup/</loc>
     <lastmod>2020-10-08T12:57:43+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/awesome-blogs/</loc>
-    <lastmod>2020-10-08T12:57:43+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/site-2020/</loc>
     <lastmod>2020-08-19T11:32:36+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/mymidicontroller/</loc>
     <lastmod>2020-05-20T09:03:35+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/unity/</loc>
     <lastmod>2019-12-18T12:09:48+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/unity-sonarqube-coverage/</loc>
     <lastmod>2019-12-18T12:09:48+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/site-ui/</loc>
     <lastmod>2019-12-16T09:29:01+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/unity-and-sonarqube/</loc>
     <lastmod>2019-12-05T22:20:41+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/cookies/</loc>
     <lastmod>2019-06-21T11:44:01+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/e3-2019/</loc>
-    <lastmod>2019-06-11T12:18:28+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/awesome-blog-old-new-thing/</loc>
     <lastmod>2019-06-05T11:27:00+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/hello-world-os/</loc>
     <lastmod>2019-06-05T11:08:04+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/1bit/</loc>
     <lastmod>2019-06-03T16:55:47+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/optimizing-site/</loc>
     <lastmod>2019-04-24T09:48:52+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/awesome-blog-digital-antiquarian/</loc>
     <lastmod>2019-04-23T13:33:33+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/githubio/</loc>
     <lastmod>2019-04-16T13:28:53+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/awesome-blog-danluu/</loc>
     <lastmod>2019-04-08T14:08:18+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/nodejs/</loc>
     <lastmod>2019-01-10T10:13:03+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/first/</loc>
     <lastmod>2019-01-09T11:23:21+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/proto/</loc>
     <lastmod>2019-01-09T11:23:21+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/about/</loc>
     <lastmod>2019-01-04T16:10:42+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/cv/</loc>
     <lastmod>2019-01-04T16:10:42+01:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/</loc>
   </url>
-  
 </urlset>

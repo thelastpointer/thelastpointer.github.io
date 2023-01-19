@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
 <meta name="description" content="There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
- In my last post I wrote about some of the nuances of using SonarQube with a Unity project." />
+In my last post I wrote about some of the nuances of using SonarQube with a Unity project." />
 <meta name="keywords" content="homepage, blog, informatics, development, programming, Unity3d, C#" />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="/posts/unity-sonarqube-coverage/" />
@@ -22,7 +22,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b79d6060f3bf4c5d2bb6f64813f50e1bf223addf4d469bf4c12bbd537df8fde2.css">
+<link rel="stylesheet" href="/scss/main.min.89ebc165766180b87179cbd26a4fe25a1d3528df046fe446ae5b5d18cc62f2c0.css">
 
 
 
@@ -34,20 +34,15 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Unity and Sonarqube Part II: Code Coverage">
 <meta itemprop="description" content="There&rsquo;s an update to this article with some corrections and an updated batch script here.
- In my last post I wrote about some of the nuances of using SonarQube with a Unity project.">
-<meta itemprop="datePublished" content="2019-12-18T12:09:48&#43;01:00" />
-<meta itemprop="dateModified" content="2019-12-18T12:09:48&#43;01:00" />
-<meta itemprop="wordCount" content="639">
-<meta itemprop="image" content="/"/>
-
-
-
+In my last post I wrote about some of the nuances of using SonarQube with a Unity project."><meta itemprop="datePublished" content="2019-12-18T12:09:48+01:00" />
+<meta itemprop="dateModified" content="2019-12-18T12:09:48+01:00" />
+<meta itemprop="wordCount" content="639"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="unity," /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
 <meta name="twitter:title" content="Unity and Sonarqube Part II: Code Coverage"/>
 <meta name="twitter:description" content="There&rsquo;s an update to this article with some corrections and an updated batch script here.
- In my last post I wrote about some of the nuances of using SonarQube with a Unity project."/>
+In my last post I wrote about some of the nuances of using SonarQube with a Unity project."/>
 
 
 
@@ -116,29 +111,29 @@
 <p>Unity will generate an xml file (it can also generate HTML reports too, but we&rsquo;ll ignore that), which is in <a href="https://github.com/OpenCover/opencover">OpenCover</a> format. Fortunately this is supported by SonarQube out of the box (I&rsquo;m using version 8.0). To process the file, we pass <code>/d:sonar.cs.opencover.reportsPaths=&quot;TestResults.xml&quot;</code> when calling <code>begin</code>. Note that we&rsquo;re telling the scanner where to look for the file before the file even exists.</p>
 <p>The result file will be created at <code>projectPath\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml</code>. You will need to figure out where your Unity installation is; if you use Unity Hub (please do!), it is something like this: <code>c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe</code>. Replace your version accordingly. I have yet to find a (non-hacky) way to start the &ldquo;appropriate Unity version&rdquo;.</p>
 <p>Next, we&rsquo;ll modify the original batch file to run unit tests. Unity has a <a href="https://docs.unity3d.com/Manual/CommandLineArguments.html">quite a few command line arguments</a>; what we need is <code>-runTests</code>, <code>-batchmode</code> and of course the code coverage ones. But enough talk, here&rsquo;s the .bat file:</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 
-SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
-SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
-SET &quot;unity=c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe&quot;
+SET &#34;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&#34;
+SET &#34;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&#34;
+SET &#34;unity=c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe&#34;
 
-SET &quot;unity_project=C:\unity_other\codecoverage&quot;
-SET &quot;sonar_project=codecoverage&quot;
-SET &quot;solution=codecoverage.sln&quot;
+SET &#34;unity_project=C:\unity_other\codecoverage&#34;
+SET &#34;sonar_project=codecoverage&#34;
+SET &#34;solution=codecoverage.sln&#34;
 
-SET &quot;coverage=\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml&quot;
+SET &#34;coverage=\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml&#34;
 
 echo Start pre-processing project
-&quot;%scanner%&quot; begin /k:&quot;%sonar_project%&quot; /d:sonar.cs.opencover.reportsPaths=&quot;%unity_project%%coverage%&quot;
+&#34;%scanner%&#34; begin /k:&#34;%sonar_project%&#34; /d:sonar.cs.opencover.reportsPaths=&#34;%unity_project%%coverage%&#34;
 
 echo Rebuilding solution
-&quot;%msbuild%&quot; %solution% /t:Rebuild
+&#34;%msbuild%&#34; %solution% /t:Rebuild
 
 echo Running tests and code coverage
-&quot;%unity%&quot; -runTests -batchmode -projectPath &quot;%unity_project%&quot; -testResults &quot;%unity_project%\testResults.xml&quot; -testPlatform EditMode -forgetProjectPath -enableCodeCoverage -coverageOptions assemblyFilters:-*unity*
+&#34;%unity%&#34; -runTests -batchmode -projectPath &#34;%unity_project%&#34; -testResults &#34;%unity_project%\testResults.xml&#34; -testPlatform EditMode -forgetProjectPath -enableCodeCoverage -coverageOptions assemblyFilters:-*unity*
 
 echo Pushing results to Sonar Server
-&quot;%scanner%&quot; end
+&#34;%scanner%&#34; end
 </code></pre><p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
 <p>My SonarQube project is also called &ldquo;codecoverage&rdquo;. The Unity project and the SonarQube project <em>can</em> have different names if you want.</p>
 <p>Having to define both <code>unity_project</code> and <code>solution</code> feels a bit awkward, but it&rsquo;s valid &ndash; I know it&rsquo;s not used 90% of the time, but I wouldn&rsquo;t omit it either.</p>

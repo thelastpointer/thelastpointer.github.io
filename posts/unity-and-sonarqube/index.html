@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
 <meta name="description" content="There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
- Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer." />
+Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer." />
 <meta name="keywords" content="homepage, blog, informatics, development, programming, Unity3d, C#" />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="/posts/unity-and-sonarqube/" />
@@ -22,7 +22,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b79d6060f3bf4c5d2bb6f64813f50e1bf223addf4d469bf4c12bbd537df8fde2.css">
+<link rel="stylesheet" href="/scss/main.min.89ebc165766180b87179cbd26a4fe25a1d3528df046fe446ae5b5d18cc62f2c0.css">
 
 
 
@@ -34,20 +34,15 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Unity and Sonarqube">
 <meta itemprop="description" content="There&rsquo;s an update to this article with some corrections and an updated batch script here.
- Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.">
-<meta itemprop="datePublished" content="2019-12-05T22:20:41&#43;01:00" />
-<meta itemprop="dateModified" content="2019-12-05T22:20:41&#43;01:00" />
-<meta itemprop="wordCount" content="818">
-<meta itemprop="image" content="/"/>
-
-
-
+Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer."><meta itemprop="datePublished" content="2019-12-05T22:20:41+01:00" />
+<meta itemprop="dateModified" content="2019-12-05T22:20:41+01:00" />
+<meta itemprop="wordCount" content="818"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="unity," /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
 <meta name="twitter:title" content="Unity and Sonarqube"/>
 <meta name="twitter:description" content="There&rsquo;s an update to this article with some corrections and an updated batch script here.
- Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer."/>
+Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer."/>
 
 
 
@@ -113,13 +108,13 @@
 <p>So here is the article: <a href="https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03">https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03</a></p>
 <p>There are a few things I&rsquo;d add to this.</p>
 <p>First of all, a Java install now requires a registration, which I find outrageous. Fuck you, Oracle, what were you thinking? SonarQube requires Java, but I ran into some path mismatch because I have both JRE and JDK installed (Java Runtime Environment and Java Development Kit). If you find SonarQube complaining about your Java version, then it might be using JRE instead of JDK. To remedy this, find SonarQube&rsquo;s config file, called <code>conf/wrapper.conf</code>, and add this line:</p>
-<pre><code>wrapper.java.command=c:\Program Files\Java\jdk-11.0.5\bin\java
+<pre tabindex="0"><code>wrapper.java.command=c:\Program Files\Java\jdk-11.0.5\bin\java
 </code></pre><p>You can run SonarQube as a service or in a console; if you opt for a console, do yourself a favor and use <a href="https://cmder.net/">cmder</a>.</p>
 <p>I think it is worth noting that you need to open the C# project inside Unity &ndash; this will generate the solution file (.sln) that we analyse. Simply cloning a project, or creating a test project with no code will, duh, not work. While we&rsquo;re talking about git, you should also add the top-level <code>.sonarqube</code> folder to your git ignore list.</p>
 <p>When SonarQube is ready, you might want to consider setting up a &ldquo;real&rdquo; database instead of the built-in one. It&rsquo;s not <em>that</em> important, but keep in mind that if you switch later, your previous work will be lost &ndash; including settings, projects, users, permissions, etc.</p>
 <p>I did this using <a href="https://www.postgresql.org/download/">PostgreSQL</a>. Installation is painless; make sure you install PgAdmin too. Note the port you&rsquo;re going to open; it&rsquo;s 5432 by default. After install, open PgAdmin, create a new database (called &ldquo;sonar&rdquo; in my case), and create a user who has permission to alter it. Please don&rsquo;t use the admin user!</p>
 <p>When done, tell SonarQube to use your database: find <code>conf/sonar.properties</code> and enter these lines:</p>
-<pre><code># Note: the '/sonar' is the database name
+<pre tabindex="0"><code># Note: the &#39;/sonar&#39; is the database name
 sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar
 
 sonar.jdbc.username=sonarqube
@@ -127,16 +122,16 @@ sonar.jdbc.password=password
 </code></pre><p>The database URL took a while to figure out. Restart SonarQube, and you should be set.</p>
 <p>I also created a SonarQube user for scanning; this is done by opening SonarQube (<a href="http://localhost:9000">localhost:9000</a> by default), logging in with admin/admin, Administration panel, Security/Users tab, and Create User button. Easy.</p>
 <p>Now you&rsquo;re ready to go. If you can&rsquo;t find MSBuild, it should be in your Visual Studio folder:</p>
-<pre><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
+<pre tabindex="0"><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
 </code></pre><p>This assumes Visual Studio 2019 (the <em>best</em> Visual Studio) and default install paths.</p>
 <p>I created a .bat file for scanning my project &ndash; it is way easier this way. It looks like this:</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 
-SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
-SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
+SET &#34;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&#34;
+SET &#34;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&#34;
 
 echo Start pre-processing project
-%scanner% begin /k:&quot;sonar-project-name&quot;
+%scanner% begin /k:&#34;sonar-project-name&#34;
 
 echo Rebuilding solution
 %msbuild% unityprojectname.sln /t:Rebuild

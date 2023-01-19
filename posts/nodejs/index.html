@@ -22,7 +22,7 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b79d6060f3bf4c5d2bb6f64813f50e1bf223addf4d469bf4c12bbd537df8fde2.css">
+<link rel="stylesheet" href="/scss/main.min.89ebc165766180b87179cbd26a4fe25a1d3528df046fe446ae5b5d18cc62f2c0.css">
 
 
 
@@ -34,14 +34,9 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="I tried node.js &#43; Heroku">
 <meta itemprop="description" content="y So I decided to try NodeJS and Heroku.
-Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you know what it is, right?">
-<meta itemprop="datePublished" content="2019-01-10T10:13:03&#43;01:00" />
-<meta itemprop="dateModified" content="2019-01-10T10:13:03&#43;01:00" />
-<meta itemprop="wordCount" content="2025">
-<meta itemprop="image" content="/"/>
-
-
-
+Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you know what it is, right?"><meta itemprop="datePublished" content="2019-01-10T10:13:03+01:00" />
+<meta itemprop="dateModified" content="2019-01-10T10:13:03+01:00" />
+<meta itemprop="wordCount" content="2025"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
@@ -115,8 +110,8 @@ Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you 
 <p>Aside: out of curiosity, I asked some of my more experienced friends how much time would this project take; the answers ranged from &ldquo;an hour&rdquo; to &ldquo;half a day&rdquo;. I think that&rsquo;s reasonable, as I only need two endpoints, a very simple database and some encryption. I was prepared to spend a few days on it to get the hang of things.</p>
 <p>So, onto NodeJS! The default Heroku sample uses a framework called &ldquo;Express&rdquo;. I had no idea what it did. It&rsquo;s an &ldquo;application framework&rdquo;, which is meaningless, and their website isn&rsquo;t very helpful either. After some fumbling around it turns out it has some handy tools for serving HTTP websites, so I decided to stick with it. I asked around and it&rsquo;s one of the most popular webserver frameworks, so there&rsquo;s probably no harm in using that instead of writing a lot of boilerplate code. It still strikes me odd that its functionality isn&rsquo;t really explained on their site.</p>
 <p>Handling a request is very simple; it&rsquo;s similar to writing to a console:</p>
-<pre><code>app.get('/', function(req, res) {
-  res.send(&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;ayy&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+<pre tabindex="0"><code>app.get(&#39;/&#39;, function(req, res) {
+  res.send(&#34;&lt;html&gt;&lt;body&gt;&lt;h1&gt;ayy&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;);
 });
 </code></pre><p>I guess this is the part when I would have to look up a template engine to serve nice HTML content, but for this project I just need to pass data, so I&rsquo;m skipping that. Anyway, this ran flawlessly on Heroku, and seeing my own little NodeJS webserver running live is very promising! Note that I&rsquo;m about two hours in, including installing Heroku and NodeJS. So far, so good, I&rsquo;m progressing quite fast.</p>
 <p>Next, I&rsquo;ll need a database to work with some &ldquo;real&rdquo; data. The local pgsql install process takes some time (around an hour), and syncing it with Heroku is supposed to be simple. However, I screwed this up, someehow lost my root password, I had to reinstall, and after that Heroku wasn&rsquo;t so cooperative. I guess an environment variable got stuck somewhere; I remember seeing it on a stackoverflow answer? It&rsquo;s not clear what the problem is and how should I go about it. I have no doubt that it would work nicely if I don&rsquo;t fuck it up, but I did, and it&rsquo;s very hard to find out how to make it work again, because I have little idea what&rsquo;s going on.</p>
@@ -129,11 +124,11 @@ Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you 
 <p>Perhaps an experienced developer could tell me what the best option is, but I&rsquo;d expect this topic to be well-covered, even for &ndash; especially for &ndash; beginner developers. The presence of &ldquo;opinions&rdquo; just highlight the lack of an official knowledge base.</p>
 <h2 id="getting-data">Getting data</h2>
 <p>Ending this rant, after a few hours I settled on using try/catch-ing the database code. The result, I have to admit, is super-clean, simple, and well-readable:</p>
-<pre><code>app.get('/getscores', async function(req, res) {
+<pre tabindex="0"><code>app.get(&#39;/getscores&#39;, async function(req, res) {
   try
   {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM scores ORDER BY score DESC LIMIT 20');
+    const result = await client.query(&#39;SELECT * FROM scores ORDER BY score DESC LIMIT 20&#39;);
 
     res.write(JSON.stringify(result.rows));
     res.end();
@@ -142,7 +137,7 @@ Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you 
   }
   catch (err){
     console.error(err);
-    res.status(500).send('Error: ' + err);
+    res.status(500).send(&#39;Error: &#39; + err);
   }
 });
 </code></pre><p>Almost trivial. The &ldquo;getscores&rdquo; subpage returns a JSON containing the first 20 scores. I can&rsquo;t shake the feeling that this can crash for unknown reasons (why isn&rsquo;t <code>client.release()</code> in a finally block? I don&rsquo;t know), but let&rsquo;s hope for the best. I&rsquo;ve inserted some test scores into the database, and it works! Way simpler than I thought it would be.</p>
@@ -153,10 +148,10 @@ Heroku is a service that hosts your applications. NodeJS is a&hellip; well, you 
 <p>The payload decrypting was easy; inserting it into the database is easy. Since the payload is encrypted, it&rsquo;s hard to tamper with, but I still wanted to validate the data before doing any database operations.</p>
 <p>So I got stuck on trying to verify if the score is a valid integer. Amazingly, this took <em>hours</em>.</p>
 <p>Let&rsquo;s start with the solution, the one I settled with at least:</p>
-<pre><code>if (!Number.isInteger(payload.map) || (payload.map &lt;= 0))
+<pre tabindex="0"><code>if (!Number.isInteger(payload.map) || (payload.map &lt;= 0))
 {
-  console.log('map invalid');
-  res.status(400).end('error');
+  console.log(&#39;map invalid&#39;);
+  res.status(400).end(&#39;error&#39;);
 }
 </code></pre><p>But getting there? That was surreal. The requirement is simple: the payload contains this data, and it should be a natural number (some values, like the level index, can be zero). There were all sorts of complications: how to check if the JSON (converted to an object after decryption) has a member? Converting it to bool doesn&rsquo;t work if the number is 0. There&rsquo;s a function for that; if we have the member, how to check if it&rsquo;s a number? Check its type? Which equality operator do you use for that? What&rsquo;s a number anyway? (Seriously, look that up.)</p>
 <p>There are <em>dozens</em> of ways to go around this, each of them slightly different, there are hidden conversion going on in the background with all sorts of results (number, string, undefined, NaN&hellip;). <em>And there is not one that is definitive.</em></p>

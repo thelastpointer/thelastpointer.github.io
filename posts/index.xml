@@ -5,8 +5,22 @@
         <description>Recent content in Posts on thelastpointer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 21 Apr 2022 17:32:11 +0200</lastBuildDate>
+        <lastBuildDate>Fri, 06 May 2022 10:12:43 +0200</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Awesome Blog: Bartosz Ciechanowski</title>
+            <link>/posts/awesome-blog-bartosz-ciechanowski/</link>
+            <pubDate>Fri, 06 May 2022 10:12:43 +0200</pubDate>
+            
+            <guid>/posts/awesome-blog-bartosz-ciechanowski/</guid>
+            <description>As is usual with posts in this category, I&amp;rsquo;m trying to find a way to express my appreciation for Bartosz Ciechanowski&amp;rsquo;s blog.</description>
+            <content type="html"><![CDATA[<p>As is usual with posts in this category, I&rsquo;m trying to find a way to express my appreciation for <strong>Bartosz Ciechanowski</strong>&rsquo;s blog.</p>
+<p>I found his absolutely fabulous post explaining <a href="https://ciechanow.ski/mechanical-watch/">how a mechanical watch works</a>. I own a mechanical watch and was always intrigued by it &ndash; how does a <em>spring</em> power a watch? How can the spring wind itself? This post explains everything, and more. Not only the magic is not lost, I now appreciate my mechanical watch even more!</p>
+<p>Precise, high quality writing in itself is further elevated by hand-crafted 3D diagrams explaining the various bits and pieces. The presentation is so informative and valuable I&rsquo;m not sure I&rsquo;ve ever seen anything like it!</p>
+<p>Check out his blog immediately: <a href="https://ciechanow.ski/">Bartosz Ciechanowski</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>Unity×Sonarqube update for 2022</title>
@@ -25,7 +39,7 @@
 <h2 id="sonarqube">Sonarqube</h2>
 <p>Sonar needs the .net SDK now. Get it: <a href="https://docs.microsoft.com/en-us/dotnet/core/sdk">https://docs.microsoft.com/en-us/dotnet/core/sdk</a></p>
 <p>Their documentation currently has some typos/outdated sections. The dotnet core SDK has its own CLI now, dubbed <code>dotnet</code>. You&rsquo;ll use that to install a package:</p>
-<pre><code>dotnet add package dotnet-sonarscanner
+<pre tabindex="0"><code>dotnet tool install --global dotnet-sonarscanner
 </code></pre><p>This should add <code>dotnet-sonarscanner</code> to your path, so you&rsquo;ll call that instead of the previous SonarScanner.MSBuild.exe. The build process got easier, too, the hardcoded path now replaced with <code>dotnet build</code>.</p>
 <h2 id="unity">Unity</h2>
 <p>Coverage is now out of beta, and is a package you need to add to your project. Use the package manager to find it.</p>
@@ -34,48 +48,47 @@
 <p>I&rsquo;m also importing unit test results too. Sadly, sonar doesn&rsquo;t do a lot with them, but you can see how many you have, and they may integrate them more deeply in the future, so fingers crossed for that. As with coverage, there will be two results for Play Mode and Edit Mode, and we need to parse them both.</p>
 <h2 id="the-result">The result</h2>
 <p>Here&rsquo;s the updated .bat file. Again, change names to your project and your paths; pay attention to apostropes, because they can break your paths; and note that I&rsquo;ve split commands into multiple lines by adding <code>^</code> to the end of the line <em>and a leading space to the next line</em>.</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 
-SET &quot;unity_project=C:\unity\sonar.test.project&quot;
-SET &quot;solution=sonar.test.project&quot;
-SET &quot;unity=c:\Program Files\Unity\Hub\Editor\2020.3.27f1\Editor\Unity.exe&quot;
-SET &quot;coverage=\CodeCoverage\%solution%-opencov\**&quot;
-SET &quot;sonarproject=YOUR_SONAR_PROJECT_NAME&quot;
-SET &quot;sonartoken=YOUR_SONAR_PROJECT_TOKEN&quot;
+SET &#34;unity_project=C:\unity\sonar.test.project&#34;
+SET &#34;solution=sonar.test.project&#34;
+SET &#34;unity=c:\Program Files\Unity\Hub\Editor\2020.3.27f1\Editor\Unity.exe&#34;
+SET &#34;coverage=\CodeCoverage\%solution%-opencov\**&#34;
+SET &#34;sonarproject=YOUR_SONAR_PROJECT_NAME&#34;
+SET &#34;sonartoken=YOUR_SONAR_PROJECT_TOKEN&#34;
 
 echo Sonar scanner firing up
 dotnet-sonarscanner begin^
- /k:&quot;%sonarproject%&quot;^
- /d:sonar.login=&quot;%sonartoken%&quot;^
- /d:sonar.cs.opencover.reportsPaths=&quot;%unity_project%%coverage%&quot;^
- /d:sonar.cs.nunit.reportsPaths=&quot;%unity_project%\TestResult*.xml&quot;
+ /k:&#34;%sonarproject%&#34;^
+ /d:sonar.login=&#34;%sonartoken%&#34;^
+ /d:sonar.cs.opencover.reportsPaths=&#34;%unity_project%%coverage%&#34;^
+ /d:sonar.cs.nunit.reportsPaths=&#34;%unity_project%\TestResult*.xml&#34;
 
 echo Rebuilding project
-dotnet build &quot;%solution%.sln&quot; /t:Rebuild
+dotnet build &#34;%solution%.sln&#34; /t:Rebuild
 
 echo Running Edit Mode tests
-&quot;%unity%&quot;^
- -projectPath &quot;%unity_project%&quot;^
+&#34;%unity%&#34;^
+ -projectPath &#34;%unity_project%&#34;^
  -batchmode -runTests -debugCodeOptimization -enableCodeCoverage^
  -testPlatform editmode^
- -testResults &quot;%unity_project%\TestResultEditMode.xml&quot;^
- -coverageResultsPath &quot;%unity_project%&quot;^
- -coverageOptions &quot;generateAdditionalMetrics;assemblyFilters:-*unity*&quot;
+ -testResults &#34;%unity_project%\TestResultEditMode.xml&#34;^
+ -coverageResultsPath &#34;%unity_project%&#34;^
+ -coverageOptions &#34;generateAdditionalMetrics;assemblyFilters:-*unity*&#34;
 
 echo Running Play Mode tests
-&quot;%unity%&quot;^
- -projectPath &quot;%unity_project%&quot;^
+&#34;%unity%&#34;^
+ -projectPath &#34;%unity_project%&#34;^
  -batchmode -runTests -debugCodeOptimization -enableCodeCoverage^
  -testPlatform playmode^
- -testResults &quot;%unity_project%\TestResultPlayMode.xml&quot;^
- -coverageResultsPath &quot;%unity_project%&quot;^
- -coverageOptions &quot;generateAdditionalMetrics;assemblyFilters:-*unity*&quot;
+ -testResults &#34;%unity_project%\TestResultPlayMode.xml&#34;^
+ -coverageResultsPath &#34;%unity_project%&#34;^
+ -coverageOptions &#34;generateAdditionalMetrics;assemblyFilters:-*unity*&#34;
 
 echo Sonar scanner finished
-dotnet-sonarscanner end /d:sonar.login=&quot;%sonartoken%&quot;
-
+dotnet-sonarscanner end /d:sonar.login=&#34;%sonartoken%&#34;
 </code></pre><p>I tried to keep things in their default locations as much as I could. The following files will be generated in your project root:</p>
-<pre><code>TestResultEditMode.xml
+<pre tabindex="0"><code>TestResultEditMode.xml
 TestResultPlayMode.xml
 CodeCoverage\projectname-opencov\EditMode\TestCoverageResults_0000.xml
 CodeCoverage\projectname-opencov\PlayMode\TestCoverageResults_0000.xml
@@ -90,7 +103,7 @@ CodeCoverage\projectname-opencov\PlayMode\TestCoverageResults_0000.xml
             
             <guid>/posts/2021/</guid>
             <description>Covid. Fucking Covid&amp;rsquo;s what&amp;rsquo;s happened in 2021.
- (No seriously, I worked my ass off to release Vagrus, I had a breakup, I stopped kung fu, I started bouldering, I made an entire doom metal EP, so lots of stuff happened, just writing a blog was not one of them.</description>
+(No seriously, I worked my ass off to release Vagrus, I had a breakup, I stopped kung fu, I started bouldering, I made an entire doom metal EP, so lots of stuff happened, just writing a blog was not one of them.</description>
             <content type="html"><![CDATA[<p>Covid. Fucking Covid&rsquo;s what&rsquo;s happened in 2021.</p>
 <hr>
 <p>(No seriously, I worked my ass off to release <a href="https://store.steampowered.com/app/909660/Vagrus__The_Riven_Realms/">Vagrus</a>, I had a breakup, I stopped kung fu, I started bouldering, I made an entire doom metal EP, so lots of stuff happened, just writing a blog was not one of them. I didn&rsquo;t need any &ldquo;extra fun challenges&rdquo; that usually make great writing material, so to speak. But that will change, I promise. I&rsquo;m a <em>sucker</em> for those challenges.)</p>
@@ -107,7 +120,7 @@ CodeCoverage\projectname-opencov\PlayMode\TestCoverageResults_0000.xml
             <content type="html"><![CDATA[<p>For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours. I <a href="https://thelastpointer.wordpress.com/2017/06/10/an-rpg-in-48-hours/">outlined my idea in my previous blog</a> and started the project, but I <a href="https://thelastpointer.wordpress.com/2018/04/15/48-hour-rpg-well-that-didnt-work-out/">deemed it a failure</a> after not touching the project for several months.</p>
 <p>I restarted the project in March 2020. And I failed again! But it was a <em>better</em> failure this time. There&rsquo;s a video at the end if you want to see where I got.</p>
 <p>This time, I kept a private diary which I intend to share here. Here&rsquo;s the full document &ndash; sorry for the formatting, but I kinda wanted to highlight just how <em>sloppy</em> the whole thing is:</p>
-<pre><code>got some basic movement working
+<pre tabindex="0"><code>got some basic movement working
 abilities are going to be big, better spend some time on them
 spent way too much fucking time on the ability editor
 	but some bugs got fixed so it was kinda worth it?
@@ -117,55 +130,55 @@ shader graph is surprisingly buggy -- need to save asset multiple times to get i
 testing abilities is hard.
 	it requires a target, which is a critter for simplicity
 	it requires an abilit; just a debug version for now
-	it requires UI -- I can either make throwaway debug ui, or something that's usable in the long run
+	it requires UI -- I can either make throwaway debug ui, or something that&#39;s usable in the long run
 i fucked up abilities. i tried to be too smart.
 rewriting it took two hours, shit!
 spent 20 minutes looking for a suitable low-res rendering method for URP, then i panicked and stopped
 ranged abilities took another hour; collisions, layers, passing data between actor and projectile, etc.
-a simple enemy took 2 hours. not bad at all! I'm *kinda* proud because they're *kinda* smart
-making a hud is boring, yet, it's a super-high priority task. I get why so many games reuse the same UI paradigms.
+a simple enemy took 2 hours. not bad at all! I&#39;m *kinda* proud because they&#39;re *kinda* smart
+making a hud is boring, yet, it&#39;s a super-high priority task. I get why so many games reuse the same UI paradigms.
 an hour and 10 minutes passed while i was refactoring abilities, just to revert them again.
 	current version is cumbersome: an ability is a ScriptableObject, so I must juggle a lot of files
-	I wanted to inline these, but then I couldn't create different types from the editor
+	I wanted to inline these, but then I couldn&#39;t create different types from the editor
 	so I fucked around with CustomEditors and PropertyDrawers; none of them worked
-	I'm back to juggling files, that, at least, works flawlessly. still cumbersome though
-I noticed that I'm writing less and less comments. I have not seen this observation before -- lots of quality comments at the beginning of the project, and it gets less frequent with elapsed time -- or added complexity.
-I'm using http://cpetry.github.io/NormalMap-Online/ it's nice.
+	I&#39;m back to juggling files, that, at least, works flawlessly. still cumbersome though
+I noticed that I&#39;m writing less and less comments. I have not seen this observation before -- lots of quality comments at the beginning of the project, and it gets less frequent with elapsed time -- or added complexity.
+I&#39;m using http://cpetry.github.io/NormalMap-Online/ it&#39;s nice.
 Dener1111, you absolute genious, you made low-res mode possible! https://github.com/Dener1111/LowRes
-I finally decided that fuck it, I'm not gonna release the source
+I finally decided that fuck it, I&#39;m not gonna release the source
 importing shit takes a lot more time that I anticipated
-I decided to tackle the URP; I'm not logging these hours, but it's about 2-3-4?
+I decided to tackle the URP; I&#39;m not logging these hours, but it&#39;s about 2-3-4?
 	I managed to get a dither pass working. it was fucking convoluted, documentation is the usual Unity bullshit (I found a cool tutorial which was almost exactly what I needed, then it turned out the whole thing is missing altogether)
-	anyway, dithering is an option now. I need to get some graphics ASAP so I'll know what features do I want
+	anyway, dithering is an option now. I need to get some graphics ASAP so I&#39;ll know what features do I want
 	dithering is cool, but it is very crude, maybe too much.
-I included fantasy creature assets. OMG, it is coming alive!!! but seriously, I'll need an inventory, fast :P
+I included fantasy creature assets. OMG, it is coming alive!!! but seriously, I&#39;ll need an inventory, fast :P
 added music and some footstep sounds. this really adds to the atmosphere! i need to pay attention to sounds.
 	also, Actor and ActorFX is a bit of a mess; I need to clean this up. Still not as bad as Abilities though
 There are quite a few warnings in the project. Solution:
 	#pragma warning disable 649
 	Unity should somehow sort this out. But, on the other hand, I _did_ catch two variables that were unused...
 	Cleaning those up, I now have 15 warnings: two valid (temporary debugging stuff), the rest in external assets
-	that's for 12.000 lines of code. my work is 2000 lines, the rest is third-party.
-spent 40 minutes trying to replicate Diablo3's resource globes.
+	that&#39;s for 12.000 lines of code. my work is 2000 lines, the rest is third-party.
+spent 40 minutes trying to replicate Diablo3&#39;s resource globes.
 	https://simonschreibt.de/gat/diablo-3-resource-bubbles/
 	I consider this a very valuable learning experience, however, it is a horrible waste of time if I consider its impact on the project.
 the whole inventory took a single hour! drag&amp;drop, icons, multiple grids, stacking, rarity borders...
 	I was putting this aside for the longest time because I thought it would be so difficult.
 	But I already had some prototypes for drag&amp;drop and stuff, so it went so well! niceeeeeee
-I updated the resource globe effects. I didn't log the time, this might be cheating...
+I updated the resource globe effects. I didn&#39;t log the time, this might be cheating...
 I got carried away with App State. I had some scripts that do _way more_ than what I need.
-	Shit. I wanted to keep this simple. Either use something that works, or don't use it!
+	Shit. I wanted to keep this simple. Either use something that works, or don&#39;t use it!
 	...speaking of which, I could use a simple app framework...
-I spent 45€ on a modular main character. Let's hope it works...
-I'm spending a LOT of time on the main menu.
-I created a cool logo and scene. I was on a call, so I didn't log the time. I regret nothing!
+I spent 45€ on a modular main character. Let&#39;s hope it works...
+I&#39;m spending a LOT of time on the main menu.
+I created a cool logo and scene. I was on a call, so I didn&#39;t log the time. I regret nothing!
 Fuck, my gorgeous logo is crashing the game all the time. _what the f_
 	okay, got it, i think -- if the Game view is scaled down significantly (~0.6x), it will crash the editor. wow.
-	edit: nah, that didn't fix it. it's just too random. I have a single fucking point light in my menu scene (which gives it all the color, fuuuuuck, I need to redo the whole menu), disabling it might work. maybe it's about lit particles.
+	edit: nah, that didn&#39;t fix it. it&#39;s just too random. I have a single fucking point light in my menu scene (which gives it all the color, fuuuuuck, I need to redo the whole menu), disabling it might work. maybe it&#39;s about lit particles.
 coding the app state was easier than I thought. I was postponing it for too long now. I feel like I could make a useful library for dealing with this kind of shit in the future.
-I have 6 hours left, fuck! There's no game yet! So many things are missing, so many useless things are done... I need a plan to turn this into a full game, quickly...
-I set up an orc enemy, with animations and footstep sounds. It took an hour; not so bad, but I'm sooo out of time. It is very apparent that I'd need effects and sound for the combat, it lacks weight right now. Animations are a bit off too, but not too bad.
-I'm kinda at a loss about what to work on next. I'm not sure I can make a full game out of this, there are 1) too many features missing 2) the combat needs more polish to be acceptable. But I don't want to announce failure again...
+I have 6 hours left, fuck! There&#39;s no game yet! So many things are missing, so many useless things are done... I need a plan to turn this into a full game, quickly...
+I set up an orc enemy, with animations and footstep sounds. It took an hour; not so bad, but I&#39;m sooo out of time. It is very apparent that I&#39;d need effects and sound for the combat, it lacks weight right now. Animations are a bit off too, but not too bad.
+I&#39;m kinda at a loss about what to work on next. I&#39;m not sure I can make a full game out of this, there are 1) too many features missing 2) the combat needs more polish to be acceptable. But I don&#39;t want to announce failure again...
 I did level up. It was fairly fast! Looks like creating a level would be the best thing to do now.
 </code></pre><p>This has been sitting on my desktop since 4-5 months.</p>
 <p>A couple of things stand out. I often, if not always, <em>knew immediately</em> when I was wasting time.
@@ -249,7 +262,7 @@ And I&rsquo;m positively suprised by the number of observations I made during wo
             
             <guid>/posts/unity-sonarqube-coverage/</guid>
             <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
- In my last post I wrote about some of the nuances of using SonarQube with a Unity project.</description>
+In my last post I wrote about some of the nuances of using SonarQube with a Unity project.</description>
             <content type="html"><![CDATA[<blockquote>
 <p>There&rsquo;s an update to this article with some corrections and an <a href="/posts/unity-sonarqube-3/">updated batch script here</a>.</p>
 </blockquote>
@@ -262,29 +275,29 @@ And I&rsquo;m positively suprised by the number of observations I made during wo
 <p>Unity will generate an xml file (it can also generate HTML reports too, but we&rsquo;ll ignore that), which is in <a href="https://github.com/OpenCover/opencover">OpenCover</a> format. Fortunately this is supported by SonarQube out of the box (I&rsquo;m using version 8.0). To process the file, we pass <code>/d:sonar.cs.opencover.reportsPaths=&quot;TestResults.xml&quot;</code> when calling <code>begin</code>. Note that we&rsquo;re telling the scanner where to look for the file before the file even exists.</p>
 <p>The result file will be created at <code>projectPath\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml</code>. You will need to figure out where your Unity installation is; if you use Unity Hub (please do!), it is something like this: <code>c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe</code>. Replace your version accordingly. I have yet to find a (non-hacky) way to start the &ldquo;appropriate Unity version&rdquo;.</p>
 <p>Next, we&rsquo;ll modify the original batch file to run unit tests. Unity has a <a href="https://docs.unity3d.com/Manual/CommandLineArguments.html">quite a few command line arguments</a>; what we need is <code>-runTests</code>, <code>-batchmode</code> and of course the code coverage ones. But enough talk, here&rsquo;s the .bat file:</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 
-SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
-SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
-SET &quot;unity=c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe&quot;
+SET &#34;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&#34;
+SET &#34;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&#34;
+SET &#34;unity=c:\Program Files\Unity\2019.3.0f1\Editor\Unity.exe&#34;
 
-SET &quot;unity_project=C:\unity_other\codecoverage&quot;
-SET &quot;sonar_project=codecoverage&quot;
-SET &quot;solution=codecoverage.sln&quot;
+SET &#34;unity_project=C:\unity_other\codecoverage&#34;
+SET &#34;sonar_project=codecoverage&#34;
+SET &#34;solution=codecoverage.sln&#34;
 
-SET &quot;coverage=\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml&quot;
+SET &#34;coverage=\CodeCoverage\codecoverage-opencov\EditMode\TestCoverageResults_0000.xml&#34;
 
 echo Start pre-processing project
-&quot;%scanner%&quot; begin /k:&quot;%sonar_project%&quot; /d:sonar.cs.opencover.reportsPaths=&quot;%unity_project%%coverage%&quot;
+&#34;%scanner%&#34; begin /k:&#34;%sonar_project%&#34; /d:sonar.cs.opencover.reportsPaths=&#34;%unity_project%%coverage%&#34;
 
 echo Rebuilding solution
-&quot;%msbuild%&quot; %solution% /t:Rebuild
+&#34;%msbuild%&#34; %solution% /t:Rebuild
 
 echo Running tests and code coverage
-&quot;%unity%&quot; -runTests -batchmode -projectPath &quot;%unity_project%&quot; -testResults &quot;%unity_project%\testResults.xml&quot; -testPlatform EditMode -forgetProjectPath -enableCodeCoverage -coverageOptions assemblyFilters:-*unity*
+&#34;%unity%&#34; -runTests -batchmode -projectPath &#34;%unity_project%&#34; -testResults &#34;%unity_project%\testResults.xml&#34; -testPlatform EditMode -forgetProjectPath -enableCodeCoverage -coverageOptions assemblyFilters:-*unity*
 
 echo Pushing results to Sonar Server
-&quot;%scanner%&quot; end
+&#34;%scanner%&#34; end
 </code></pre><p>Note how I set environment variables; pay attention to the apostrophes. Filenames with spaces are tricky. <code>unity_project</code> is the path for your Unity project. I assume you run this from within the project folder, but I use absolute paths anyway (it shouldn&rsquo;t be too hard to modify this script to handle command line parameters).</p>
 <p>My SonarQube project is also called &ldquo;codecoverage&rdquo;. The Unity project and the SonarQube project <em>can</em> have different names if you want.</p>
 <p>Having to define both <code>unity_project</code> and <code>solution</code> feels a bit awkward, but it&rsquo;s valid &ndash; I know it&rsquo;s not used 90% of the time, but I wouldn&rsquo;t omit it either.</p>
@@ -322,7 +335,7 @@ echo Pushing results to Sonar Server
             
             <guid>/posts/unity-and-sonarqube/</guid>
             <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
- Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
+Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
             <content type="html"><![CDATA[<blockquote>
 <p>There&rsquo;s an update to this article with some corrections and an <a href="/posts/unity-sonarqube-3/">updated batch script here</a>.</p>
 </blockquote>
@@ -332,13 +345,13 @@ echo Pushing results to Sonar Server
 <p>So here is the article: <a href="https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03">https://medium.com/xrpractices/static-code-analysis-for-unity3d-part-1-a17e8e2a6c03</a></p>
 <p>There are a few things I&rsquo;d add to this.</p>
 <p>First of all, a Java install now requires a registration, which I find outrageous. Fuck you, Oracle, what were you thinking? SonarQube requires Java, but I ran into some path mismatch because I have both JRE and JDK installed (Java Runtime Environment and Java Development Kit). If you find SonarQube complaining about your Java version, then it might be using JRE instead of JDK. To remedy this, find SonarQube&rsquo;s config file, called <code>conf/wrapper.conf</code>, and add this line:</p>
-<pre><code>wrapper.java.command=c:\Program Files\Java\jdk-11.0.5\bin\java
+<pre tabindex="0"><code>wrapper.java.command=c:\Program Files\Java\jdk-11.0.5\bin\java
 </code></pre><p>You can run SonarQube as a service or in a console; if you opt for a console, do yourself a favor and use <a href="https://cmder.net/">cmder</a>.</p>
 <p>I think it is worth noting that you need to open the C# project inside Unity &ndash; this will generate the solution file (.sln) that we analyse. Simply cloning a project, or creating a test project with no code will, duh, not work. While we&rsquo;re talking about git, you should also add the top-level <code>.sonarqube</code> folder to your git ignore list.</p>
 <p>When SonarQube is ready, you might want to consider setting up a &ldquo;real&rdquo; database instead of the built-in one. It&rsquo;s not <em>that</em> important, but keep in mind that if you switch later, your previous work will be lost &ndash; including settings, projects, users, permissions, etc.</p>
 <p>I did this using <a href="https://www.postgresql.org/download/">PostgreSQL</a>. Installation is painless; make sure you install PgAdmin too. Note the port you&rsquo;re going to open; it&rsquo;s 5432 by default. After install, open PgAdmin, create a new database (called &ldquo;sonar&rdquo; in my case), and create a user who has permission to alter it. Please don&rsquo;t use the admin user!</p>
 <p>When done, tell SonarQube to use your database: find <code>conf/sonar.properties</code> and enter these lines:</p>
-<pre><code># Note: the '/sonar' is the database name
+<pre tabindex="0"><code># Note: the &#39;/sonar&#39; is the database name
 sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar
 
 sonar.jdbc.username=sonarqube
@@ -346,16 +359,16 @@ sonar.jdbc.password=password
 </code></pre><p>The database URL took a while to figure out. Restart SonarQube, and you should be set.</p>
 <p>I also created a SonarQube user for scanning; this is done by opening SonarQube (<a href="http://localhost:9000">localhost:9000</a> by default), logging in with admin/admin, Administration panel, Security/Users tab, and Create User button. Easy.</p>
 <p>Now you&rsquo;re ready to go. If you can&rsquo;t find MSBuild, it should be in your Visual Studio folder:</p>
-<pre><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
+<pre tabindex="0"><code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe
 </code></pre><p>This assumes Visual Studio 2019 (the <em>best</em> Visual Studio) and default install paths.</p>
 <p>I created a .bat file for scanning my project &ndash; it is way easier this way. It looks like this:</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 
-SET &quot;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&quot;
-SET &quot;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&quot;
+SET &#34;scanner=c:\progs\sonar\scanner\SonarScanner.MSBuild.exe&#34;
+SET &#34;msbuild=c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe&#34;
 
 echo Start pre-processing project
-%scanner% begin /k:&quot;sonar-project-name&quot;
+%scanner% begin /k:&#34;sonar-project-name&#34;
 
 echo Rebuilding solution
 %msbuild% unityprojectname.sln /t:Rebuild
@@ -383,7 +396,7 @@ echo Pushing results to Sonar Server
             <content type="html"><![CDATA[<p>I finally bit the bullet and added a cookie consent popup to the site. <a href="#explanation">Skip to the part where I explain these cookies.</a></p>
 <p>I was trying my best to make this site as lean and hassle-free as possible, but I&rsquo;m also very curious about visitors &ndash; how many people see these posts? Are some posts more popular than others? Should I post <em>more</em> of something?</p>
 <p>I hoped that github will provide me with some stats one this &ndash; I wasn&rsquo;t expecting much, but then again, I didn&rsquo;t need much. Github, however, gives me zero information on traffic. I&rsquo;ve been staring at this &ldquo;data&rdquo; for months now:</p>
-<p><img src="/img/visitors.png" alt="Github doesn&rsquo;t have enough data"></p>
+<p><img src="/img/visitors.png" alt="Github doesn&amp;rsquo;t have enough data"></p>
 <p>I get that I don&rsquo;t have thousands of views, but I&rsquo;m sure that at least some of my friends see this&hellip;? (And how many visitors should I have before I get access to data anyway?)</p>
 <p>So I&rsquo;ve been looking around for other options. This is a static site, so I can&rsquo;t run any server-side code &ndash; that would be the easiest method, and the most user-friendly one. I seriously contemplated renting a server just for this, but I kinda like github.io and I feel that users can trust it too.</p>
 <p>Other methods are available, too, most notably Google Analytics. The problem with these is that they store a cookie (which is used to make sure that a single user isn&rsquo;t counted twice) and I really, <em>really</em> hate cookie-consent dialogs. The consent is enforced by law, and I found no service that does not need a consent dialog. I feel like these actively make websites worse &ndash; they are annoying and provide no useful information to the user. They usually point to confusing explanations, list hundreds of ad providers, and obscure legal text; I sincerely believe that nobody reads these. Even worse, if I don&rsquo;t agree (and most of time, I don&rsquo;t agree just out of spite), then the consent dialog will be displayed to me <em>every single time</em> I visit that particular site, meaning that I have to face this minor annoyance multiple times, which adds up.</p>
@@ -401,42 +414,6 @@ echo Pushing results to Sonar Server
 <li><a href="https://www.wikihow.com/Disable-Cookies">How to disable cookies?</a></li>
 </ul>
 <p>I would also like to apologize for the inconvenience this causes you. It&rsquo;s a minor annoyance, but still an annoyance &ndash; sorry for that.</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>E3 2019</title>
-            <link>/posts/e3-2019/</link>
-            <pubDate>Tue, 11 Jun 2019 12:18:28 +0200</pubDate>
-            
-            <guid>/posts/e3-2019/</guid>
-            <description>Helen, Level 12 Hacker Avengers Video Game to ride the success of Endgame Marvel&amp;#39;s Avengers (Dev. Crystal Dynamics.) pic.twitter.com/VrbnlM4zE1
-&amp;mdash; Matt Kim (@LawofTD) June 11, 2019  Bethesda dudes talking about games	Bethesda Front Row Hypeman Squad freaking out over every other sentence is honestly the funniest thing I&amp;#39;ve seen all day.</description>
-            <content type="html"><![CDATA[<p><em>Helen, Level 12 Hacker</em>
-<img src="/img/helen.png" alt="Helen"></p>
-<p><em>Avengers Video Game to ride the success of Endgame</em>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Marvel&#39;s Avengers (Dev. Crystal Dynamics.) <a href="https://t.co/VrbnlM4zE1">pic.twitter.com/VrbnlM4zE1</a></p>&mdash; Matt Kim (@LawofTD) <a href="https://twitter.com/LawofTD/status/1138267396953726977?ref_src=twsrc%5Etfw">June 11, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-<p><em>Bethesda dudes talking about games</em>	
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Bethesda Front Row Hypeman Squad freaking out over every other sentence is honestly the funniest thing I&#39;ve seen all day. <a href="https://t.co/XnxntXzNPB">pic.twitter.com/XnxntXzNPB</a></p>&mdash; Tylor (@theSirToasty) <a href="https://twitter.com/theSirToasty/status/1137896050201698304?ref_src=twsrc%5Etfw">June 10, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-<p><em>Doomguy treads Bugs Bunny territory</em>
-
-<video width="100%" controls preload="none" poster="/img/posters/doomcannon.jpg"><source src="https://giant.gfycat.com/FarawayGiganticChinesecrocodilelizard.webm" type="video/webm"></video>
-</p>
-<hr>
-<p>But, of course, E3 2019 was single-handedly eclipsed by Keanu Reeves:
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Best part of <a href="https://twitter.com/hashtag/XboxE3?src=hash&amp;ref_src=twsrc%5Etfw">#XboxE3</a> for me <a href="https://t.co/fi6Jf1y0AF">pic.twitter.com/fi6Jf1y0AF</a></p>&mdash; Nibel (@Nibellion) <a href="https://twitter.com/Nibellion/status/1137837183233077250?ref_src=twsrc%5Etfw">June 9, 2019</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
-<hr>
-<p>On a serious note, this boot sequence in the Halo Infinite trailer is just delicious:</p>
-
-<video width="100%" controls preload="none" poster="/img/posters/haloboot.jpg"><source src="/img/haloboot.webm" type="video/webm"></video>
-
-<p>(Watch the full trailer <a href="https://www.youtube.com/watch?v=ZtgzKBrU1GY">here</a>.)</p>
 ]]></content>
         </item>
         
@@ -462,46 +439,46 @@ Raymond Chen&amp;rsquo;s small posts are equal parts entertaining, terrifying an
             <guid>/posts/hello-world-os/</guid>
             <description>A good friend of mine just found an archive of his &amp;ldquo;operating system&amp;rdquo;, the &amp;ldquo;Hello World OS&amp;rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</description>
             <content type="html"><![CDATA[<p>A good friend of mine just found an archive of his &ldquo;operating system&rdquo;, the &ldquo;Hello World OS&rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#a6e22e">asm</span>
-<span style="color:#75715e">;; boot &#34;Hello world!&#34; program
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">;; usage:
-</span><span style="color:#75715e">;; nasm -fbin hello.asm -o hello.bin
-</span><span style="color:#75715e">;; UltraISO -bootfile hello.bin -outfile hello.iso
-</span><span style="color:#75715e"></span>
-
-<span style="color:#a6e22e">bits</span>    <span style="color:#ae81ff">16</span>                              <span style="color:#75715e">; 16 bit instructions
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">org</span>     <span style="color:#ae81ff">0x7C00</span>                          <span style="color:#75715e">; BIOS transfers execution here after loading the boot sector
-</span><span style="color:#75715e"></span>
-start:
-	<span style="color:#75715e">;; zero out ds, because memory references use ds as base
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">;; ds can only be set via a register so reading from relative addresses would work
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ax</span>, <span style="color:#ae81ff">0</span>
-    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ds</span>, <span style="color:#66d9ef">ax</span>
-    
-    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">si</span>, <span style="color:#66d9ef">string</span>                      <span style="color:#75715e">; si points to the string we want to display
-</span><span style="color:#75715e"></span>
-loop:
-    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">al</span>, [<span style="color:#66d9ef">si</span>]                        <span style="color:#75715e">; al contains the character we want to display
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">ah</span>, <span style="color:#ae81ff">0xE</span>                         <span style="color:#75715e">; teletype (TTY) mode
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">bl</span>, <span style="color:#ae81ff">0x7</span>                         <span style="color:#75715e">; text color (doesn&#39;t matter in tty mode)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">bh</span>, <span style="color:#ae81ff">0</span>                           <span style="color:#75715e">; page number
-</span><span style="color:#75715e"></span>
-    <span style="color:#a6e22e">cmp</span> <span style="color:#66d9ef">al</span>, <span style="color:#ae81ff">0</span>
-    <span style="color:#a6e22e">jz</span> <span style="color:#66d9ef">loop_end</span>                         <span style="color:#75715e">; end loop if we reached the zero byte
-</span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">int</span> <span style="color:#ae81ff">0x10</span>                            <span style="color:#75715e">; BIOS interrupt
-</span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">inc</span> <span style="color:#66d9ef">si</span>
-    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">loop</span>
-
-loop_end:
-    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">$</span>                               <span style="color:#75715e">; hog execution forever :D
-</span><span style="color:#75715e"></span>
-
-<span style="color:#a6e22e">string</span>  <span style="color:#66d9ef">db</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#66d9ef">Hello</span> <span style="color:#66d9ef">world</span>!<span style="color:#960050;background-color:#1e0010">&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>
-<span style="color:#a6e22e">times</span> <span style="color:#ae81ff">510</span>-(<span style="color:#66d9ef">$-$$</span>) <span style="color:#66d9ef">db</span> <span style="color:#ae81ff">0</span>                   <span style="color:#75715e">; pad program to 512 bytes with zeroes
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">dw</span> <span style="color:#ae81ff">0xAA55</span>                               <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">boot</span> <span style="color:#66d9ef">sector</span> <span style="color:#66d9ef">closing</span> <span style="color:#66d9ef">bytes</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#a6e22e">asm</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; boot &#34;Hello world!&#34; program
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; usage:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">;; nasm -fbin hello.asm -o hello.bin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">;; UltraISO -bootfile hello.bin -outfile hello.iso
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bits</span>    <span style="color:#ae81ff">16</span>                              <span style="color:#75715e">; 16 bit instructions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">org</span>     <span style="color:#ae81ff">0x7C00</span>                          <span style="color:#75715e">; BIOS transfers execution here after loading the boot sector
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>start:
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">;; zero out ds, because memory references use ds as base
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">;; ds can only be set via a register so reading from relative addresses would work
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ax</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ds</span>, <span style="color:#66d9ef">ax</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">si</span>, <span style="color:#66d9ef">string</span>                      <span style="color:#75715e">; si points to the string we want to display
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>loop:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">al</span>, [<span style="color:#66d9ef">si</span>]                        <span style="color:#75715e">; al contains the character we want to display
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ah</span>, <span style="color:#ae81ff">0xE</span>                         <span style="color:#75715e">; teletype (TTY) mode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">bl</span>, <span style="color:#ae81ff">0x7</span>                         <span style="color:#75715e">; text color (doesn&#39;t matter in tty mode)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">bh</span>, <span style="color:#ae81ff">0</span>                           <span style="color:#75715e">; page number
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cmp</span> <span style="color:#66d9ef">al</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jz</span> <span style="color:#66d9ef">loop_end</span>                         <span style="color:#75715e">; end loop if we reached the zero byte
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">int</span> <span style="color:#ae81ff">0x10</span>                            <span style="color:#75715e">; BIOS interrupt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inc</span> <span style="color:#66d9ef">si</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">loop</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>loop_end:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">$</span>                               <span style="color:#75715e">; hog execution forever :D
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">string</span>  <span style="color:#66d9ef">db</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#66d9ef">Hello</span> <span style="color:#66d9ef">world</span>!<span style="color:#960050;background-color:#1e0010">&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">times</span> <span style="color:#ae81ff">510</span>-(<span style="color:#66d9ef">$-$$</span>) <span style="color:#66d9ef">db</span> <span style="color:#ae81ff">0</span>                   <span style="color:#75715e">; pad program to 512 bytes with zeroes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">dw</span> <span style="color:#ae81ff">0xAA55</span>                               <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">boot</span> <span style="color:#66d9ef">sector</span> <span style="color:#66d9ef">closing</span> <span style="color:#66d9ef">bytes</span></span></span></code></pre></div>
 <p>Ah, this is amazing. 0x7C00? 0xAA55? Beautiful.</p>
 ]]></content>
         </item>
@@ -589,7 +566,7 @@ I got inspired by Forrest Smith&amp;rsquo;s post on leaving Medium; he opted for
             <content type="html"><![CDATA[<p>New Site!</p>
 <p>I&rsquo;m pretty excited to try github.io for a personal landing page.</p>
 <p>I got inspired by <a href="https://www.forrestthewoods.com/blog/saying_goodbye_to_medium/">Forrest Smith&rsquo;s post</a> on leaving Medium; he opted for a simple, static website that is easy to control and easier on the user. Recently, a lot of opinions surfaced about the web being bloated, and I fully agree.</p>
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Why do I need a 4Ghz quadcore to run facebook?&quot; This is why. A single word split up into 11 HTML DOM elements to avoid adblockers. <a href="https://t.co/Zv4RfInrL0">pic.twitter.com/Zv4RfInrL0</a></p>&mdash; Mike Pan (@themikepan) <a href="https://twitter.com/themikepan/status/1093035372186034176?ref_src=twsrc%5Etfw">February 6, 2019</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;Why do I need a 4Ghz quadcore to run facebook?&quot; This is why. A single word split up into 11 HTML DOM elements to avoid adblockers. <a href="https://t.co/Zv4RfInrL0">pic.twitter.com/Zv4RfInrL0</a></p>&mdash; @mike@mastodon.art (@themikepan) <a href="https://twitter.com/themikepan/status/1093035372186034176?ref_src=twsrc%5Etfw">February 6, 2019</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>So I started looking around, and found <a href="https://gohugo.io/">Hugo</a>. I can write stuff in Markdown (which I love) and it generates a static HTML site.</p>
@@ -636,8 +613,8 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
 <p>Aside: out of curiosity, I asked some of my more experienced friends how much time would this project take; the answers ranged from &ldquo;an hour&rdquo; to &ldquo;half a day&rdquo;. I think that&rsquo;s reasonable, as I only need two endpoints, a very simple database and some encryption. I was prepared to spend a few days on it to get the hang of things.</p>
 <p>So, onto NodeJS! The default Heroku sample uses a framework called &ldquo;Express&rdquo;. I had no idea what it did. It&rsquo;s an &ldquo;application framework&rdquo;, which is meaningless, and their website isn&rsquo;t very helpful either. After some fumbling around it turns out it has some handy tools for serving HTTP websites, so I decided to stick with it. I asked around and it&rsquo;s one of the most popular webserver frameworks, so there&rsquo;s probably no harm in using that instead of writing a lot of boilerplate code. It still strikes me odd that its functionality isn&rsquo;t really explained on their site.</p>
 <p>Handling a request is very simple; it&rsquo;s similar to writing to a console:</p>
-<pre><code>app.get('/', function(req, res) {
-  res.send(&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;ayy&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+<pre tabindex="0"><code>app.get(&#39;/&#39;, function(req, res) {
+  res.send(&#34;&lt;html&gt;&lt;body&gt;&lt;h1&gt;ayy&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#34;);
 });
 </code></pre><p>I guess this is the part when I would have to look up a template engine to serve nice HTML content, but for this project I just need to pass data, so I&rsquo;m skipping that. Anyway, this ran flawlessly on Heroku, and seeing my own little NodeJS webserver running live is very promising! Note that I&rsquo;m about two hours in, including installing Heroku and NodeJS. So far, so good, I&rsquo;m progressing quite fast.</p>
 <p>Next, I&rsquo;ll need a database to work with some &ldquo;real&rdquo; data. The local pgsql install process takes some time (around an hour), and syncing it with Heroku is supposed to be simple. However, I screwed this up, someehow lost my root password, I had to reinstall, and after that Heroku wasn&rsquo;t so cooperative. I guess an environment variable got stuck somewhere; I remember seeing it on a stackoverflow answer? It&rsquo;s not clear what the problem is and how should I go about it. I have no doubt that it would work nicely if I don&rsquo;t fuck it up, but I did, and it&rsquo;s very hard to find out how to make it work again, because I have little idea what&rsquo;s going on.</p>
@@ -650,11 +627,11 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
 <p>Perhaps an experienced developer could tell me what the best option is, but I&rsquo;d expect this topic to be well-covered, even for &ndash; especially for &ndash; beginner developers. The presence of &ldquo;opinions&rdquo; just highlight the lack of an official knowledge base.</p>
 <h2 id="getting-data">Getting data</h2>
 <p>Ending this rant, after a few hours I settled on using try/catch-ing the database code. The result, I have to admit, is super-clean, simple, and well-readable:</p>
-<pre><code>app.get('/getscores', async function(req, res) {
+<pre tabindex="0"><code>app.get(&#39;/getscores&#39;, async function(req, res) {
   try
   {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM scores ORDER BY score DESC LIMIT 20');
+    const result = await client.query(&#39;SELECT * FROM scores ORDER BY score DESC LIMIT 20&#39;);
 
     res.write(JSON.stringify(result.rows));
     res.end();
@@ -663,7 +640,7 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
   }
   catch (err){
     console.error(err);
-    res.status(500).send('Error: ' + err);
+    res.status(500).send(&#39;Error: &#39; + err);
   }
 });
 </code></pre><p>Almost trivial. The &ldquo;getscores&rdquo; subpage returns a JSON containing the first 20 scores. I can&rsquo;t shake the feeling that this can crash for unknown reasons (why isn&rsquo;t <code>client.release()</code> in a finally block? I don&rsquo;t know), but let&rsquo;s hope for the best. I&rsquo;ve inserted some test scores into the database, and it works! Way simpler than I thought it would be.</p>
@@ -674,10 +651,10 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
 <p>The payload decrypting was easy; inserting it into the database is easy. Since the payload is encrypted, it&rsquo;s hard to tamper with, but I still wanted to validate the data before doing any database operations.</p>
 <p>So I got stuck on trying to verify if the score is a valid integer. Amazingly, this took <em>hours</em>.</p>
 <p>Let&rsquo;s start with the solution, the one I settled with at least:</p>
-<pre><code>if (!Number.isInteger(payload.map) || (payload.map &lt;= 0))
+<pre tabindex="0"><code>if (!Number.isInteger(payload.map) || (payload.map &lt;= 0))
 {
-  console.log('map invalid');
-  res.status(400).end('error');
+  console.log(&#39;map invalid&#39;);
+  res.status(400).end(&#39;error&#39;);
 }
 </code></pre><p>But getting there? That was surreal. The requirement is simple: the payload contains this data, and it should be a natural number (some values, like the level index, can be zero). There were all sorts of complications: how to check if the JSON (converted to an object after decryption) has a member? Converting it to bool doesn&rsquo;t work if the number is 0. There&rsquo;s a function for that; if we have the member, how to check if it&rsquo;s a number? Check its type? Which equality operator do you use for that? What&rsquo;s a number anyway? (Seriously, look that up.)</p>
 <p>There are <em>dozens</em> of ways to go around this, each of them slightly different, there are hidden conversion going on in the background with all sorts of results (number, string, undefined, NaN&hellip;). <em>And there is not one that is definitive.</em></p>

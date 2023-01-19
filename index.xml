@@ -6,10 +6,15 @@
     <description>Recent content on thelastpointer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Apr 2022 16:10:42 +0100</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 06 May 2022 10:12:43 +0200</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Awesome Blog: Bartosz Ciechanowski</title>
+      <link>/posts/awesome-blog-bartosz-ciechanowski/</link>
+      <pubDate>Fri, 06 May 2022 10:12:43 +0200</pubDate>
+      
+      <guid>/posts/awesome-blog-bartosz-ciechanowski/</guid>
+      <description>As is usual with posts in this category, I&amp;rsquo;m trying to find a way to express my appreciation for Bartosz Ciechanowski&amp;rsquo;s blog.</description>
+    </item>
     
     <item>
       <title>Unity×Sonarqube update for 2022</title>
@@ -26,7 +31,7 @@
       <pubDate>Mon, 04 Apr 2022 16:10:42 +0100</pubDate>
       
       <guid>/ver2/</guid>
-      <description>THIS IS SOME PRINT Note: this page is printer-friendly.  At a glance: Released, preproduced and mantained several games PC focus, worked with Android, iOS, Mac, Linux and WebGL C# and Unity expert</description>
+      <description>László PetrovánszkiNote: this page is printer-friendly.I&amp;rsquo;m an expert C# programmer specializing in the Unity engine. I&amp;rsquo;ve been using the engine since 2010; I worked mostly in the games industry.</description>
     </item>
     
     <item>
@@ -36,7 +41,7 @@
       
       <guid>/posts/2021/</guid>
       <description>Covid. Fucking Covid&amp;rsquo;s what&amp;rsquo;s happened in 2021.
- (No seriously, I worked my ass off to release Vagrus, I had a breakup, I stopped kung fu, I started bouldering, I made an entire doom metal EP, so lots of stuff happened, just writing a blog was not one of them.</description>
+(No seriously, I worked my ass off to release Vagrus, I had a breakup, I stopped kung fu, I started bouldering, I made an entire doom metal EP, so lots of stuff happened, just writing a blog was not one of them.</description>
     </item>
     
     <item>
@@ -82,7 +87,7 @@
       
       <guid>/posts/unity-sonarqube-coverage/</guid>
       <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
- In my last post I wrote about some of the nuances of using SonarQube with a Unity project.</description>
+In my last post I wrote about some of the nuances of using SonarQube with a Unity project.</description>
     </item>
     
     <item>
@@ -101,7 +106,7 @@
       
       <guid>/posts/unity-and-sonarqube/</guid>
       <description>There&amp;rsquo;s an update to this article with some corrections and an updated batch script here.
- Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
+Static code analysis is cool: it helps you write better, more robust code, it provides useful insights, and it has exciting numbers and stats that make you feel like a real developer.</description>
     </item>
     
     <item>
@@ -111,16 +116,6 @@
       
       <guid>/posts/cookies/</guid>
       <description>I finally bit the bullet and added a cookie consent popup to the site. Skip to the part where I explain these cookies.</description>
-    </item>
-    
-    <item>
-      <title>E3 2019</title>
-      <link>/posts/e3-2019/</link>
-      <pubDate>Tue, 11 Jun 2019 12:18:28 +0200</pubDate>
-      
-      <guid>/posts/e3-2019/</guid>
-      <description>Helen, Level 12 Hacker Avengers Video Game to ride the success of Endgame Marvel&amp;#39;s Avengers (Dev. Crystal Dynamics.) pic.twitter.com/VrbnlM4zE1
-&amp;mdash; Matt Kim (@LawofTD) June 11, 2019  Bethesda dudes talking about games	Bethesda Front Row Hypeman Squad freaking out over every other sentence is honestly the funniest thing I&amp;#39;ve seen all day.</description>
     </item>
     
     <item>
@@ -233,7 +228,7 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
       <pubDate>Fri, 04 Jan 2019 16:10:42 +0100</pubDate>
       
       <guid>/cv/</guid>
-      <description>This is basically my CV, but with more pictures. Don&#39;t take it too seriously :)László Petrovánszkithelastpointer@gmail.comUnity, C#, Windows, Android; active since 2008  Lead Programmer / Lost Pilgrims Studio / 2020- Vagrus: The Riven Realms Joining Lost Pilgrims was a huge challenge on multiple fronts, the biggest being the switch to a full-remote environment.</description>
+      <description>This is basically my CV, but with more pictures. Don&#39;t take it too seriously :)László Petrovánszkithelastpointer@gmail.comUnity, C#, Windows, Android; active since 2008Lead Programmer / Lost Pilgrims Studio / 2020- Vagrus: The Riven Realms Joining Lost Pilgrims was a huge challenge on multiple fronts, the biggest being the switch to a full-remote environment.</description>
     </item>
     
   </channel>

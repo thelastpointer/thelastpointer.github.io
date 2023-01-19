@@ -21,7 +21,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b79d6060f3bf4c5d2bb6f64813f50e1bf223addf4d469bf4c12bbd537df8fde2.css">
+<link rel="stylesheet" href="/scss/main.min.89ebc165766180b87179cbd26a4fe25a1d3528df046fe446ae5b5d18cc62f2c0.css">
 
 
 
@@ -32,14 +32,9 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="Hello World OS">
-<meta itemprop="description" content="A good friend of mine just found an archive of his &ldquo;operating system&rdquo;, the &ldquo;Hello World OS&rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:">
-<meta itemprop="datePublished" content="2019-06-05T11:08:04&#43;02:00" />
-<meta itemprop="dateModified" content="2019-06-05T11:08:04&#43;02:00" />
-<meta itemprop="wordCount" content="221">
-<meta itemprop="image" content="/"/>
-
-
-
+<meta itemprop="description" content="A good friend of mine just found an archive of his &ldquo;operating system&rdquo;, the &ldquo;Hello World OS&rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:"><meta itemprop="datePublished" content="2019-06-05T11:08:04+02:00" />
+<meta itemprop="dateModified" content="2019-06-05T11:08:04+02:00" />
+<meta itemprop="wordCount" content="221"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="untagged," /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
@@ -102,46 +97,46 @@
 
             <div class="post-content">
                 <p>A good friend of mine just found an archive of his &ldquo;operating system&rdquo;, the &ldquo;Hello World OS&rdquo;. It is basically a bootloader, and it gave me such nostalgia that I asked permission to post it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#a6e22e">asm</span>
-<span style="color:#75715e">;; boot &#34;Hello world!&#34; program
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">;; usage:
-</span><span style="color:#75715e">;; nasm -fbin hello.asm -o hello.bin
-</span><span style="color:#75715e">;; UltraISO -bootfile hello.bin -outfile hello.iso
-</span><span style="color:#75715e"></span>
-
-<span style="color:#a6e22e">bits</span>    <span style="color:#ae81ff">16</span>                              <span style="color:#75715e">; 16 bit instructions
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">org</span>     <span style="color:#ae81ff">0x7C00</span>                          <span style="color:#75715e">; BIOS transfers execution here after loading the boot sector
-</span><span style="color:#75715e"></span>
-start:
-	<span style="color:#75715e">;; zero out ds, because memory references use ds as base
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">;; ds can only be set via a register so reading from relative addresses would work
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ax</span>, <span style="color:#ae81ff">0</span>
-    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ds</span>, <span style="color:#66d9ef">ax</span>
-    
-    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">si</span>, <span style="color:#66d9ef">string</span>                      <span style="color:#75715e">; si points to the string we want to display
-</span><span style="color:#75715e"></span>
-loop:
-    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">al</span>, [<span style="color:#66d9ef">si</span>]                        <span style="color:#75715e">; al contains the character we want to display
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">ah</span>, <span style="color:#ae81ff">0xE</span>                         <span style="color:#75715e">; teletype (TTY) mode
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">bl</span>, <span style="color:#ae81ff">0x7</span>                         <span style="color:#75715e">; text color (doesn&#39;t matter in tty mode)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">mov</span> <span style="color:#66d9ef">bh</span>, <span style="color:#ae81ff">0</span>                           <span style="color:#75715e">; page number
-</span><span style="color:#75715e"></span>
-    <span style="color:#a6e22e">cmp</span> <span style="color:#66d9ef">al</span>, <span style="color:#ae81ff">0</span>
-    <span style="color:#a6e22e">jz</span> <span style="color:#66d9ef">loop_end</span>                         <span style="color:#75715e">; end loop if we reached the zero byte
-</span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">int</span> <span style="color:#ae81ff">0x10</span>                            <span style="color:#75715e">; BIOS interrupt
-</span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">inc</span> <span style="color:#66d9ef">si</span>
-    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">loop</span>
-
-loop_end:
-    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">$</span>                               <span style="color:#75715e">; hog execution forever :D
-</span><span style="color:#75715e"></span>
-
-<span style="color:#a6e22e">string</span>  <span style="color:#66d9ef">db</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#66d9ef">Hello</span> <span style="color:#66d9ef">world</span>!<span style="color:#960050;background-color:#1e0010">&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>
-<span style="color:#a6e22e">times</span> <span style="color:#ae81ff">510</span>-(<span style="color:#66d9ef">$-$$</span>) <span style="color:#66d9ef">db</span> <span style="color:#ae81ff">0</span>                   <span style="color:#75715e">; pad program to 512 bytes with zeroes
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">dw</span> <span style="color:#ae81ff">0xAA55</span>                               <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">boot</span> <span style="color:#66d9ef">sector</span> <span style="color:#66d9ef">closing</span> <span style="color:#66d9ef">bytes</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#a6e22e">asm</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; boot &#34;Hello world!&#34; program
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; usage:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">;; nasm -fbin hello.asm -o hello.bin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">;; UltraISO -bootfile hello.bin -outfile hello.iso
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bits</span>    <span style="color:#ae81ff">16</span>                              <span style="color:#75715e">; 16 bit instructions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">org</span>     <span style="color:#ae81ff">0x7C00</span>                          <span style="color:#75715e">; BIOS transfers execution here after loading the boot sector
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>start:
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">;; zero out ds, because memory references use ds as base
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">;; ds can only be set via a register so reading from relative addresses would work
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ax</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ds</span>, <span style="color:#66d9ef">ax</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">si</span>, <span style="color:#66d9ef">string</span>                      <span style="color:#75715e">; si points to the string we want to display
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>loop:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">al</span>, [<span style="color:#66d9ef">si</span>]                        <span style="color:#75715e">; al contains the character we want to display
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">ah</span>, <span style="color:#ae81ff">0xE</span>                         <span style="color:#75715e">; teletype (TTY) mode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">bl</span>, <span style="color:#ae81ff">0x7</span>                         <span style="color:#75715e">; text color (doesn&#39;t matter in tty mode)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">mov</span> <span style="color:#66d9ef">bh</span>, <span style="color:#ae81ff">0</span>                           <span style="color:#75715e">; page number
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cmp</span> <span style="color:#66d9ef">al</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jz</span> <span style="color:#66d9ef">loop_end</span>                         <span style="color:#75715e">; end loop if we reached the zero byte
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">int</span> <span style="color:#ae81ff">0x10</span>                            <span style="color:#75715e">; BIOS interrupt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inc</span> <span style="color:#66d9ef">si</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">loop</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>loop_end:
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jmp</span> <span style="color:#66d9ef">$</span>                               <span style="color:#75715e">; hog execution forever :D
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">string</span>  <span style="color:#66d9ef">db</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#66d9ef">Hello</span> <span style="color:#66d9ef">world</span>!<span style="color:#960050;background-color:#1e0010">&#34;</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">times</span> <span style="color:#ae81ff">510</span>-(<span style="color:#66d9ef">$-$$</span>) <span style="color:#66d9ef">db</span> <span style="color:#ae81ff">0</span>                   <span style="color:#75715e">; pad program to 512 bytes with zeroes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">dw</span> <span style="color:#ae81ff">0xAA55</span>                               <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">boot</span> <span style="color:#66d9ef">sector</span> <span style="color:#66d9ef">closing</span> <span style="color:#66d9ef">bytes</span></span></span></code></pre></div>
 <p>Ah, this is amazing. 0x7C00? 0xAA55? Beautiful.</p>
 
             </div>

@@ -21,7 +21,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/main.min.b79d6060f3bf4c5d2bb6f64813f50e1bf223addf4d469bf4c12bbd537df8fde2.css">
+<link rel="stylesheet" href="/scss/main.min.89ebc165766180b87179cbd26a4fe25a1d3528df046fe446ae5b5d18cc62f2c0.css">
 
 
 
@@ -32,14 +32,9 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#252627"><meta itemprop="name" content="The 48 Hour RPG -- Part 2">
-<meta itemprop="description" content="For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours.">
-<meta itemprop="datePublished" content="2020-12-01T12:10:23&#43;01:00" />
-<meta itemprop="dateModified" content="2020-12-01T12:10:23&#43;01:00" />
-<meta itemprop="wordCount" content="1343">
-<meta itemprop="image" content="/"/>
-
-
-
+<meta itemprop="description" content="For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours."><meta itemprop="datePublished" content="2020-12-01T12:10:23+01:00" />
+<meta itemprop="dateModified" content="2020-12-01T12:10:23+01:00" />
+<meta itemprop="wordCount" content="1343"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="untagged," /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
@@ -104,7 +99,7 @@
                 <p>For the longest time I had this weird challenge in the back of my head: create an RPG game in 48 hours. I <a href="https://thelastpointer.wordpress.com/2017/06/10/an-rpg-in-48-hours/">outlined my idea in my previous blog</a> and started the project, but I <a href="https://thelastpointer.wordpress.com/2018/04/15/48-hour-rpg-well-that-didnt-work-out/">deemed it a failure</a> after not touching the project for several months.</p>
 <p>I restarted the project in March 2020. And I failed again! But it was a <em>better</em> failure this time. There&rsquo;s a video at the end if you want to see where I got.</p>
 <p>This time, I kept a private diary which I intend to share here. Here&rsquo;s the full document &ndash; sorry for the formatting, but I kinda wanted to highlight just how <em>sloppy</em> the whole thing is:</p>
-<pre><code>got some basic movement working
+<pre tabindex="0"><code>got some basic movement working
 abilities are going to be big, better spend some time on them
 spent way too much fucking time on the ability editor
 	but some bugs got fixed so it was kinda worth it?
@@ -114,55 +109,55 @@ shader graph is surprisingly buggy -- need to save asset multiple times to get i
 testing abilities is hard.
 	it requires a target, which is a critter for simplicity
 	it requires an abilit; just a debug version for now
-	it requires UI -- I can either make throwaway debug ui, or something that's usable in the long run
+	it requires UI -- I can either make throwaway debug ui, or something that&#39;s usable in the long run
 i fucked up abilities. i tried to be too smart.
 rewriting it took two hours, shit!
 spent 20 minutes looking for a suitable low-res rendering method for URP, then i panicked and stopped
 ranged abilities took another hour; collisions, layers, passing data between actor and projectile, etc.
-a simple enemy took 2 hours. not bad at all! I'm *kinda* proud because they're *kinda* smart
-making a hud is boring, yet, it's a super-high priority task. I get why so many games reuse the same UI paradigms.
+a simple enemy took 2 hours. not bad at all! I&#39;m *kinda* proud because they&#39;re *kinda* smart
+making a hud is boring, yet, it&#39;s a super-high priority task. I get why so many games reuse the same UI paradigms.
 an hour and 10 minutes passed while i was refactoring abilities, just to revert them again.
 	current version is cumbersome: an ability is a ScriptableObject, so I must juggle a lot of files
-	I wanted to inline these, but then I couldn't create different types from the editor
+	I wanted to inline these, but then I couldn&#39;t create different types from the editor
 	so I fucked around with CustomEditors and PropertyDrawers; none of them worked
-	I'm back to juggling files, that, at least, works flawlessly. still cumbersome though
-I noticed that I'm writing less and less comments. I have not seen this observation before -- lots of quality comments at the beginning of the project, and it gets less frequent with elapsed time -- or added complexity.
-I'm using http://cpetry.github.io/NormalMap-Online/ it's nice.
+	I&#39;m back to juggling files, that, at least, works flawlessly. still cumbersome though
+I noticed that I&#39;m writing less and less comments. I have not seen this observation before -- lots of quality comments at the beginning of the project, and it gets less frequent with elapsed time -- or added complexity.
+I&#39;m using http://cpetry.github.io/NormalMap-Online/ it&#39;s nice.
 Dener1111, you absolute genious, you made low-res mode possible! https://github.com/Dener1111/LowRes
-I finally decided that fuck it, I'm not gonna release the source
+I finally decided that fuck it, I&#39;m not gonna release the source
 importing shit takes a lot more time that I anticipated
-I decided to tackle the URP; I'm not logging these hours, but it's about 2-3-4?
+I decided to tackle the URP; I&#39;m not logging these hours, but it&#39;s about 2-3-4?
 	I managed to get a dither pass working. it was fucking convoluted, documentation is the usual Unity bullshit (I found a cool tutorial which was almost exactly what I needed, then it turned out the whole thing is missing altogether)
-	anyway, dithering is an option now. I need to get some graphics ASAP so I'll know what features do I want
+	anyway, dithering is an option now. I need to get some graphics ASAP so I&#39;ll know what features do I want
 	dithering is cool, but it is very crude, maybe too much.
-I included fantasy creature assets. OMG, it is coming alive!!! but seriously, I'll need an inventory, fast :P
+I included fantasy creature assets. OMG, it is coming alive!!! but seriously, I&#39;ll need an inventory, fast :P
 added music and some footstep sounds. this really adds to the atmosphere! i need to pay attention to sounds.
 	also, Actor and ActorFX is a bit of a mess; I need to clean this up. Still not as bad as Abilities though
 There are quite a few warnings in the project. Solution:
 	#pragma warning disable 649
 	Unity should somehow sort this out. But, on the other hand, I _did_ catch two variables that were unused...
 	Cleaning those up, I now have 15 warnings: two valid (temporary debugging stuff), the rest in external assets
-	that's for 12.000 lines of code. my work is 2000 lines, the rest is third-party.
-spent 40 minutes trying to replicate Diablo3's resource globes.
+	that&#39;s for 12.000 lines of code. my work is 2000 lines, the rest is third-party.
+spent 40 minutes trying to replicate Diablo3&#39;s resource globes.
 	https://simonschreibt.de/gat/diablo-3-resource-bubbles/
 	I consider this a very valuable learning experience, however, it is a horrible waste of time if I consider its impact on the project.
 the whole inventory took a single hour! drag&amp;drop, icons, multiple grids, stacking, rarity borders...
 	I was putting this aside for the longest time because I thought it would be so difficult.
 	But I already had some prototypes for drag&amp;drop and stuff, so it went so well! niceeeeeee
-I updated the resource globe effects. I didn't log the time, this might be cheating...
+I updated the resource globe effects. I didn&#39;t log the time, this might be cheating...
 I got carried away with App State. I had some scripts that do _way more_ than what I need.
-	Shit. I wanted to keep this simple. Either use something that works, or don't use it!
+	Shit. I wanted to keep this simple. Either use something that works, or don&#39;t use it!
 	...speaking of which, I could use a simple app framework...
-I spent 45€ on a modular main character. Let's hope it works...
-I'm spending a LOT of time on the main menu.
-I created a cool logo and scene. I was on a call, so I didn't log the time. I regret nothing!
+I spent 45€ on a modular main character. Let&#39;s hope it works...
+I&#39;m spending a LOT of time on the main menu.
+I created a cool logo and scene. I was on a call, so I didn&#39;t log the time. I regret nothing!
 Fuck, my gorgeous logo is crashing the game all the time. _what the f_
 	okay, got it, i think -- if the Game view is scaled down significantly (~0.6x), it will crash the editor. wow.
-	edit: nah, that didn't fix it. it's just too random. I have a single fucking point light in my menu scene (which gives it all the color, fuuuuuck, I need to redo the whole menu), disabling it might work. maybe it's about lit particles.
+	edit: nah, that didn&#39;t fix it. it&#39;s just too random. I have a single fucking point light in my menu scene (which gives it all the color, fuuuuuck, I need to redo the whole menu), disabling it might work. maybe it&#39;s about lit particles.
 coding the app state was easier than I thought. I was postponing it for too long now. I feel like I could make a useful library for dealing with this kind of shit in the future.
-I have 6 hours left, fuck! There's no game yet! So many things are missing, so many useless things are done... I need a plan to turn this into a full game, quickly...
-I set up an orc enemy, with animations and footstep sounds. It took an hour; not so bad, but I'm sooo out of time. It is very apparent that I'd need effects and sound for the combat, it lacks weight right now. Animations are a bit off too, but not too bad.
-I'm kinda at a loss about what to work on next. I'm not sure I can make a full game out of this, there are 1) too many features missing 2) the combat needs more polish to be acceptable. But I don't want to announce failure again...
+I have 6 hours left, fuck! There&#39;s no game yet! So many things are missing, so many useless things are done... I need a plan to turn this into a full game, quickly...
+I set up an orc enemy, with animations and footstep sounds. It took an hour; not so bad, but I&#39;m sooo out of time. It is very apparent that I&#39;d need effects and sound for the combat, it lacks weight right now. Animations are a bit off too, but not too bad.
+I&#39;m kinda at a loss about what to work on next. I&#39;m not sure I can make a full game out of this, there are 1) too many features missing 2) the combat needs more polish to be acceptable. But I don&#39;t want to announce failure again...
 I did level up. It was fairly fast! Looks like creating a level would be the best thing to do now.
 </code></pre><p>This has been sitting on my desktop since 4-5 months.</p>
 <p>A couple of things stand out. I often, if not always, <em>knew immediately</em> when I was wasting time.
