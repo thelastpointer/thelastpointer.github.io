@@ -26,15 +26,6 @@
     </item>
     
     <item>
-      <title>Résumé</title>
-      <link>/ver2/</link>
-      <pubDate>Mon, 04 Apr 2022 16:10:42 +0100</pubDate>
-      
-      <guid>/ver2/</guid>
-      <description>László PetrovánszkiNote: this page is printer-friendly.I&amp;rsquo;m an expert C# programmer specializing in the Unity engine. I&amp;rsquo;ve been using the engine since 2010; I worked mostly in the games industry.</description>
-    </item>
-    
-    <item>
       <title>What happened in 2021?</title>
       <link>/posts/2021/</link>
       <pubDate>Mon, 17 Jan 2022 00:24:31 +0100</pubDate>
@@ -205,12 +196,12 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
     </item>
     
     <item>
-      <title>Prototypes and personal stuff</title>
+      <title>Project Gallery</title>
       <link>/proto/</link>
       <pubDate>Wed, 09 Jan 2019 11:23:21 +0100</pubDate>
       
       <guid>/proto/</guid>
-      <description>&lt;p&gt;These are things I made for fun, to try new things, but mostly because they had something to do with my plans to conquer the world.&lt;/p&gt;</description>
+      <description>Some professional and not-so-professional work I&amp;rsquo;m proud of. Please note that I&amp;rsquo;m not a graphic artist :)</description>
     </item>
     
     <item>
@@ -220,15 +211,6 @@ Heroku is a service that hosts your applications. NodeJS is a&amp;hellip; well, 
       
       <guid>/about/</guid>
       <description>Hi! I&amp;rsquo;m László, I program games in Unity. I like prototyping ideas. I also like spaceships, books, spices, music with guitars.</description>
-    </item>
-    
-    <item>
-      <title>Résumé</title>
-      <link>/cv/</link>
-      <pubDate>Fri, 04 Jan 2019 16:10:42 +0100</pubDate>
-      
-      <guid>/cv/</guid>
-      <description>László Petrovánszkithelastpointer@gmail.comUnity, C#, Windows, Android; active since 2008Hey! This is my informal portfolio. If you&amp;rsquo;re looking for a professional CV, you can download it here.</description>
     </item>
     
   </channel>
